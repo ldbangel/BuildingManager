@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.building.manage.dao.RoomDataDao" >
+  <resultMap id="BaseResultMap" type="com.yao.building.manage.domain.RoomData" >
+    <id column="Fid" property="id" jdbcType="INTEGER" />
+    <result column="Froom_id" property="roomId" jdbcType="INTEGER" />
+    <result column="Frent" property="rent" jdbcType="INTEGER" />
+    <result column="Fenergy_num" property="energyNum" jdbcType="INTEGER" />
+    <result column="Fenergy_use_count" property="energyUseCount" jdbcType="INTEGER" />
+    <result column="Fwater_num" property="waterNum" jdbcType="INTEGER" />
+    <result column="Fwater_use_count" property="waterUseCount" jdbcType="INTEGER" />
+    <result column="Frent_status" property="rentStatus" jdbcType="INTEGER" />
+    <result column="Fread_time" property="readTime" jdbcType="TIMESTAMP" />
+    <result column="Fcreate_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Fmodify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Foperator" property="operator" jdbcType="VARCHAR" />
+    <result column="Fversion" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Fid, Froom_id, Frent, Fenergy_num, Fenergy_use_count, Fwater_num, Fwater_use_count, 
+    Frent_status, Fread_time, Fcreate_time, Fmodify_time, Foperator, Fversion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.RoomDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_room_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_room_data
+    where Fid = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_room_data
+    where Fid = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yao.building.manage.domain.RoomDataExample" >
+    delete from t_room_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yao.building.manage.domain.RoomData" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_room_data (Froom_id, Frent, Fenergy_num, 
+      Fenergy_use_count, Fwater_num, Fwater_use_count, 
+      Frent_status, Fread_time, Fcreate_time, 
+      Fmodify_time, Foperator, Fversion
+      )
+    values (#{roomId,jdbcType=INTEGER}, #{rent,jdbcType=INTEGER}, #{energyNum,jdbcType=INTEGER}, 
+      #{energyUseCount,jdbcType=INTEGER}, #{waterNum,jdbcType=INTEGER}, #{waterUseCount,jdbcType=INTEGER}, 
+      #{rentStatus,jdbcType=INTEGER}, #{readTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yao.building.manage.domain.RoomData" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_room_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        Froom_id,
+      </if>
+      <if test="rent != null" >
+        Frent,
+      </if>
+      <if test="energyNum != null" >
+        Fenergy_num,
+      </if>
+      <if test="energyUseCount != null" >
+        Fenergy_use_count,
+      </if>
+      <if test="waterNum != null" >
+        Fwater_num,
+      </if>
+      <if test="waterUseCount != null" >
+        Fwater_use_count,
+      </if>
+      <if test="rentStatus != null" >
+        Frent_status,
+      </if>
+      <if test="readTime != null" >
+        Fread_time,
+      </if>
+      <if test="createTime != null" >
+        Fcreate_time,
+      </if>
+      <if test="modifyTime != null" >
+        Fmodify_time,
+      </if>
+      <if test="operator != null" >
+        Foperator,
+      </if>
+      <if test="version != null" >
+        Fversion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="energyNum != null" >
+        #{energyNum,jdbcType=INTEGER},
+      </if>
+      <if test="energyUseCount != null" >
+        #{energyUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="waterNum != null" >
+        #{waterNum,jdbcType=INTEGER},
+      </if>
+      <if test="waterUseCount != null" >
+        #{waterUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="rentStatus != null" >
+        #{rentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="readTime != null" >
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yao.building.manage.domain.RoomDataExample" resultType="java.lang.Integer" >
+    select count(*) from t_room_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_room_data
+    <set >
+      <if test="record.id != null" >
+        Fid = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomId != null" >
+        Froom_id = #{record.roomId,jdbcType=INTEGER},
+      </if>
+      <if test="record.rent != null" >
+        Frent = #{record.rent,jdbcType=INTEGER},
+      </if>
+      <if test="record.energyNum != null" >
+        Fenergy_num = #{record.energyNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.energyUseCount != null" >
+        Fenergy_use_count = #{record.energyUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.waterNum != null" >
+        Fwater_num = #{record.waterNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.waterUseCount != null" >
+        Fwater_use_count = #{record.waterUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.rentStatus != null" >
+        Frent_status = #{record.rentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.readTime != null" >
+        Fread_time = #{record.readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        Fmodify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operator != null" >
+        Foperator = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        Fversion = #{record.version,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_room_data
+    set Fid = #{record.id,jdbcType=INTEGER},
+      Froom_id = #{record.roomId,jdbcType=INTEGER},
+      Frent = #{record.rent,jdbcType=INTEGER},
+      Fenergy_num = #{record.energyNum,jdbcType=INTEGER},
+      Fenergy_use_count = #{record.energyUseCount,jdbcType=INTEGER},
+      Fwater_num = #{record.waterNum,jdbcType=INTEGER},
+      Fwater_use_count = #{record.waterUseCount,jdbcType=INTEGER},
+      Frent_status = #{record.rentStatus,jdbcType=INTEGER},
+      Fread_time = #{record.readTime,jdbcType=TIMESTAMP},
+      Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
+      Fmodify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      Foperator = #{record.operator,jdbcType=VARCHAR},
+      Fversion = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yao.building.manage.domain.RoomData" >
+    update t_room_data
+    <set >
+      <if test="roomId != null" >
+        Froom_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null" >
+        Frent = #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="energyNum != null" >
+        Fenergy_num = #{energyNum,jdbcType=INTEGER},
+      </if>
+      <if test="energyUseCount != null" >
+        Fenergy_use_count = #{energyUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="waterNum != null" >
+        Fwater_num = #{waterNum,jdbcType=INTEGER},
+      </if>
+      <if test="waterUseCount != null" >
+        Fwater_use_count = #{waterUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="rentStatus != null" >
+        Frent_status = #{rentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="readTime != null" >
+        Fread_time = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        Fcreate_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        Fmodify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        Foperator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        Fversion = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Fid = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yao.building.manage.domain.RoomData" >
+    update t_room_data
+    set Froom_id = #{roomId,jdbcType=INTEGER},
+      Frent = #{rent,jdbcType=INTEGER},
+      Fenergy_num = #{energyNum,jdbcType=INTEGER},
+      Fenergy_use_count = #{energyUseCount,jdbcType=INTEGER},
+      Fwater_num = #{waterNum,jdbcType=INTEGER},
+      Fwater_use_count = #{waterUseCount,jdbcType=INTEGER},
+      Frent_status = #{rentStatus,jdbcType=INTEGER},
+      Fread_time = #{readTime,jdbcType=TIMESTAMP},
+      Fcreate_time = #{createTime,jdbcType=TIMESTAMP},
+      Fmodify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      Foperator = #{operator,jdbcType=VARCHAR},
+      Fversion = #{version,jdbcType=INTEGER}
+    where Fid = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

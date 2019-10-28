@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.building.manage.dao.RoomUserInfoDao" >
+  <resultMap id="BaseResultMap" type="com.yao.building.manage.domain.RoomUserInfo" >
+    <id column="Fid" property="id" jdbcType="INTEGER" />
+    <result column="Froom_id" property="roomId" jdbcType="INTEGER" />
+    <result column="Fuser_id" property="userId" jdbcType="INTEGER" />
+    <result column="Fbind_status" property="bindStatus" jdbcType="INTEGER" />
+    <result column="Fcreate_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Fmodify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Foperator" property="operator" jdbcType="VARCHAR" />
+    <result column="Fversion" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Fid, Froom_id, Fuser_id, Fbind_status, Fcreate_time, Fmodify_time, Foperator, Fversion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.RoomUserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_room_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_room_user_info
+    where Fid = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_room_user_info
+    where Fid = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yao.building.manage.domain.RoomUserInfoExample" >
+    delete from t_room_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yao.building.manage.domain.RoomUserInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_room_user_info (Froom_id, Fuser_id, Fbind_status, 
+      Fcreate_time, Fmodify_time, Foperator, 
+      Fversion)
+    values (#{roomId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bindStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yao.building.manage.domain.RoomUserInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_room_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        Froom_id,
+      </if>
+      <if test="userId != null" >
+        Fuser_id,
+      </if>
+      <if test="bindStatus != null" >
+        Fbind_status,
+      </if>
+      <if test="createTime != null" >
+        Fcreate_time,
+      </if>
+      <if test="modifyTime != null" >
+        Fmodify_time,
+      </if>
+      <if test="operator != null" >
+        Foperator,
+      </if>
+      <if test="version != null" >
+        Fversion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bindStatus != null" >
+        #{bindStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yao.building.manage.domain.RoomUserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_room_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_room_user_info
+    <set >
+      <if test="record.id != null" >
+        Fid = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomId != null" >
+        Froom_id = #{record.roomId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        Fuser_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bindStatus != null" >
+        Fbind_status = #{record.bindStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        Fmodify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operator != null" >
+        Foperator = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        Fversion = #{record.version,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_room_user_info
+    set Fid = #{record.id,jdbcType=INTEGER},
+      Froom_id = #{record.roomId,jdbcType=INTEGER},
+      Fuser_id = #{record.userId,jdbcType=INTEGER},
+      Fbind_status = #{record.bindStatus,jdbcType=INTEGER},
+      Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
+      Fmodify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      Foperator = #{record.operator,jdbcType=VARCHAR},
+      Fversion = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yao.building.manage.domain.RoomUserInfo" >
+    update t_room_user_info
+    <set >
+      <if test="roomId != null" >
+        Froom_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        Fuser_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bindStatus != null" >
+        Fbind_status = #{bindStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        Fcreate_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        Fmodify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        Foperator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        Fversion = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Fid = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yao.building.manage.domain.RoomUserInfo" >
+    update t_room_user_info
+    set Froom_id = #{roomId,jdbcType=INTEGER},
+      Fuser_id = #{userId,jdbcType=INTEGER},
+      Fbind_status = #{bindStatus,jdbcType=INTEGER},
+      Fcreate_time = #{createTime,jdbcType=TIMESTAMP},
+      Fmodify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      Foperator = #{operator,jdbcType=VARCHAR},
+      Fversion = #{version,jdbcType=INTEGER}
+    where Fid = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

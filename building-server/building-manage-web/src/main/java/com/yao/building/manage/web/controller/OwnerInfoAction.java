@@ -1,0 +1,32 @@
+package com.yao.building.manage.web.controller;
+
+import com.alibaba.fastjson.JSONObject;
+import com.yao.building.manage.domain.Employee;
+import com.yao.building.manage.request.ModifyEmployeeInfoRequest;
+import com.yao.building.manage.request.QueryEmployeeInfSimpleRequest;
+import com.yao.building.manage.service.EmployeeInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequestMapping("/building/owner")
+@RestController
+public class OwnerInfoAction {
+    @Autowired
+    private EmployeeInfoService employeeInfoService;
+
+    @RequestMapping("getOwnerInfo")
+    public Employee getEmployeeOwnerInfo(@RequestBody QueryEmployeeInfSimpleRequest request){
+        Employee employee = employeeInfoService.queryEmployeeInfoSimple(request);
+        return employee;
+    }
+
+    @RequestMapping("editOwnerInfo")
+    public JSONObject editEmployeeOwnerInfo(@RequestBody ModifyEmployeeInfoRequest request){
+        JSONObject response = new JSONObject();
+        employeeInfoService.modifyEmployeeInfo(request);
+        response.put("status", "success");
+        return response;
+    }
+}

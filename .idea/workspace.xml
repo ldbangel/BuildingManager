@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9faa6444-bb10-4ae9-ac18-0b0192827c80" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/building-parent/target/" />
+    <ignored path="$PROJECT_DIR$/building-common/target/" />
+    <ignored path="$PROJECT_DIR$/building-server/target/" />
+    <ignored path="$PROJECT_DIR$/building-server/building-manage-impl/target/" />
+    <ignored path="$PROJECT_DIR$/building-server/building-manage-service/target/" />
+    <ignored path="$PROJECT_DIR$/building-server/building-manage-dao/target/" />
+    <ignored path="$PROJECT_DIR$/building-server/building-manage-web/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/Application.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/BuildingControlAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="36" column="33" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/CommonService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="140" column="42" selection-start-line="140" selection-start-column="42" selection-end-line="140" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>buiding_db</find>
+      <find>commons</find>
+      <find>BaseResultMap</find>
+      <find>insertSelective</find>
+      <find>updateByPrimaryKeySelective</find>
+      <find>buildingInfoDao</find>
+      <find>roomDataDao</find>
+      <find>order by</find>
+      <find>orderByClause</find>
+      <find>orderBy</find>
+      <find>楼栋信息</find>
+      <find>楼栋</find>
+      <find>getBuildingInfoByRoomId</find>
+      <find>getRoomInfosByBuildingId</find>
+      <find>getRoomInfosByIds</find>
+      <find>RoomUserInfoExample</find>
+      <find>getRoomsStatusInfo</find>
+      <find>PageHelper</find>
+      <find>pageHelper</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/UserInfoService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/PageRequest/PageBaseRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/ICommonService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomUserInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetAllAbleToCancelRoomRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/AbleCancelRoomResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/PageRequest/BaseRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomStatusInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/RoomStatusInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/PageRequest/GetHistoryUserInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/UserBaseAndAddressInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetBuildingBaseInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BuildingBasedInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/AddOrEditBuildingInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/RoomBaseInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomBaseInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/AddOrEditRoomInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/BuildingManageService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/dal/RoomInfoDal.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/dal/BuildingInfoDal.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/dal/RoomUserInfoDal.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetBuildingAndEmployeeInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BuildingAndEmployeeInfo.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/vo/EmployeeEntry.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BuildingAndEmployeeInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/pom.xml" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetFinanceInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/dal/RoomFeeInfoDal.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/FinanceInfoService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/FinancialInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BaseResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/vo/RoomUserInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/RoomAndDataInfoResponse.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/ManagerAction.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/FinancialDataAction.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/RoomInfoService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/HistoryDataAction.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/EmployeeInfoService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/OwnerInfoAction.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomAndDataInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetBuildingInfoDetailRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/building-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/CommonService.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetPlaceInfoRequest.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/EmployeeInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/RoomInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/FinanceInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/UserInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/BuildingManageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/BuildingControlAction.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/Dev/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\Dev\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="building-manage-web" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="building-manage-web" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="building-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="building-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="1934" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-parent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="manage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="manage" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-impl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="manage" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="manage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="manage" type="462c0819:PsiDirectoryNode" />
+              <item name="request" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="building-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="building-server" type="462c0819:PsiDirectoryNode" />
+              <item name="building-manage-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572280698929" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/building-server/building-manage-web/src/main/webapp" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\bruceliu\building-manage\building-server\building-manage-web\src\main\webapp\WEB-INF" />
+      <recent name="D:\Projects\bruceliu\building-manage\building-server\building-manage-dao\src\main\resources\mappers" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.yao.building.manage.domain" />
+      <recent name="com.yao.building.manage.dao" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yao.building.manage.request" />
+      <recent name="com.yao.building.manage.response" />
+      <recent name="com.yao.building.manage.vo" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\bruceliu\building-manage\building-server\building-manage-dao\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="BuildingManageWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="building-manage-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yao.building.manage.web.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9faa6444-bb10-4ae9-ac18-0b0192827c80" name="Default Changelist" comment="" />
+      <created>1571232499271</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571232499271</updated>
+      <workItem from="1571232505398" duration="201896000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="201896000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Web" order="4" side_tool="true" />
+      <window_info id="Designer" order="5" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.25" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Duplicate detector" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32936078" />
+      <window_info anchor="bottom" id="Java Enterprise" order="4" />
+      <window_info anchor="bottom" id="Database Changes" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.312026" />
+      <window_info anchor="bottom" id="Debug" order="11" weight="0.3261105" />
+      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="14" weight="0.32936078" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Database" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Bean Validation" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.32995737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Web" order="4" side_tool="true" />
+      <window_info id="Designer" order="5" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.25" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Duplicate detector" order="0" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32936078" />
+      <window_info anchor="bottom" id="Java Enterprise" order="5" />
+      <window_info anchor="bottom" id="Database Changes" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Spring" order="8" />
+      <window_info anchor="bottom" id="Message" order="9" />
+      <window_info anchor="bottom" id="Find" order="10" />
+      <window_info anchor="bottom" id="Run" order="11" weight="0.4626219" />
+      <window_info anchor="bottom" id="Debug" order="12" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="15" weight="0.32936078" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Database" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Bean Validation" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.32995737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/BuildingControlAction.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/BuildingControlAction.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/BuildingManageServiceImpl.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/BuildingManageServiceImpl.java</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/vo/RoomUserInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/dal/RoomFeeInfoDal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/EmployeeLoginServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/BuildingManageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/EmployeeLoginService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/FinanceInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/UserInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/RoomInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/FinancialInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/service/EmployeeInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomStatusInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/RoomStatusInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomAndDataInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/RoomAndDataInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/PageRequest/GetHistoryUserInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BaseResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/UserBaseAndAddressInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetBuildingBaseInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/AddOrEditBuildingInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomBaseInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/RoomBaseInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/AddOrEditRoomInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-dao/src/main/java/com/yao/building/manage/domain/RoomInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetBuildingAndEmployeeInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/vo/EmployeeEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BuildingAndEmployeeInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetBuildingInfoDetailRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/PageRequest/BaseRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetRoomUserInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/OwnerInfoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/ManagerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="25" column="87" selection-start-line="25" selection-start-column="87" selection-end-line="25" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1265">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-parent/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/vo/PageBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetFinanceInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-dao/src/main/java/com/yao/building/manage/domain/PlaceDictExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/request/GetPlaceInfoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/FinancialDataAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/HistoryDataAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/UserInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/FinanceInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="88" column="71" lean-forward="true" selection-start-line="88" selection-start-column="71" selection-end-line="88" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/RoomInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="628" selection-start-line="628" selection-end-line="628" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/EmployeeInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="85" column="39" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/CommonService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="140" column="42" selection-start-line="140" selection-start-column="42" selection-end-line="140" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-service/src/main/java/com/yao/building/manage/response/BuildingBaseInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-impl/src/main/java/com/yao/building/manage/service/impl/BuildingManageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1133">
+          <caret line="66" column="43" lean-forward="true" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building-server/building-manage-web/src/main/java/com/yao/building/manage/web/controller/BuildingControlAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>building-manage-web:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web (building-manage-web)|Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web|building-manage-web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.2.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

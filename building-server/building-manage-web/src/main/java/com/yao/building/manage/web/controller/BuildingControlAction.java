@@ -11,15 +11,15 @@ import com.yao.building.manage.response.BuildingBaseInfoResponse;
 import com.yao.building.manage.response.RoomBaseInfoResponse;
 import com.yao.building.manage.response.RoomStatusInfoResponse;
 import com.yao.building.manage.service.BuildingManageService;
-import com.yao.building.manage.service.EmployeeInfoService;
+import com.yao.building.manage.service.EmployeeService;
 import com.yao.building.manage.service.RoomInfoService;
 import com.yao.building.manage.vo.PageBean;
+import com.yao.building.manage.web.annotation.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequestMapping("/total/control/")
@@ -30,13 +30,13 @@ public class BuildingControlAction {
     @Autowired
     private RoomInfoService roomInfoService;
     @Autowired
-    private EmployeeInfoService employeeInfoService;
+    private EmployeeService employeeInfoService;
     @Autowired
     private PlaceDictDao placeDictDao;
 
+//    @UserLoginToken
     @RequestMapping("getPlaceInfo")
-    public List<PlaceDict>  getPlaceInfos(@RequestBody GetPlaceInfoRequest request,
-                                          HttpServletRequest servletRequest){
+    public List<PlaceDict> getPlaceInfos(@RequestBody GetPlaceInfoRequest request){
         PlaceDictExample placeDictExample = new PlaceDictExample();
         PlaceDictExample.Criteria placeDictCriteria = placeDictExample.createCriteria();
         placeDictCriteria.andPIdEqualTo(request.getPId());

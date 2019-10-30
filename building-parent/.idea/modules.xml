@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../building-common/building-common.iml" filepath="$PROJECT_DIR$/../building-common/building-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../building-server/building-manage-dao/building-manage-dao.iml" filepath="$PROJECT_DIR$/../building-server/building-manage-dao/building-manage-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../building-server/building-manage-impl/building-manage-impl.iml" filepath="$PROJECT_DIR$/../building-server/building-manage-impl/building-manage-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../building-server/building-manage-service/building-manage-service.iml" filepath="$PROJECT_DIR$/../building-server/building-manage-service/building-manage-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../building-server/building-manage-web/building-manage-web.iml" filepath="$PROJECT_DIR$/../building-server/building-manage-web/building-manage-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/building-parent.iml" filepath="$PROJECT_DIR$/building-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../building-server/building-server.iml" filepath="$PROJECT_DIR$/../building-server/building-server.iml" />
+    </modules>
+  </component>
+</project>

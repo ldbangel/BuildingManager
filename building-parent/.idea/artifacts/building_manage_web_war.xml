@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="building-manage-web:war">
+    <output-path>$PROJECT_DIR$/../building-server/building-manage-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>building-manage-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="BuildingManager.war">
+      <element id="artifact" artifact-name="building-manage-web:war exploded" />
+    </root>
+  </artifact>
+</component>

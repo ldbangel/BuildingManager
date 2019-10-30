@@ -6,7 +6,7 @@ import com.yao.building.manage.request.EmployeeLoginRequest;
 /**
  * 员工登录、退出
  */
-public interface EmployeeLoginService {
+public interface LoginService {
     public Employee employeeLogin(EmployeeLoginRequest request);
 
     public void employeeSignOut();

@@ -11,11 +11,9 @@ import com.yao.building.manage.request.PageRequest.BaseRequest;
 import com.yao.building.manage.request.QueryEmployeeInfSimpleRequest;
 import com.yao.building.manage.response.BaseResponse;
 import com.yao.building.manage.response.BuildingAndEmployeeInfoResponse;
-import com.yao.building.manage.response.RoomBaseInfoResponse;
-import com.yao.building.manage.service.EmployeeInfoService;
+import com.yao.building.manage.service.EmployeeService;
 import com.yao.building.manage.vo.EmployeeEntry;
 import com.yao.building.manage.vo.PageBean;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +27,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service("employeeInfoService")
-public class EmployeeInfoServiceImpl implements EmployeeInfoService {
+public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeDao employeeDao;
     @Autowired
@@ -188,5 +186,24 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
                 .collect(Collectors.toList());
 
         return response;
+    }
+
+    @Override
+    public Employee findEmployeeById(Integer id) {
+        Employee employee = employeeDao.selectByPrimaryKey(id);
+        return employee;
+    }
+
+    @Override
+    public Employee findEmployeeByMobile(Employee employee) {
+        EmployeeExample example = new EmployeeExample();
+        EmployeeExample.Criteria criteria = example.createCriteria();
+        criteria.andEmployeeMobileEqualTo(employee.getEmployeeMobile());
+        criteria.andStatusEqualTo(1);
+        List<Employee> employeeList = employeeDao.selectByExample(example);
+        if(employeeList == null){
+            return null;
+        }
+        return employeeList.get(0);
     }
 }

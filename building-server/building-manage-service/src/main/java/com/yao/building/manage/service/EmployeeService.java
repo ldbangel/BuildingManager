@@ -8,7 +8,7 @@ import com.yao.building.manage.request.QueryEmployeeInfSimpleRequest;
 import com.yao.building.manage.response.BuildingAndEmployeeInfoResponse;
 import com.yao.building.manage.vo.PageBean;
 
-public interface EmployeeInfoService {
+public interface EmployeeService {
     /**
      * 获取员工信息
      */
@@ -30,5 +30,12 @@ public interface EmployeeInfoService {
      *    1、一定要有buildingId
      */
     BuildingAndEmployeeInfoResponse getBuildingEmployeeInfoSimple(BaseRequest request);
+
+    /**
+     * 根据ID查询员工信息
+     */
+    Employee findEmployeeById(Integer id);
+
+    Employee findEmployeeByMobile(Employee employee);
 
 }

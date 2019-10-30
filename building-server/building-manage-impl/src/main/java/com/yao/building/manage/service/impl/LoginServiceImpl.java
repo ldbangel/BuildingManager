@@ -4,7 +4,7 @@ import com.yao.building.manage.dao.EmployeeDao;
 import com.yao.building.manage.domain.Employee;
 import com.yao.building.manage.domain.EmployeeExample;
 import com.yao.building.manage.request.EmployeeLoginRequest;
-import com.yao.building.manage.service.EmployeeLoginService;
+import com.yao.building.manage.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("employeeLoginService")
+@Service("loginService")
 @Slf4j
-public class EmployeeLoginServiceImpl implements EmployeeLoginService {
+public class LoginServiceImpl implements LoginService {
     @Autowired
     private EmployeeDao employeeDao;
 

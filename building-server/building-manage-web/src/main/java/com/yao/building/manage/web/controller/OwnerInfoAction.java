@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yao.building.manage.domain.Employee;
 import com.yao.building.manage.request.ModifyEmployeeInfoRequest;
 import com.yao.building.manage.request.QueryEmployeeInfSimpleRequest;
-import com.yao.building.manage.service.EmployeeInfoService;
+import com.yao.building.manage.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OwnerInfoAction {
     @Autowired
-    private EmployeeInfoService employeeInfoService;
+    private EmployeeService employeeInfoService;
 
     @RequestMapping("getOwnerInfo")
     public Employee getEmployeeOwnerInfo(@RequestBody QueryEmployeeInfSimpleRequest request){

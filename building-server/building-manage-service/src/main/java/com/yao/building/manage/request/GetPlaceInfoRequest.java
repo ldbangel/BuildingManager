@@ -10,6 +10,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetPlaceInfoRequest {
+    /**
+     * pId <= 100000   为地区id
+     * pId > 100000    为buildingId
+     */
     @NotNull
     private Integer pId;
 }

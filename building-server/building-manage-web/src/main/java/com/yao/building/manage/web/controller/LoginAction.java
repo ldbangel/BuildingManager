@@ -33,7 +33,7 @@ public class LoginAction {
                 jsonObject.put("message","登录失败,密码错误");
                 return jsonObject;
             }else {
-                session.setAttribute("employee", employee);
+                session.setAttribute("employee", employeeBase);
                 String token = tokenService.getToken(employeeBase);
                 jsonObject.put("token", token);
                 jsonObject.put("username", employeeBase.getEmployeeName());

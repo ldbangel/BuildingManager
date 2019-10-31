@@ -47,7 +47,7 @@ public class BuildingControlAction {
     private BuildingInfoDao buildingInfoDao;
     private static final int BUILDING_ID_START = 100000;
 
-    @UserLoginToken
+//    @UserLoginToken
     @RequestMapping("getPlaceInfo")
     public List<PlaceEntryResponse> getPlaceInfos(@RequestBody GetPlaceInfoRequest request,
                                                   HttpServletRequest servletRequest){

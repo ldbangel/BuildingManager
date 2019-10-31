@@ -5,12 +5,16 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/*
+/**
+ * 统一运行时异常处理
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ResponseBody
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(RuntimeException.class)
     public Object handleException(Exception e) {
+        e.printStackTrace();
         String msg = e.getMessage();
         if (msg == null || msg.equals("")) {
             msg = "服务器出错";
@@ -19,4 +23,4 @@ public class GlobalExceptionHandler {
         jsonObject.put("message", msg);
         return jsonObject;
     }
-}*/
+}

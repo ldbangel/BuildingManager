@@ -17,7 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Date;
 
+/**
+ * 拦截器
+ */
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     private EmployeeService employeeService;
@@ -47,12 +51,22 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if (token == null) {
                     throw new RuntimeException("无token，请重新登录");
                 }
+
+                if(httpServletRequest.getSession().getAttribute("employee") == null){  //用户退出了，session没有数据，请重新登录
+                    throw new RuntimeException("无token，请重新登录");
+                }
                 // 获取 token 中的 employee id
                 String employeeId;
+                Date expire;
                 try {
                     employeeId = JWT.decode(token).getAudience().get(0);
+                    expire = JWT.decode(token).getExpiresAt();
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("401");
+                }
+                // token过期判断
+                if(expire.compareTo(new Date()) < 0){
+                    throw new RuntimeException("token已过期，请重新登录");
                 }
                 Employee employee = employeeService.findEmployeeById(Integer.valueOf(employeeId));
                 if (employee == null) {

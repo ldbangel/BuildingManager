@@ -1,7 +1,7 @@
 package com.yao.building.manage.web.controller;
 
+import com.yao.building.manage.request.GetHistoryUserInfoRequest;
 import com.yao.building.manage.request.GetRoomAndDataInfoRequest;
-import com.yao.building.manage.request.PageRequest.GetHistoryUserInfoRequest;
 import com.yao.building.manage.response.RoomAndDataInfoResponse;
 import com.yao.building.manage.response.UserBaseAndAddressInfoResponse;
 import com.yao.building.manage.service.RoomInfoService;
@@ -24,7 +24,7 @@ public class HistoryDataAction {
     }
 
     @RequestMapping("getUsersInfo")
-    public PageBean<UserBaseAndAddressInfoResponse> getHistoryUserInfo(GetHistoryUserInfoRequest request){
+    public PageBean<UserBaseAndAddressInfoResponse> getHistoryUserInfo(@RequestBody GetHistoryUserInfoRequest request){
         PageBean<UserBaseAndAddressInfoResponse> response = roomInfoService.getUserBaseAndAddressInfo(request);
         return response;
     }

@@ -2,7 +2,6 @@ package com.yao.building.manage.service;
 
 import com.yao.building.manage.domain.UserInfo;
 import com.yao.building.manage.request.*;
-import com.yao.building.manage.request.PageRequest.GetHistoryUserInfoRequest;
 import com.yao.building.manage.response.*;
 import com.yao.building.manage.vo.PageBean;
 import com.yao.building.manage.vo.RoomUserInfoResponse;

@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * 超级管理员界面
+ */
 @RequestMapping("/total/control/")
 @RestController
 public class BuildingControlAction {
@@ -47,13 +50,16 @@ public class BuildingControlAction {
     private BuildingInfoDao buildingInfoDao;
     private static final int BUILDING_ID_START = 100000;
 
+    /**
+     * 获取地址列表
+     */
 //    @UserLoginToken
     @RequestMapping("getPlaceInfo")
     public List<PlaceEntryResponse> getPlaceInfos(@RequestBody GetPlaceInfoRequest request,
                                                   HttpServletRequest servletRequest){
         Employee employee = (Employee) servletRequest.getSession().getAttribute("employee");
         if(employee == null){
-            throw new RuntimeException();
+            throw new RuntimeException("请重新登录");
         }
         List<PlaceEntryResponse> responseList = new ArrayList<>();
         // 大于100000时为buildingId,这里直接查询buildingId所有的房间就行了
@@ -174,24 +180,36 @@ public class BuildingControlAction {
         return  responseList;
     }
 
+    /**
+     * 租赁概览
+     */
     @RequestMapping("getRoomsStatusInfo")
     public List<RoomStatusInfoResponse> getRoomsRentStatusInfo(@RequestBody GetRoomStatusInfoRequest request){
         List<RoomStatusInfoResponse> responseList = roomInfoService.getRoomStatusInfos(request);
         return responseList;
     }
 
+    /**
+     * 楼栋信息
+     */
     @RequestMapping("getAllBuildingsInfo")
     public PageBean<BuildingBaseInfoResponse> getAllBuildingInfos(@RequestBody GetBuildingBaseInfoRequest request){
         PageBean<BuildingBaseInfoResponse> response = buildingManageService.getBuildingBaseInfo(request);
         return response;
     }
 
+    /**
+     * 具体楼栋信息
+     */
     @RequestMapping("getBuildingInfoDetail")
     public BuildingBaseInfoResponse getBuildingInfoSimple(@RequestBody GetBuildingInfoDetailRequest request){
         BuildingBaseInfoResponse response = buildingManageService.getBuildingDetailInfo(request.getBuildingId());
         return response;
     }
 
+    /**
+     * 编辑楼栋信息
+     */
     @RequestMapping("editBuildingInfo")
     public JSONObject editBuildingInfo(@RequestBody AddOrEditBuildingInfoRequest request){
         JSONObject response = new JSONObject();
@@ -200,12 +218,18 @@ public class BuildingControlAction {
         return response;
     }
 
+    /**
+     * 获取房间信息
+     */
     @RequestMapping("getAllRoomsInfo")
     public PageBean<RoomBaseInfoResponse> getAllRoomsInfo(@RequestBody GetRoomBaseInfoRequest request){
         PageBean<RoomBaseInfoResponse> response = buildingManageService.getRoomBaseInfo(request);
         return response;
     }
 
+    /**
+     * 编辑房间信息
+     */
     @RequestMapping("editRoomInfo")
     public JSONObject editRoomInfo(@RequestBody AddOrEditRoomInfoRequest request){
         JSONObject response = new JSONObject();
@@ -214,12 +238,18 @@ public class BuildingControlAction {
         return response;
     }
 
+    /**
+     * 获取楼栋--管理员关联关系信息
+     */
     @RequestMapping("getBuildManagerInfos")
     public PageBean<BuildingAndEmployeeInfoResponse> getBuildingAndMangerInfos(@RequestBody GetBuildingAndEmployeeInfoRequest request){
         PageBean<BuildingAndEmployeeInfoResponse> response = employeeInfoService.getBuildingAndEmployeeInfos(request);
         return response;
     }
 
+    /**
+     * 获取楼栋--管理员关系详情
+     */
     @RequestMapping("getBuildManagerInfoDetail")
     public BuildingAndEmployeeInfoResponse getBuildManagerInfoDetail(@RequestBody BaseRequest request){
         BuildingAndEmployeeInfoResponse response = employeeInfoService.getBuildingEmployeeInfoSimple(request);

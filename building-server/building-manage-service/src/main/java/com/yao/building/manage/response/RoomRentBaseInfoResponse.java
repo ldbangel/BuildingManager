@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class RoomRentBaseInfoResponse {
+    private Integer roomId;
     private String villageName;
     private String buildingName;
     private Integer roomNo;

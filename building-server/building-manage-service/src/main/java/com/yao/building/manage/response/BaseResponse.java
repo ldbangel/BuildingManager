@@ -12,4 +12,5 @@ public class BaseResponse {
     private String villageName;
     private String buildingName;
     private Integer roomNo;
+    private String rentStatus;
 }

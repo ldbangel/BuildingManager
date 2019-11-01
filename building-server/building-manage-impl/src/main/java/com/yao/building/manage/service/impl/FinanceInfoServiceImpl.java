@@ -12,6 +12,7 @@ import com.yao.building.manage.response.FinancialInfoResponse;
 import com.yao.building.manage.service.FinanceInfoService;
 import com.yao.building.manage.vo.PageBean;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,16 +35,17 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
     @Override
     public PageBean<FinancialInfoResponse> getFinancialInfoByConditions(GetFinanceInfoRequest request) {
         if(request == null){
-            return null;
+            throw new RuntimeException("无效的请求参数");
         }
         List<FinancialInfoResponse> responseList = new ArrayList<>();
         PageBean<FinancialInfoResponse> responsePage = new PageBean<>();
-        PageBean<RoomFee> pageBean = new PageBean<>();
+
         if(request.getRoomId() != null && request.getRoomId() != 0){
             BuildingInfo buildingInfo = commonService.getBuildingInfoByRoomId(request.getRoomId());
             List<RoomInfo> roomInfoList = commonService.getRoomInfosByIds(Arrays.asList(request.getRoomId()), null);
 
-            responseList = getFinancialRoomFeeInfos(request, pageBean);
+            responsePage = getFinancialRoomFeeInfos(request, responsePage);
+            responseList = responsePage.getList();
 
             List<BuildingInfo> buildingInfoList = new ArrayList<>();
             buildingInfoList.add(buildingInfo);
@@ -60,22 +62,22 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
             List<Integer> roomIds = baseResponseList.stream().map(baseResponse -> baseResponse.getRoomId()).collect(Collectors.toList());
             List<RoomInfo> roomInfoList = commonService.getRoomInfosByIds(roomIds, null);
 
-            responseList = getFinancialRoomFeeInfos(request, pageBean);
-            commonService.matchRoomInfoToResponse(responseList, roomInfoList);
+            responsePage = getFinancialRoomFeeInfos(request, responsePage);
+            responseList = responsePage.getList();
 
+            commonService.matchRoomInfoToResponse(responseList, roomInfoList);
             commonService.coverBaseInfoToResponse(responseList, baseResponseList);
         }
-        BeanUtils.copyProperties(pageBean, responsePage);
-        responsePage.setList(responseList);
         return responsePage;
     }
 
-    private List<FinancialInfoResponse> getFinancialRoomFeeInfos(GetFinanceInfoRequest request, PageBean<RoomFee> pageBean) {
+    private PageBean<FinancialInfoResponse> getFinancialRoomFeeInfos(GetFinanceInfoRequest request, PageBean<FinancialInfoResponse> responsePage) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         RoomFeeExample roomFeeExample = new RoomFeeExample();
         RoomFeeExample.Criteria roomFeeCriteria = roomFeeExample.createCriteria();
         roomFeeCriteria.andRoomIdEqualTo(request.getRoomId());
-        if(request.getBeginTime()!= null && request.getEndTime() != null){
+        if(StringUtils.isNotEmpty(request.getBeginTime())
+                && StringUtils.isNotEmpty(request.getEndTime())){
             try {
                 roomFeeCriteria.andEndFeeTimeGreaterThanOrEqualTo(format.parse(request.getBeginTime()));
                 roomFeeCriteria.andEndFeeTimeLessThanOrEqualTo(format.parse(request.getEndTime()));
@@ -85,7 +87,7 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
         }
         PageHelper.startPage(request.getPage(), request.getLimit());
         List<RoomFee> roomFeeList= roomFeeDao.selectByExample(roomFeeExample);
-        pageBean = new PageBean<>(roomFeeList);
+        PageBean<RoomFee> pageBean = new PageBean<>(roomFeeList);
         List<FinancialInfoResponse> responseList = roomFeeList.stream()
                 .map(roomFee -> {
                     FinancialInfoResponse response = new FinancialInfoResponse();
@@ -99,6 +101,9 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
                     return response;
                 })
                 .collect(Collectors.toList());
-        return responseList;
+
+        BeanUtils.copyProperties(pageBean, responsePage);
+        responsePage.setList(responseList);
+        return responsePage;
     }
 }

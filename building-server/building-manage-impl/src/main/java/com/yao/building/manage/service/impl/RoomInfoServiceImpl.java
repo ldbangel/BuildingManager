@@ -7,7 +7,7 @@ import com.yao.building.manage.dal.RoomUserInfoDal;
 import com.yao.building.manage.dao.*;
 import com.yao.building.manage.domain.*;
 import com.yao.building.manage.request.*;
-import com.yao.building.manage.request.PageRequest.GetHistoryUserInfoRequest;
+import com.yao.building.manage.request.PageRequest.UserBaseInfo;
 import com.yao.building.manage.response.*;
 import com.yao.building.manage.service.RoomInfoService;
 import com.yao.building.manage.vo.PageBean;
@@ -93,19 +93,6 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
         commonService.coverBaseInfoToResponse(responseList, baseResponseList);
         return responseList;
-        /*if(request.getBuildingId() != null
-                && request.getBuildingId() != 0){
-        }else{
-            //通过roomId获取buildingInfo信息
-            BuildingInfo buildingInfo= commonService.getBuildingInfoByRoomId(request.getRoomId());
-
-            List<Integer> roomIds = Collections.singletonList(request.getRoomId());
-            // 房间信息查询
-            List<RoomInfo> roomInfoList = getRoomInfosByIds(roomIds, 1);
-
-            List<RoomUserInfoResponse> responseList = getRoomUserInfoResponses(buildingInfo, roomInfoList);
-            return responseList;
-        }*/
     }
 
     @Override
@@ -126,7 +113,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     public List<RoomRentBaseInfoResponse> getRoomRentBaseInfoOfMonth(GetRoomRentBaseInfoRequest request) {
         if(request == null || request.getRoomId() == null || request.getRoomId() == 0){
             log.info("GetRoomRentBaseInfoRequest invalid !");
-            return null;
+            throw new RuntimeException("无效的请求参数");
         }
         //通过roomId获取buildingInfo信息
         BuildingInfo buildingInfo= commonService.getBuildingInfoByRoomId(request.getRoomId());
@@ -153,6 +140,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         responseList = responseList.stream()
                 .map(response -> {
                     response.setRoomNo(roomInfo.getRoomNo());
+                    response.setRoomId(roomInfo.getId());
                     return response;
                 }).collect(Collectors.toList());
 
@@ -170,7 +158,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     @Override
     public int addRoomRentBaseInfo(AddRoomRentBaseInfoRequest request) {
         if(request == null || request.getRoomId() == null){
-            return 0;
+            throw new RuntimeException("无效的请求参数");
         }
         int result = addRoomRentDataInfo(request, 2);
         return result;
@@ -179,7 +167,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     @Override
     public void cancelRoomRent(CancelRoomRentRequest request) {
         if(request == null || request.getRoomId() == null){
-            return ;
+            throw new RuntimeException("无效的请求参数");
         }
         AddRoomRentBaseInfoRequest addRoomRentBaseInfoRequest = new AddRoomRentBaseInfoRequest();
         addRoomRentBaseInfoRequest.setReadTime(request.getRentEndTime());
@@ -212,6 +200,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                         e.printStackTrace();
                     }
                     userInfo.setModifyTime(new Date());
+                    userInfoDao.updateByPrimaryKeySelective(userInfo);
                 });
     }
 
@@ -236,7 +225,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     AbleCancelRoomResponse response = new AbleCancelRoomResponse();
                     response.setRoomId(roomInfo.getId());
                     response.setRoomNo(roomInfo.getRoomNo());
-                    response.setStatus("在租");
+                    response.setRentStatus("在租");
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -278,7 +267,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         // 楼栋信息查询
         BuildingInfo buildingInfo = buildingInfoDao.selectByPrimaryKey(request.getBuildingId());
         // 根据楼栋ID查询所有房间信息
-        List<RoomInfo> roomInfoList = getRoomInfosByBuildingId(request.getBuildingId(), 1);
+        List<RoomInfo> roomInfoList = getRoomInfosByBuildingId(request.getBuildingId(), 0);
 
         List<AbleToRentRoomResponse> responseList = roomInfoList.stream()
                 .map(roomInfo -> {
@@ -286,7 +275,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     response.setVillageName(buildingInfo.getVillageName());
                     response.setBuildingName(buildingInfo.getBuildingDesc());
                     response.setRoomNo(roomInfo.getRoomNo());
-                    response.setRentStatus("可租");
+                    response.setRoomId(roomInfo.getId());
+                    response.setRentStatus("未租");
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -297,7 +287,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     @Override
     public int bindRoomWithUserInfo(BindRoomWithUserRequest request) {
         //1、新增租客信息
-        List<BindRoomWithUserRequest.UserBaseInfo> userBaseInfoList = request.getUserBaseInfos();
+        List<UserBaseInfo> userBaseInfoList = request.getUserBaseInfos();
         List<UserInfo> userInfoList = userBaseInfoList.stream()
                 .map(userBaseInfo -> {
                     UserInfo userInfo = new UserInfo();
@@ -364,94 +354,6 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 .collect(Collectors.toList());
         commonService.coverBaseInfoToResponse(responseList, baseResponseList);
         return responseList;
-
-
-        /*if(request.getBuildingId() != null && request.getBuildingId() != 0){
-            // 楼栋信息查询
-            BuildingInfo buildingInfo = buildingInfoDao.selectByPrimaryKey(request.getBuildingId());
-            List<RoomInfo> roomInfoList = getRoomInfosByBuildingId(request.getBuildingId(), request.getStatus());
-
-            List<RoomStatusInfoResponse> responseList = roomInfoList.stream()
-                    .map(roomInfo -> {
-                        RoomStatusInfoResponse response = new RoomStatusInfoResponse();
-                        response.setCityName(buildingInfo.getCityName());
-                        response.setAreaName(buildingInfo.getAreaName());
-                        response.setStreetName(buildingInfo.getStreetName());
-                        response.setVillageName(buildingInfo.getVillageName());
-                        response.setBuildingName(buildingInfo.getBuildingDesc());
-                        response.setRoomNo(roomInfo.getRoomNo());
-                        response.setRentStatus(roomInfo.getRoomStatus() == 0 ? "未租" : "已租");
-                        return response;
-                    })
-                    .collect(Collectors.toList());
-            return responseList;
-        }else {
-            BuildingInfoExample buildingInfoExample = new BuildingInfoExample();
-            BuildingInfoExample.Criteria buildingInfoCriteria = buildingInfoExample.createCriteria();
-            if(request.getVillageId() != null && request.getVillageId() != 0){
-                buildingInfoCriteria.andVillageIdEqualTo(request.getVillageId());
-            }else if(request.getStreetId() != null && request.getStreetId() != 0){
-                buildingInfoCriteria.andStreetIdEqualTo(request.getStreetId());
-            }else if(request.getAreaId() != null && request.getAreaId() != 0){
-                buildingInfoCriteria.andAreaIdEqualTo(request.getAreaId());
-            }else if(request.getCityId() != null && request.getCityId() != 0){
-                buildingInfoCriteria.andCityIdEqualTo(request.getCityId());
-            }
-            List<BuildingInfo> buildingInfoList= buildingInfoDao.selectByExample(buildingInfoExample);
-            //获取所有的楼栋ID
-            List<Integer> buildingIdList = buildingInfoList.stream()
-                    .map(buildingInfo -> buildingInfo.getId())
-                    .collect(Collectors.toList());
-
-            // 楼栋和房间关联信息查询
-            BuildingRoomInfoExample example = new BuildingRoomInfoExample();
-            BuildingRoomInfoExample.Criteria criteria = example.createCriteria();
-            criteria.andBuildingIdIn(buildingIdList);
-            // 分页查询
-            PageHelper.startPage(request.getPage(), request.getLimit());
-            PageBean<BuildingRoomInfo> pageBean = (PageBean<BuildingRoomInfo>) buildingRoomInfoDao.selectByExample(example);
-            List<BuildingRoomInfo> buildingRoomInfos = pageBean.getList();
-
-            List<Integer> roomIds = buildingRoomInfos.stream()
-                    .map(buildingRoomInfo -> buildingRoomInfo.getRoomId())
-                    .collect(Collectors.toList());
-
-            List<RoomInfo> roomInfoList = getRoomInfosByIds(roomIds, request.getStatus());
-            List<RoomStatusInfoResponse> responseList = roomInfoList.stream()
-                    .map(roomInfo ->{
-                        RoomStatusInfoResponse response = new RoomStatusInfoResponse();
-                        response.setRoomNo(roomInfo.getRoomNo());
-                        response.setRoomId(roomInfo.getId());
-                        response.setRentStatus(roomInfo.getRoomStatus() == 0 ? "未租" : "已租");
-                        return response;
-                    })
-                    .collect(Collectors.toList());
-
-            responseList = responseList.stream()
-                    .map(response -> buildingRoomInfos.stream()
-                            .filter(buildingRoomInfo -> Objects.equals(buildingRoomInfo.getRoomId(), response.getRoomId()))
-                            .findFirst()
-                            .map(buildingRoomInfo -> {
-                                response.setBuildingId(buildingRoomInfo.getId());
-                                return response;
-                            }).orElse(response))
-                    .collect(Collectors.toList());
-
-            responseList = responseList.stream()
-                    .map(response -> buildingInfoList.stream()
-                            .filter(buildingInfo -> Objects.equals(buildingInfo.getId(), response.getBuildingId()))
-                            .findFirst()
-                            .map(buildingInfo -> {
-                                response.setBuildingName(buildingInfo.getBuildingDesc());
-                                response.setVillageName(buildingInfo.getVillageName());
-                                response.setStreetName(buildingInfo.getStreetName());
-                                response.setAreaName(buildingInfo.getAreaName());
-                                response.setCityName(buildingInfo.getCityName());
-                                return response;
-                            }).orElse(response))
-                    .collect(Collectors.toList());
-            return responseList;
-        }*/
     }
 
     @Override
@@ -665,69 +567,9 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
 
 
-
-
-
     /*-------------------------------------------------------------------私有方法----------------------------------------------------------------------------------------*/
 
 
-
-
-
-    /*private List<RoomUserInfoResponse> getRoomUserInfoResponses(BuildingInfo buildingInfo, List<RoomInfo> roomInfoList) {
-
-        List<Integer> roomIds = roomInfoList.stream().map(roomInfo -> roomInfo.getId()).collect(Collectors.toList());
-
-        // 房间和租客关系信息查询
-        List<RoomUserInfo> roomUserInfoList = getRoomUserInfosByRoomIds(roomIds);
-
-        List<Integer> userIds = roomUserInfoList.stream()
-                .map(roomUserInfo -> roomUserInfo.getUserId())
-                .collect(Collectors.toList());
-        List<UserInfo> userInfos = getUserInfosByIds(userIds, 1);
-
-        List<RoomUserInfoResponse> responseList = userInfos.stream().map(userInfo -> {
-            RoomUserInfoResponse response = new RoomUserInfoResponse();
-            BeanUtils.copyProperties(userInfo, response);
-            response.setUserId(userInfo.getId());
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            response.setRentBeginTime(format.format(userInfo.getRentBeginTime()));
-            return response;
-        }).collect(Collectors.toList());
-
-        // 匹配房间ID
-        responseList = responseList.stream()
-                .map(response -> roomUserInfoList.stream()
-                        .filter(roomUserInfo -> Objects.equals(roomUserInfo.getUserId(), response.getUserId()))
-                        .findFirst()
-                        .map(roomUserInfo -> {
-                            response.setRoomId(roomUserInfo.getRoomId());
-                            response.setRentStatus(roomUserInfo.getBindStatus() == 1 ? "在租" : "未租");
-                            return response;
-                        }).orElse(response))
-                .collect(Collectors.toList());
-
-        //匹配房间编号
-        responseList = responseList.stream()
-                .map(response -> roomInfoList.stream()
-                        .filter(roomInfo -> Objects.equals(roomInfo.getId(), response.getRoomId()))
-                        .findFirst()
-                        .map(roomInfo -> {
-                            response.setRoomNo(roomInfo.getRoomNo());
-                            return response;
-                        }).orElse(response))
-                .collect(Collectors.toList());
-
-        // 填充楼栋信息
-        responseList = responseList.stream()
-                .map(response -> {
-                    response.setVillageName(buildingInfo.getVillageName());
-                    response.setBuildingName(buildingInfo.getBuildingDesc());
-                    return response;
-                })
-                .collect(Collectors.toList());
-        return responseList;
-    }*/
 
     private List<RoomUserInfo> getRoomUserInfosByRoomIds(List<Integer> validRoomIds) {
         RoomUserInfoExample roomUserInfoExample = new RoomUserInfoExample();
@@ -741,7 +583,9 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         UserInfoExample userInfoExample = new UserInfoExample();
         UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
         userInfoCriteria.andIdIn(userIds);
-        userInfoCriteria.andStatusEqualTo(status);
+        if(status != null){
+            userInfoCriteria.andStatusEqualTo(status);
+        }
         return userInfoDao.selectByExample(userInfoExample);
     }
 
@@ -754,7 +598,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         List<BuildingRoomInfo> buildingRoomInfos = buildingRoomInfoDao.selectByExample(example);
         if(CollectionUtils.isEmpty(buildingRoomInfos)){
             log.info("buildingRoomInfos 楼栋ID错误，buildingId = {}", buildingId);
-            return null;
+            throw new RuntimeException("楼栋ID无效");
         }
         List<Integer> roomIds = buildingRoomInfos.stream()
                 .map(buildingRoomInfo -> buildingRoomInfo.getRoomId())
@@ -775,10 +619,14 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     private int addRoomRentDataInfo(AddRoomRentBaseInfoRequest request, Integer status){
         RoomInfo roomInfo = roomInfoDao.selectByPrimaryKey(request.getRoomId());
 
+        /**
+         * 放在这里主要是获取roomData数据插入之前的数据
+         * 注意：后续可考虑放到里面去，然后roomDatas的list集合取第二条数据
+         */
         // 获取最近一次的房间数据记录
         RoomDataExample roomDataExample = new RoomDataExample();
-        roomDataExample.setOrderByClause("Fread_time DESC");
         RoomDataExample.Criteria roomDataCriteria = roomDataExample.createCriteria();
+        roomDataExample.setOrderByClause("Fread_time DESC");
         roomDataCriteria.andRoomIdEqualTo(request.getRoomId());
         List<RoomData> roomDatas = roomDataDao.selectByExample(roomDataExample);
 
@@ -789,8 +637,10 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         roomData.setWaterNum(request.getWaterNum());
         roomData.setRentStatus(status);
         // 计算用水量和用电量
-        roomData.setEnergyUseCount(request.getEnergyNum() - roomInfo.getEnergyNum());
-        roomData.setWaterUseCount(request.getWaterNum() - roomInfo.getWaterNum());
+        int energyUseCount = request.getEnergyNum() - roomInfo.getEnergyNum();
+        int waterUseCount = request.getWaterNum() - roomInfo.getWaterNum();
+        roomData.setEnergyUseCount(energyUseCount);
+        roomData.setWaterUseCount(waterUseCount);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             roomData.setReadTime(dateFormat.parse(request.getReadTime()));
@@ -823,8 +673,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
             roomFee.setRoomId(roomInfo.getId());
             roomFee.setManageFee(buildingInfo.getManageFee());
             roomFee.setRentFee(roomInfo.getRent());
-            roomFee.setEnergyNum(BigDecimal.valueOf((request.getEnergyNum() - roomInfo.getEnergyNum()) * UnitPriceConstant.ENERGY_UNIT_PRICE));
-            roomFee.setWaterNum(BigDecimal.valueOf((request.getWaterNum() - roomInfo.getWaterNum()) * UnitPriceConstant.WATER_UNIT_PRICE));
+            roomFee.setEnergyNum(BigDecimal.valueOf(energyUseCount * UnitPriceConstant.ENERGY_UNIT_PRICE));
+            roomFee.setWaterNum(BigDecimal.valueOf(waterUseCount * UnitPriceConstant.WATER_UNIT_PRICE));
             roomFee.setAllFee(roomFee.getEnergyNum()
                     .add(roomFee.getEnergyNum())
                     .add(BigDecimal.valueOf(roomFee.getRentFee()))

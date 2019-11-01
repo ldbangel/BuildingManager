@@ -6,7 +6,6 @@ import lombok.Data;
 public class AbleCancelRoomResponse extends BaseResponse{
     private Integer userId;
     private Integer roomNo;
-    private String status;
     private String username;
     private String userMobile;
 }

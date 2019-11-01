@@ -16,12 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * 楼栋管理员界面
+ */
 @RestController
 @RequestMapping("/building/manager")
 public class ManagerAction {
     @Autowired
     private RoomInfoService roomInfoService;
 
+    /**
+     * 获取房间信息
+     */
     @RequestMapping("getRoomInfos")
     public List<RoomUserInfoResponse> getManageRoomUserInfo(@RequestBody GetRoomUserInfoRequest request,
                                                             HttpServletRequest servletRequest){
@@ -29,27 +35,31 @@ public class ManagerAction {
         return responseList;
     }
 
+    /**
+     * 获取租客详情
+     */
     @RequestMapping("getCustomerDetailInfo")
     public UserInfo getCustomerDetailInfo(@RequestBody GetUserDetailInfoRequest request,
                                           HttpServletRequest servletRequest){
         return roomInfoService.getUserDetailInfo(request);
     }
 
+    /**
+     * 获取房间数据
+     */
     @RequestMapping("getRoomRentDataInfos")
     public List<RoomRentBaseInfoResponse> getRoomBaseDataInfoOfMonth(@RequestBody  GetRoomRentBaseInfoRequest request){
         List<RoomRentBaseInfoResponse> responses = roomInfoService.getRoomRentBaseInfoOfMonth(request);
         return responses;
     }
 
+    /**
+     * 新增房间数据记录
+     */
     @RequestMapping("addRoomRentDataInfo")
     public JSONObject addRoomRentBaseInfoOfMonth(@RequestBody AddRoomRentBaseInfoRequest request){
         JSONObject response = new JSONObject();
         response.put("status", "fail");
-        /*AddRoomRentBaseInfoRequest request = new AddRoomRentBaseInfoRequest();
-        request.setRoomId(1000001);
-        request.setEnergyNum(1300);
-        request.setWaterNum(120);
-        request.setReadTime("2019-10-10 00:00:00");*/
         int result = roomInfoService.addRoomRentBaseInfo(request);
         if(result > 0){
             response.put("status", "success");
@@ -59,12 +69,18 @@ public class ManagerAction {
         return response;
     }
 
+    /**
+     * 获取可退租的房间信息
+     */
     @RequestMapping("getAbleCancelRoomInfos")
     public List<AbleCancelRoomResponse> getAllAbleCancelRentRoomInfos(@RequestBody GetAllAbleToCancelRoomRequest request){
         List<AbleCancelRoomResponse> responseList = roomInfoService.getAllAbleToCancelRoomInfo(request);
         return responseList;
     }
 
+    /**
+     * 退租操作
+     */
     @RequestMapping("cancelRoomRent")
     public JSONObject cancelRoomRent(@RequestBody CancelRoomRentRequest request){
         JSONObject response = new JSONObject();
@@ -74,12 +90,18 @@ public class ManagerAction {
         return response;
     }
 
+    /**
+     * 获取可租赁房间信息
+     */
     @RequestMapping("getAbleRentRoomInfos")
     public List<AbleToRentRoomResponse> getAllAbleRentRoomInfos(@RequestBody GetAllAbleToRentRoomRequest request){
         List<AbleToRentRoomResponse> responseList = roomInfoService.getAllAbleToRentRoomInfo(request);
         return responseList;
     }
 
+    /**
+     * 出租操作
+     */
     @RequestMapping("rentRoom")
     public JSONObject rentRoom(@RequestBody BindRoomWithUserRequest request){
         roomInfoService.bindRoomWithUserInfo(request);

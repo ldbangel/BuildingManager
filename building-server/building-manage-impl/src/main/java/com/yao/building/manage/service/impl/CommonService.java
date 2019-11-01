@@ -67,6 +67,10 @@ public class CommonService {
             criteria.andBuildingIdIn(buildingIdList);
             List<BuildingRoomInfo> buildingRoomInfos = buildingRoomInfoDao.selectByExample(example);
 
+            if(buildingRoomInfos == null || buildingRoomInfos.size() < 1){
+                throw new RuntimeException("楼栋房间信息为空！");
+            }
+
             responseList = buildingRoomInfos.stream()
                     .map(buildingRoomInfo -> {
                         T1 response = (T1) new BaseResponse();
@@ -175,6 +179,7 @@ public class CommonService {
                         .findFirst()
                         .map(roomInfo -> {
                             response.setRoomNo(roomInfo.getRoomNo());
+                            response.setRentStatus(roomInfo.getRoomStatus() == 1 ? "在租" : "未租");
                             return response;
                         }).orElse(response))
                 .collect(Collectors.toList());

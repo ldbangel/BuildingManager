@@ -16,6 +16,7 @@ import com.yao.building.manage.response.RoomBaseInfoResponse;
 import com.yao.building.manage.service.BuildingManageService;
 import com.yao.building.manage.vo.PageBean;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,8 @@ public class BuildingManageServiceImpl implements BuildingManageService {
         }
         BuildingBaseInfoResponse response = new BuildingBaseInfoResponse();
         BeanUtils.copyProperties(buildingInfo, response);
+        response.setBuildingId(buildingInfo.getId());
+        response.setBuildingName(buildingInfo.getBuildingDesc());
         return response;
     }
 
@@ -90,6 +93,8 @@ public class BuildingManageServiceImpl implements BuildingManageService {
             BuildingInfo buildingInfo = new BuildingInfo();
             BeanUtils.copyProperties(request, buildingInfo);
             buildingInfo.setBuildingDesc(request.getBuildingName());
+            buildingInfo.setProvinceId(1);
+            buildingInfo.setProvinceName("广东");
 
             List<Integer> placeIds = new ArrayList<>();
             placeIds.add(request.getCityId());
@@ -119,6 +124,9 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                 //更新楼栋信息
                 BuildingInfo buildingInfo = new BuildingInfo();
                 buildingInfo.setId(request.getBuildingId());
+                if(StringUtils.isNoneEmpty(request.getBuildingName())){
+                    buildingInfo.setBuildingDesc(request.getBuildingName());
+                }
                 buildingInfo.setManageFee(request.getManageFee());
                 buildingInfo.setModifyTime(new Date());
                 buildingInfoDal.update(buildingInfo);

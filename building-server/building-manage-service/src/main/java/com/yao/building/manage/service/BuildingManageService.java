@@ -1,9 +1,6 @@
 package com.yao.building.manage.service;
 
-import com.yao.building.manage.request.AddOrEditBuildingInfoRequest;
-import com.yao.building.manage.request.AddOrEditRoomInfoRequest;
-import com.yao.building.manage.request.GetBuildingBaseInfoRequest;
-import com.yao.building.manage.request.GetRoomBaseInfoRequest;
+import com.yao.building.manage.request.*;
 import com.yao.building.manage.response.BuildingBaseInfoResponse;
 import com.yao.building.manage.response.RoomBaseInfoResponse;
 import com.yao.building.manage.vo.PageBean;
@@ -39,4 +36,13 @@ public interface BuildingManageService {
     void addOrEditRoomBaseInfo(AddOrEditRoomInfoRequest request);
 
 
+    /**
+     * 删除管理员
+     */
+    void deleteBuildingManager(DeleteBuildingManagerRequest request);
+
+    /**
+     * 新增楼栋管理员
+     */
+    void addBuildingManager(AddBuildingManagerRequest request);
 }

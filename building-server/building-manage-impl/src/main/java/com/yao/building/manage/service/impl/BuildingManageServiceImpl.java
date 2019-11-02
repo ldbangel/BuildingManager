@@ -2,15 +2,11 @@ package com.yao.building.manage.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.yao.building.manage.dal.BuildingInfoDal;
+import com.yao.building.manage.dal.BuildingManagerDal;
 import com.yao.building.manage.dal.RoomInfoDal;
-import com.yao.building.manage.dao.BuildingInfoDao;
-import com.yao.building.manage.dao.BuildingRoomInfoDao;
-import com.yao.building.manage.dao.PlaceDictDao;
+import com.yao.building.manage.dao.*;
 import com.yao.building.manage.domain.*;
-import com.yao.building.manage.request.AddOrEditBuildingInfoRequest;
-import com.yao.building.manage.request.AddOrEditRoomInfoRequest;
-import com.yao.building.manage.request.GetBuildingBaseInfoRequest;
-import com.yao.building.manage.request.GetRoomBaseInfoRequest;
+import com.yao.building.manage.request.*;
 import com.yao.building.manage.response.BaseResponse;
 import com.yao.building.manage.response.BuildingBaseInfoResponse;
 import com.yao.building.manage.response.RoomBaseInfoResponse;
@@ -43,6 +39,12 @@ public class BuildingManageServiceImpl implements BuildingManageService {
     private RoomInfoDal roomInfoDal;
     @Autowired
     private BuildingRoomInfoDao buildingRoomInfoDao;
+    @Autowired
+    private EmployeeDao employeeDao;
+    @Autowired
+    private EmployeeBuildingInfoDao employeeBuildingInfoDao;
+    @Autowired
+    private BuildingManagerDal buildingManagerDal;
 
 
     @Override
@@ -202,5 +204,54 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                 roomInfoDal.update(roomInfo);
             }
         }
+    }
+
+    @Override
+    public void deleteBuildingManager(DeleteBuildingManagerRequest request) {
+        Employee employee = new Employee();
+        employee.setId(request.getEmployeeId());
+        employee.setStatus(0);
+        employee.setModifyTime(new Date());
+        employeeDao.updateByPrimaryKeySelective(employee);
+
+        // 修改管理关系
+        EmployeeBuildingInfoExample example = new EmployeeBuildingInfoExample();
+        EmployeeBuildingInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andEmployeeIdEqualTo(request.getEmployeeId());
+        criteria.andBuildingIdEqualTo(request.getBuildingId());
+        criteria.andStatusEqualTo(1);
+        List<EmployeeBuildingInfo> employeeBuildingInfos = employeeBuildingInfoDao.selectByExample(example);
+        if(employeeBuildingInfos == null || employeeBuildingInfos.size() < 1){
+            throw  new RuntimeException("系统错误，请稍后再试");
+        }
+        EmployeeBuildingInfo employeeBuildingInfo = employeeBuildingInfos.get(0);
+
+        employeeBuildingInfo.setModifyTime(new Date());
+        employeeBuildingInfo.setStatus(0);
+        buildingManagerDal.update(employeeBuildingInfo);
+    }
+
+    @Override
+    public void addBuildingManager(AddBuildingManagerRequest request) {
+        Employee employee = new Employee();
+        employee.setEmployeeRole(2);
+        employee.setEmployeeRoleDesc("manager");
+        employee.setPassword("123456");
+        employee.setEmployeeMobile(request.getUserMobile());
+        employee.setEmployeeName(request.getUsername());
+        employee.setIdCard(request.getUserIdCard());
+        employee.setStatus(1);
+        employee.setCreateTime(new Date());
+        employee.setModifyTime(new Date());
+        employeeDao.insertSelective(employee);
+
+        // 新增楼栋管理员关系表
+        EmployeeBuildingInfo employeeBuildingInfo = new EmployeeBuildingInfo();
+        employeeBuildingInfo.setBuildingId(request.getBuildingId());
+        employeeBuildingInfo.setEmployeeId(employee.getId());
+        employeeBuildingInfo.setCreateTime(new Date());
+        employeeBuildingInfo.setModifyTime(new Date());
+        employeeBuildingInfo.setStatus(1);
+        buildingManagerDal.insert(employeeBuildingInfo);
     }
 }

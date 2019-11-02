@@ -260,11 +260,34 @@ public class BuildingControlAction {
     }
 
     /**
-     * 获取楼栋--管理员关系详情
+     * 获取楼栋--管理员信息详情
      */
-    @RequestMapping("getBuildManagerInfoDetail")
-    public BuildingAndEmployeeInfoResponse getBuildManagerInfoDetail(@RequestBody BaseRequest request){
-        BuildingAndEmployeeInfoResponse response = employeeInfoService.getBuildingEmployeeInfoSimple(request);
+    @RequestMapping("getManagerInfoDetail")
+    public Employee getManagerInfoDetail(@RequestBody GetManagerInfoDetailRequest request){
+        Employee employee = employeeInfoService.findEmployeeById(request.getEmployeeId());
+//        BuildingAndEmployeeInfoResponse response = employeeInfoService.getBuildingEmployeeInfoSimple(request);
+        return employee;
+    }
+
+    /**
+     * 删除楼栋管理员
+     */
+    @RequestMapping("deleteBuildingManager")
+    public JSONObject deleteBuildingManager(DeleteBuildingManagerRequest request){
+        JSONObject response = new JSONObject();
+        buildingManageService.deleteBuildingManager(request);
+        response.put("status", "success");
+        return response;
+    }
+
+    /**
+     * 新增楼栋管理员
+     */
+    @RequestMapping("addBuildingManager")
+    public JSONObject addBuildingManager(AddBuildingManagerRequest request){
+        JSONObject response = new JSONObject();
+        buildingManageService.addBuildingManager(request);
+        response.put("status", "success");
         return response;
     }
 

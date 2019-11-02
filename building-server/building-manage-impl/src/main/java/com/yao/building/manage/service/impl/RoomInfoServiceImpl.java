@@ -110,6 +110,15 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     }
 
     @Override
+    public RoomInfoResponse getRoomBaseInfo(Integer roomId) {
+        RoomInfoResponse response = new RoomInfoResponse();
+        RoomInfo roomInfo = roomInfoDao.selectByPrimaryKey(roomId);
+        BeanUtils.copyProperties(roomInfo, response);
+        response.setRoomId(roomInfo.getId());
+        return response;
+    }
+
+    @Override
     public List<RoomRentBaseInfoResponse> getRoomRentBaseInfoOfMonth(GetRoomRentBaseInfoRequest request) {
         if(request == null || request.getRoomId() == null || request.getRoomId() == 0){
             log.info("GetRoomRentBaseInfoRequest invalid !");

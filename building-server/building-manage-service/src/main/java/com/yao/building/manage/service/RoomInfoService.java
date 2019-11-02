@@ -27,6 +27,11 @@ public interface RoomInfoService {
     UserInfo getUserDetailInfo(GetUserDetailInfoRequest request);
 
     /**
+     * 查询某个房间的基本信息
+     */
+    RoomInfoResponse getRoomBaseInfo(Integer roomId);
+
+    /**
      * 获取某个房间的每月水电、房租信息
      * @param request
      * @return

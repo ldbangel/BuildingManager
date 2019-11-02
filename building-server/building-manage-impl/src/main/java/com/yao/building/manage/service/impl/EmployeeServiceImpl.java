@@ -105,7 +105,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<EmployeeBuildingInfo> employeeBuildingInfos= employeeBuildingInfoDao.selectByExample(empBuildInfoExample);
 
         // 这里有待考证
-        responseList.stream()
+        /*responseList.stream()
                 .map(response -> employeeBuildingInfos.stream()
                         .filter(employeeBuildingInfo -> Objects.equals(employeeBuildingInfo.getBuildingId(), response.getBuildingId()))
                         .map(employeeBuildingInfo -> {
@@ -114,7 +114,17 @@ public class EmployeeServiceImpl implements EmployeeService {
                             response.getEmployeeEntries().add(employeeEntry);
                             return response;
                         }))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+
+        responseList.stream()
+                .forEach(response -> response.setEmployeeEntries(
+                        employeeBuildingInfos.stream()
+                                .filter(employeeBuildingInfo -> Objects.equals(employeeBuildingInfo.getBuildingId(), response.getBuildingId()))
+                                .map(employeeBuildingInfo -> {
+                                    EmployeeEntry employeeEntry = new EmployeeEntry();
+                                    employeeEntry.setEmployeeId(employeeBuildingInfo.getEmployeeId());
+                                    return employeeEntry;
+                                }).collect(Collectors.toList())));
 
         List<Integer> employeeIds = employeeBuildingInfos.stream().map(employeeBuildingInfo -> employeeBuildingInfo.getEmployeeId()).collect(Collectors.toList());
 

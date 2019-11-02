@@ -22,15 +22,18 @@ public class RoomInfoDal {
         RoomInfoWater roomInfoWater = new RoomInfoWater();
         BeanUtils.copyProperties(roomInfo, roomInfoWater, "id");
         roomInfoWater.setIndex(roomInfo.getId());
+        roomInfoWater.setCreateTime(new Date());
         roomInfoWater.setModifyTime(new Date());
         roomInfoWaterDao.insertSelective(roomInfoWater);
     }
 
     public void  update(RoomInfo roomInfo){
         roomInfoDao.updateByPrimaryKeySelective(roomInfo);
+        RoomInfo newRoomInfo = roomInfoDao.selectByPrimaryKey(roomInfo.getId());
         RoomInfoWater roomInfoWater = new RoomInfoWater();
-        BeanUtils.copyProperties(roomInfo, roomInfoWater, "id");
-        roomInfoWater.setIndex(roomInfo.getId());
+        BeanUtils.copyProperties(newRoomInfo, roomInfoWater, "id");
+        roomInfoWater.setIndex(newRoomInfo.getId());
+        roomInfoWater.setCreateTime(new Date());
         roomInfoWater.setModifyTime(new Date());
         roomInfoWaterDao.insertSelective(roomInfoWater);
     }

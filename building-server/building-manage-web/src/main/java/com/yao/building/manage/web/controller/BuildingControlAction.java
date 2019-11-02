@@ -1,6 +1,7 @@
 package com.yao.building.manage.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.auth0.jwt.JWT;
 import com.yao.building.manage.dao.BuildingInfoDao;
 import com.yao.building.manage.dao.BuildingRoomInfoDao;
 import com.yao.building.manage.dao.EmployeeBuildingInfoDao;
@@ -57,7 +58,9 @@ public class BuildingControlAction {
     @RequestMapping("getPlaceInfo")
     public List<PlaceEntryResponse> getPlaceInfos(@RequestBody GetPlaceInfoRequest request,
                                                   HttpServletRequest servletRequest){
-        Employee employee = (Employee) servletRequest.getSession().getAttribute("employee");
+        String token = servletRequest.getHeader("token");
+        String employeeString  = JWT.decode(token).getAudience().get(0);
+        Employee employee = JSONObject.parseObject(employeeString, Employee.class);
         if(employee == null){
             throw new RuntimeException("请重新登录");
         }
@@ -224,6 +227,15 @@ public class BuildingControlAction {
     @RequestMapping("getAllRoomsInfo")
     public PageBean<RoomBaseInfoResponse> getAllRoomsInfo(@RequestBody GetRoomBaseInfoRequest request){
         PageBean<RoomBaseInfoResponse> response = buildingManageService.getRoomBaseInfo(request);
+        return response;
+    }
+
+    /**
+     * 获取房间详细信息--单个房间
+     */
+    @RequestMapping("getRoomInfoDetail")
+    public RoomInfoResponse getRoomInfoDetail(GetRoomInfoDetailRequest request){
+        RoomInfoResponse response = roomInfoService.getRoomBaseInfo(request.getRoomId());
         return response;
     }
 

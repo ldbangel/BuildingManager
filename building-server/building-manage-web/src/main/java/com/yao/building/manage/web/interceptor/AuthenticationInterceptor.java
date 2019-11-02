@@ -1,5 +1,6 @@
 package com.yao.building.manage.web.interceptor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -56,10 +57,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     throw new RuntimeException("无token，请重新登录");
                 }
                 // 获取 token 中的 employee id
-                String employeeId;
+                Employee employee;
                 Date expire;
                 try {
-                    employeeId = JWT.decode(token).getAudience().get(0);
+                    String employeeString = JWT.decode(token).getAudience().get(0);
+                    employee = JSONObject.parseObject(employeeString, Employee.class);
                     expire = JWT.decode(token).getExpiresAt();
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("401");
@@ -68,7 +70,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if(expire.compareTo(new Date()) < 0){
                     throw new RuntimeException("token已过期，请重新登录");
                 }
-                Employee employee = employeeService.findEmployeeById(Integer.valueOf(employeeId));
+                employee = employeeService.findEmployeeById(employee.getId());
                 if (employee == null) {
                     throw new RuntimeException("用户不存在，请重新登录");
                 }

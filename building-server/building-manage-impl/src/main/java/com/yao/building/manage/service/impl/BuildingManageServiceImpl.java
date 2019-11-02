@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.yao.building.manage.dal.BuildingInfoDal;
 import com.yao.building.manage.dal.RoomInfoDal;
 import com.yao.building.manage.dao.BuildingInfoDao;
+import com.yao.building.manage.dao.BuildingRoomInfoDao;
 import com.yao.building.manage.dao.PlaceDictDao;
 import com.yao.building.manage.domain.*;
 import com.yao.building.manage.request.AddOrEditBuildingInfoRequest;
@@ -40,6 +41,8 @@ public class BuildingManageServiceImpl implements BuildingManageService {
     private BuildingInfoDal buildingInfoDal;
     @Autowired
     private RoomInfoDal roomInfoDal;
+    @Autowired
+    private BuildingRoomInfoDao buildingRoomInfoDao;
 
 
     @Override
@@ -147,6 +150,7 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                     RoomBaseInfoResponse response = new RoomBaseInfoResponse();
                     response.setRoomNo(roomInfo.getRoomNo());
                     response.setRoomId(roomInfo.getId());
+                    response.setRentStatus(roomInfo.getRoomStatus() == 1 ? "在租" : "未租");
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -160,10 +164,10 @@ public class BuildingManageServiceImpl implements BuildingManageService {
     @Override
     public void addOrEditRoomBaseInfo(AddOrEditRoomInfoRequest request) {
         if(request == null){
-            return ;
+            throw new RuntimeException("无效的请求参数");
         }
 
-        if(request.getRoomId() == null){
+        if(request.getRoomId() == null && request.getBuildingId() != null){
             // 新增房间信息
             RoomInfo roomInfo = new RoomInfo();
             BeanUtils.copyProperties(request, roomInfo);
@@ -171,13 +175,30 @@ public class BuildingManageServiceImpl implements BuildingManageService {
             roomInfo.setCreateTime(new Date());
             roomInfo.setModifyTime(new Date());
             roomInfoDal.insert(roomInfo);
+
+            BuildingRoomInfo buildingRoomInfo = new BuildingRoomInfo();
+            buildingRoomInfo.setBuildingId(request.getBuildingId());
+            buildingRoomInfo.setRoomId(roomInfo.getId());
+            buildingRoomInfo.setCreateTime(new Date());
+            buildingRoomInfo.setModifyTime(new Date());
+            buildingRoomInfoDao.insertSelective(buildingRoomInfo);
         }else{
             if(request.getRoomId() != 0){
                 RoomInfo roomInfo = new RoomInfo();
                 roomInfo.setId(request.getRoomId());
-                roomInfo.setRoomNo(request.getRoomNo());
-                roomInfo.setWaterNum(request.getWaterNum());
-                roomInfo.setEnergyNum(request.getEnergyNum());
+                if(request.getRoomNo() != null && request.getRoomNo() != 0){
+                    roomInfo.setRoomNo(request.getRoomNo());
+                }
+                if(request.getRent() != null && request.getRent() != 0){
+                    roomInfo.setRent(request.getRent());
+                }
+                if(request.getWaterNum() != null && request.getWaterNum() != 0){
+                    roomInfo.setWaterNum(request.getWaterNum());
+                }
+                if(request.getEnergyNum() != null && request.getEnergyNum() != 0){
+                    roomInfo.setEnergyNum(request.getEnergyNum());
+                }
+                roomInfo.setModifyTime(new Date());
                 roomInfoDal.update(roomInfo);
             }
         }

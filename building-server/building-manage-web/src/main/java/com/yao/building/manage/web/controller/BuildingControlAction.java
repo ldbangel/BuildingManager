@@ -54,7 +54,7 @@ public class BuildingControlAction {
     /**
      * 获取地址列表
      */
-//    @UserLoginToken
+    @UserLoginToken
     @RequestMapping("getPlaceInfo")
     public List<PlaceEntryResponse> getPlaceInfos(@RequestBody GetPlaceInfoRequest request,
                                                   HttpServletRequest servletRequest){
@@ -186,6 +186,7 @@ public class BuildingControlAction {
     /**
      * 租赁概览
      */
+    @UserLoginToken
     @RequestMapping("getRoomsStatusInfo")
     public List<RoomStatusInfoResponse> getRoomsRentStatusInfo(@RequestBody GetRoomStatusInfoRequest request){
         List<RoomStatusInfoResponse> responseList = roomInfoService.getRoomStatusInfos(request);
@@ -195,6 +196,7 @@ public class BuildingControlAction {
     /**
      * 楼栋信息
      */
+    @UserLoginToken
     @RequestMapping("getAllBuildingsInfo")
     public PageBean<BuildingBaseInfoResponse> getAllBuildingInfos(@RequestBody GetBuildingBaseInfoRequest request){
         PageBean<BuildingBaseInfoResponse> response = buildingManageService.getBuildingBaseInfo(request);
@@ -204,6 +206,7 @@ public class BuildingControlAction {
     /**
      * 具体楼栋信息
      */
+    @UserLoginToken
     @RequestMapping("getBuildingInfoDetail")
     public BuildingBaseInfoResponse getBuildingInfoSimple(@RequestBody GetBuildingInfoDetailRequest request){
         BuildingBaseInfoResponse response = buildingManageService.getBuildingDetailInfo(request.getBuildingId());
@@ -213,6 +216,7 @@ public class BuildingControlAction {
     /**
      * 编辑楼栋信息
      */
+    @UserLoginToken
     @RequestMapping("editBuildingInfo")
     public JSONObject editBuildingInfo(@RequestBody AddOrEditBuildingInfoRequest request){
         JSONObject response = new JSONObject();
@@ -224,6 +228,7 @@ public class BuildingControlAction {
     /**
      * 获取房间信息
      */
+    @UserLoginToken
     @RequestMapping("getAllRoomsInfo")
     public PageBean<RoomBaseInfoResponse> getAllRoomsInfo(@RequestBody GetRoomBaseInfoRequest request){
         PageBean<RoomBaseInfoResponse> response = buildingManageService.getRoomBaseInfo(request);
@@ -233,6 +238,7 @@ public class BuildingControlAction {
     /**
      * 获取房间详细信息--单个房间
      */
+    @UserLoginToken
     @RequestMapping("getRoomInfoDetail")
     public RoomInfoResponse getRoomInfoDetail(GetRoomInfoDetailRequest request){
         RoomInfoResponse response = roomInfoService.getRoomBaseInfo(request.getRoomId());
@@ -242,6 +248,7 @@ public class BuildingControlAction {
     /**
      * 编辑房间信息
      */
+    @UserLoginToken
     @RequestMapping("editRoomInfo")
     public JSONObject editRoomInfo(@RequestBody AddOrEditRoomInfoRequest request){
         JSONObject response = new JSONObject();
@@ -253,6 +260,7 @@ public class BuildingControlAction {
     /**
      * 获取楼栋--管理员关联关系信息
      */
+    @UserLoginToken
     @RequestMapping("getBuildManagerInfos")
     public PageBean<BuildingAndEmployeeInfoResponse> getBuildingAndMangerInfos(@RequestBody GetBuildingAndEmployeeInfoRequest request){
         PageBean<BuildingAndEmployeeInfoResponse> response = employeeInfoService.getBuildingAndEmployeeInfos(request);
@@ -262,6 +270,7 @@ public class BuildingControlAction {
     /**
      * 获取楼栋--管理员信息详情
      */
+    @UserLoginToken
     @RequestMapping("getManagerInfoDetail")
     public Employee getManagerInfoDetail(@RequestBody GetManagerInfoDetailRequest request){
         Employee employee = employeeInfoService.findEmployeeById(request.getEmployeeId());
@@ -272,6 +281,7 @@ public class BuildingControlAction {
     /**
      * 删除楼栋管理员
      */
+    @UserLoginToken
     @RequestMapping("deleteBuildingManager")
     public JSONObject deleteBuildingManager(DeleteBuildingManagerRequest request){
         JSONObject response = new JSONObject();
@@ -283,6 +293,7 @@ public class BuildingControlAction {
     /**
      * 新增楼栋管理员
      */
+    @UserLoginToken
     @RequestMapping("addBuildingManager")
     public JSONObject addBuildingManager(AddBuildingManagerRequest request){
         JSONObject response = new JSONObject();

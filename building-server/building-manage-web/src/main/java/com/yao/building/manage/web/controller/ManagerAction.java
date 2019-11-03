@@ -8,6 +8,7 @@ import com.yao.building.manage.response.AbleToRentRoomResponse;
 import com.yao.building.manage.response.RoomRentBaseInfoResponse;
 import com.yao.building.manage.service.RoomInfoService;
 import com.yao.building.manage.vo.RoomUserInfoResponse;
+import com.yao.building.manage.web.annotation.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class ManagerAction {
     /**
      * 获取房间信息
      */
+    @UserLoginToken
     @RequestMapping("getRoomInfos")
     public List<RoomUserInfoResponse> getManageRoomUserInfo(@RequestBody GetRoomUserInfoRequest request,
                                                             HttpServletRequest servletRequest){
@@ -38,6 +40,7 @@ public class ManagerAction {
     /**
      * 获取租客详情
      */
+    @UserLoginToken
     @RequestMapping("getCustomerDetailInfo")
     public UserInfo getCustomerDetailInfo(@RequestBody GetUserDetailInfoRequest request,
                                           HttpServletRequest servletRequest){
@@ -47,6 +50,7 @@ public class ManagerAction {
     /**
      * 获取房间数据
      */
+    @UserLoginToken
     @RequestMapping("getRoomRentDataInfos")
     public List<RoomRentBaseInfoResponse> getRoomBaseDataInfoOfMonth(@RequestBody  GetRoomRentBaseInfoRequest request){
         List<RoomRentBaseInfoResponse> responses = roomInfoService.getRoomRentBaseInfoOfMonth(request);
@@ -56,6 +60,7 @@ public class ManagerAction {
     /**
      * 新增房间数据记录
      */
+    @UserLoginToken
     @RequestMapping("addRoomRentDataInfo")
     public JSONObject addRoomRentBaseInfoOfMonth(@RequestBody AddRoomRentBaseInfoRequest request){
         JSONObject response = new JSONObject();
@@ -72,6 +77,7 @@ public class ManagerAction {
     /**
      * 获取可退租的房间信息
      */
+    @UserLoginToken
     @RequestMapping("getAbleCancelRoomInfos")
     public List<AbleCancelRoomResponse> getAllAbleCancelRentRoomInfos(@RequestBody GetAllAbleToCancelRoomRequest request){
         List<AbleCancelRoomResponse> responseList = roomInfoService.getAllAbleToCancelRoomInfo(request);
@@ -81,6 +87,7 @@ public class ManagerAction {
     /**
      * 退租操作
      */
+    @UserLoginToken
     @RequestMapping("cancelRoomRent")
     public JSONObject cancelRoomRent(@RequestBody CancelRoomRentRequest request){
         JSONObject response = new JSONObject();
@@ -93,6 +100,7 @@ public class ManagerAction {
     /**
      * 获取可租赁房间信息
      */
+    @UserLoginToken
     @RequestMapping("getAbleRentRoomInfos")
     public List<AbleToRentRoomResponse> getAllAbleRentRoomInfos(@RequestBody GetAllAbleToRentRoomRequest request){
         List<AbleToRentRoomResponse> responseList = roomInfoService.getAllAbleToRentRoomInfo(request);
@@ -102,6 +110,7 @@ public class ManagerAction {
     /**
      * 出租操作
      */
+    @UserLoginToken
     @RequestMapping("rentRoom")
     public JSONObject rentRoom(@RequestBody BindRoomWithUserRequest request){
         roomInfoService.bindRoomWithUserInfo(request);

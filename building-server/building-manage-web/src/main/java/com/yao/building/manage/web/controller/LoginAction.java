@@ -36,8 +36,11 @@ public class LoginAction {
                 session.setAttribute("employee", employeeBase);
                 String token = tokenService.getToken(employeeBase);
                 jsonObject.put("token", token);
+                jsonObject.put("employeeId", employeeBase.getId());
                 jsonObject.put("username", employeeBase.getEmployeeName());
                 jsonObject.put("mobile", employeeBase.getEmployeeMobile());
+                jsonObject.put("employeeRole", employeeBase.getEmployeeRole());
+                jsonObject.put("employeeRoleDesc", employeeBase.getEmployeeRoleDesc());
                 return jsonObject;
             }
         }

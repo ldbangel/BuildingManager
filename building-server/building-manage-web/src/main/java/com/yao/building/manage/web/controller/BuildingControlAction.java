@@ -282,7 +282,7 @@ public class BuildingControlAction {
      */
     @UserLoginToken
     @RequestMapping("deleteBuildingManager")
-    public JSONObject deleteBuildingManager(DeleteBuildingManagerRequest request){
+    public JSONObject deleteBuildingManager(@RequestBody DeleteBuildingManagerRequest request){
         JSONObject response = new JSONObject();
         buildingManageService.deleteBuildingManager(request);
         response.put("status", "success");
@@ -294,7 +294,7 @@ public class BuildingControlAction {
      */
     @UserLoginToken
     @RequestMapping("addBuildingManager")
-    public JSONObject addBuildingManager(AddBuildingManagerRequest request){
+    public JSONObject addBuildingManager(@RequestBody AddBuildingManagerRequest request){
         JSONObject response = new JSONObject();
         buildingManageService.addBuildingManager(request);
         response.put("status", "success");

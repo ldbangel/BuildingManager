@@ -7,12 +7,17 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
     // 拦截所有请求，通过判断是否有 @LoginRequired 注解 决定是否需要登录
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticationInterceptor())
-                .addPathPatterns("/**");
+                // 添加拦截规则
+                .addPathPatterns(Arrays.asList("/building/**","/total/**"))
+                // 添加放过规则，登录不用校验token直接放过
+                .excludePathPatterns("/building/access/login");
     }
 
     @Bean

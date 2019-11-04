@@ -53,9 +53,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     throw new RuntimeException("无token，请重新登录");
                 }
 
-                if(httpServletRequest.getSession().getAttribute("employee") == null){  //用户退出了，session没有数据，请重新登录
+                /*if(httpServletRequest.getSession().getAttribute("employee") == null){  //用户退出了，session没有数据，请重新登录
                     throw new RuntimeException("无token，请重新登录");
-                }
+                }*/
                 // 获取 token 中的 employee id
                 Employee employee;
                 Date expire;

@@ -111,7 +111,7 @@ public class BuildingControlAction {
                             response.setPlaceId(buildingInfo.getCityId());
                             response.setPlaceName(buildingInfo.getCityName());
                             return response;
-                        }).collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }else if(pPlaceLevel == 2){
                 responseList = buildingInfoList.stream()
                         .filter(buildingInfo -> Objects.equals(buildingInfo.getCityId(), pPlaceDict.getId()))
@@ -120,7 +120,7 @@ public class BuildingControlAction {
                             response.setPlaceId(buildingInfo.getAreaId());
                             response.setPlaceName(buildingInfo.getAreaName());
                             return response;
-                        }).collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }else if(pPlaceLevel == 3){
                 responseList = buildingInfoList.stream()
                         .filter(buildingInfo -> Objects.equals(buildingInfo.getAreaId(), pPlaceDict.getId()))
@@ -129,7 +129,7 @@ public class BuildingControlAction {
                             response.setPlaceId(buildingInfo.getStreetId());
                             response.setPlaceName(buildingInfo.getStreetName());
                             return response;
-                        }).collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }else if(pPlaceLevel == 4){
                 responseList = buildingInfoList.stream()
                         .filter(buildingInfo -> Objects.equals(buildingInfo.getStreetId(), pPlaceDict.getId()))
@@ -138,7 +138,7 @@ public class BuildingControlAction {
                             response.setPlaceId(buildingInfo.getVillageId());
                             response.setPlaceName(buildingInfo.getVillageName());
                             return response;
-                        }).collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }else if(pPlaceLevel == 5){
                 responseList = buildingInfoList.stream()
                         .filter(buildingInfo -> Objects.equals(buildingInfo.getVillageId(), pPlaceDict.getId()))
@@ -147,7 +147,7 @@ public class BuildingControlAction {
                             response.setPlaceId(buildingInfo.getId());
                             response.setPlaceName(buildingInfo.getBuildingDesc());
                             return response;
-                        }).collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }
         }else if(employee.getEmployeeRole() == 1){   // 超级管理员
             if(pPlaceLevel >=1 && pPlaceLevel < 5){
@@ -161,8 +161,7 @@ public class BuildingControlAction {
                             response.setPlaceId(placeDict.getId());
                             response.setPlaceName(placeDict.getPlaceName());
                             return response;
-                        })
-                        .collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }else if(pPlaceLevel == 5){
                 BuildingInfoExample example = new BuildingInfoExample();
                 BuildingInfoExample.Criteria criteria = example.createCriteria();
@@ -174,7 +173,7 @@ public class BuildingControlAction {
                             response.setPlaceId(buildingInfo.getId());
                             response.setPlaceName(buildingInfo.getBuildingDesc());
                             return response;
-                        }).collect(Collectors.toList());
+                        }).distinct().collect(Collectors.toList());
             }
         }
 

@@ -66,6 +66,9 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                     BeanUtils.copyProperties(buildingInfo, response);
                     response.setBuildingName(buildingInfo.getBuildingDesc());
                     response.setBuildingId(buildingInfo.getId());
+                    response.setManageFee(buildingInfo.getManageFee());
+                    response.setCleanFee(buildingInfo.getCleanFee());
+                    response.setInternetFee(buildingInfo.getInternetFee());
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -134,6 +137,8 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                     buildingInfo.setBuildingDesc(request.getBuildingName());
                 }
                 buildingInfo.setManageFee(request.getManageFee());
+                buildingInfo.setCleanFee(request.getCleanFee());
+                buildingInfo.setInternetFee(request.getInternetFee());
                 buildingInfo.setModifyTime(new Date());
                 buildingInfoDal.update(buildingInfo);
             }
@@ -154,6 +159,8 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                     response.setRoomNo(roomInfo.getRoomNo());
                     response.setRoomId(roomInfo.getId());
                     response.setRentStatus(roomInfo.getRoomStatus() == 1 ? "在租" : "未租");
+                    response.setRoomType(roomInfo.getRoomType());
+                    response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -167,7 +174,7 @@ public class BuildingManageServiceImpl implements BuildingManageService {
     @Override
     public void addOrEditRoomBaseInfo(AddOrEditRoomInfoRequest request) {
         if(request == null){
-            throw new RuntimeException("无效的请求参数");
+            throw new RuntimeException("参数错误");
         }
 
         if(request.getRoomId() == null && request.getBuildingId() != null){
@@ -175,6 +182,9 @@ public class BuildingManageServiceImpl implements BuildingManageService {
             RoomInfo roomInfo = new RoomInfo();
             BeanUtils.copyProperties(request, roomInfo);
             roomInfo.setRoomStatus(0);
+            if(request.getRoomType() == 2){
+                roomInfo.setRoomTypeDesc("档口");
+            }
             roomInfo.setCreateTime(new Date());
             roomInfo.setModifyTime(new Date());
             roomInfoDal.insert(roomInfo);
@@ -200,6 +210,12 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                 }
                 if(request.getEnergyNum() != null && request.getEnergyNum() != 0){
                     roomInfo.setEnergyNum(request.getEnergyNum());
+                }
+                if(request.getRoomType() != null && request.getRoomType() != 0){
+                    roomInfo.setRoomType(request.getRoomType());
+                    if(request.getRoomType() == 2){
+                        roomInfo.setRoomTypeDesc("档口");
+                    }
                 }
                 roomInfo.setModifyTime(new Date());
                 roomInfoDal.update(roomInfo);

@@ -12,6 +12,15 @@ public class RoomRentBaseInfoResponse {
     private Integer energyUseCount;
     private Integer waterUseCount;
     private Integer manageFee;
+    /**
+     * 房间类型
+     */
+    private Integer roomType;
+    /**
+     * 房间类型描述
+     */
+    private String roomTypeDesc;
+    private Integer openInternet;
     private String readTime;
     private String reportTime;
     private String operator;

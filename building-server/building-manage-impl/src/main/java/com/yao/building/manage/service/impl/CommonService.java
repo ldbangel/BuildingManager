@@ -33,6 +33,7 @@ public class CommonService {
         List<T1> responseList = new ArrayList<T1>();
         if(request == null){
             log.info("request can not be null! please check again");
+            throw new RuntimeException("参数错误");
         }
         if(request.getRoomId() != null && request.getRoomId() != 0){
             BuildingInfo buildingInfo = getBuildingInfoByRoomId(request.getRoomId());
@@ -167,6 +168,9 @@ public class CommonService {
         response.setBuildingName(buildingInfo.getBuildingDesc());
         response.setStreetName(buildingInfo.getStreetName());
         response.setVillageName(buildingInfo.getVillageName());
+        response.setManageFee(buildingInfo.getManageFee());
+        response.setCleanFee(buildingInfo.getCleanFee());
+        response.setInternetFee(buildingInfo.getInternetFee());
     }
 
     /**
@@ -180,6 +184,8 @@ public class CommonService {
                         .map(roomInfo -> {
                             response.setRoomNo(roomInfo.getRoomNo());
                             response.setRentStatus(roomInfo.getRoomStatus() == 1 ? "在租" : "未租");
+                            response.setRoomType(roomInfo.getRoomType());
+                            response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
                             return response;
                         }).orElse(response))
                 .collect(Collectors.toList());

@@ -1,5 +1,6 @@
 package com.yao.building.manage.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class RoomInfo {
@@ -9,15 +10,21 @@ public class RoomInfo {
 
     private String roomDesc;
 
-    private Byte roomType;
+    private Integer roomType;
 
     private String roomTypeDesc;
 
     private Integer rent;
 
+    private Integer openInternet;
+
     private Integer energyNum;
 
     private Integer waterNum;
+
+    private BigDecimal energyUnit;
+
+    private BigDecimal waterUnit;
 
     private Integer roomStatus;
 
@@ -53,11 +60,11 @@ public class RoomInfo {
         this.roomDesc = roomDesc == null ? null : roomDesc.trim();
     }
 
-    public Byte getRoomType() {
+    public Integer getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(Byte roomType) {
+    public void setRoomType(Integer roomType) {
         this.roomType = roomType;
     }
 
@@ -77,6 +84,14 @@ public class RoomInfo {
         this.rent = rent;
     }
 
+    public Integer getOpenInternet() {
+        return openInternet;
+    }
+
+    public void setOpenInternet(Integer openInternet) {
+        this.openInternet = openInternet;
+    }
+
     public Integer getEnergyNum() {
         return energyNum;
     }
@@ -91,6 +106,22 @@ public class RoomInfo {
 
     public void setWaterNum(Integer waterNum) {
         this.waterNum = waterNum;
+    }
+
+    public BigDecimal getEnergyUnit() {
+        return energyUnit;
+    }
+
+    public void setEnergyUnit(BigDecimal energyUnit) {
+        this.energyUnit = energyUnit;
+    }
+
+    public BigDecimal getWaterUnit() {
+        return waterUnit;
+    }
+
+    public void setWaterUnit(BigDecimal waterUnit) {
+        this.waterUnit = waterUnit;
     }
 
     public Integer getRoomStatus() {

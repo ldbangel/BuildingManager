@@ -10,4 +10,8 @@ public class AddOrEditRoomInfoRequest {
     private Integer rent;
     private Integer energyNum;
     private Integer waterNum;
+    /**
+     * 房间类型  1：住房  2：
+     */
+    private Integer roomType;
 }

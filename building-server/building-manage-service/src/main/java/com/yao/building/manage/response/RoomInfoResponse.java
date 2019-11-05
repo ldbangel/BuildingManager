@@ -10,4 +10,13 @@ public class RoomInfoResponse {
     private Integer energyNum;
     private Integer waterNum;
     private String operator;
+    /**
+     * 房间类型  1：住房  2：档口
+     */
+    private Integer roomType;
+
+    /**
+     * 类型描述
+     */
+    private String roomTypeDesc;
 }

@@ -525,6 +525,66 @@ public class RoomDataExample {
             return (Criteria) this;
         }
 
+        public Criteria andOpenInternetIsNull() {
+            addCriterion("Fopen_internet is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetIsNotNull() {
+            addCriterion("Fopen_internet is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetEqualTo(Integer value) {
+            addCriterion("Fopen_internet =", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetNotEqualTo(Integer value) {
+            addCriterion("Fopen_internet <>", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetGreaterThan(Integer value) {
+            addCriterion("Fopen_internet >", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Fopen_internet >=", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetLessThan(Integer value) {
+            addCriterion("Fopen_internet <", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetLessThanOrEqualTo(Integer value) {
+            addCriterion("Fopen_internet <=", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetIn(List<Integer> values) {
+            addCriterion("Fopen_internet in", values, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetNotIn(List<Integer> values) {
+            addCriterion("Fopen_internet not in", values, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetBetween(Integer value1, Integer value2) {
+            addCriterion("Fopen_internet between", value1, value2, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetNotBetween(Integer value1, Integer value2) {
+            addCriterion("Fopen_internet not between", value1, value2, "openInternet");
+            return (Criteria) this;
+        }
+
         public Criteria andRentStatusIsNull() {
             addCriterion("Frent_status is null");
             return (Criteria) this;

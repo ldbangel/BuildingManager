@@ -11,4 +11,13 @@ public class AddOrEditBuildingInfoRequest {
     private Integer villageId;
     private String buildingName;
     private Integer manageFee;
+    /**
+     * 卫生费
+     */
+    private Integer cleanFee;
+
+    /**
+     * 网费
+     */
+    private Integer internetFee;
 }

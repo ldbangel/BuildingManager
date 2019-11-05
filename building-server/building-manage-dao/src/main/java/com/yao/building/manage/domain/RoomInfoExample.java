@@ -1,5 +1,6 @@
 package com.yao.building.manage.domain;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -305,52 +306,52 @@ public class RoomInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeEqualTo(Byte value) {
+        public Criteria andRoomTypeEqualTo(Integer value) {
             addCriterion("Froom_type =", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeNotEqualTo(Byte value) {
+        public Criteria andRoomTypeNotEqualTo(Integer value) {
             addCriterion("Froom_type <>", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeGreaterThan(Byte value) {
+        public Criteria andRoomTypeGreaterThan(Integer value) {
             addCriterion("Froom_type >", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeGreaterThanOrEqualTo(Byte value) {
+        public Criteria andRoomTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("Froom_type >=", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeLessThan(Byte value) {
+        public Criteria andRoomTypeLessThan(Integer value) {
             addCriterion("Froom_type <", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeLessThanOrEqualTo(Byte value) {
+        public Criteria andRoomTypeLessThanOrEqualTo(Integer value) {
             addCriterion("Froom_type <=", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeIn(List<Byte> values) {
+        public Criteria andRoomTypeIn(List<Integer> values) {
             addCriterion("Froom_type in", values, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeNotIn(List<Byte> values) {
+        public Criteria andRoomTypeNotIn(List<Integer> values) {
             addCriterion("Froom_type not in", values, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeBetween(Byte value1, Byte value2) {
+        public Criteria andRoomTypeBetween(Integer value1, Integer value2) {
             addCriterion("Froom_type between", value1, value2, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeNotBetween(Byte value1, Byte value2) {
+        public Criteria andRoomTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("Froom_type not between", value1, value2, "roomType");
             return (Criteria) this;
         }
@@ -485,6 +486,66 @@ public class RoomInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andOpenInternetIsNull() {
+            addCriterion("Fopen_internet is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetIsNotNull() {
+            addCriterion("Fopen_internet is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetEqualTo(Integer value) {
+            addCriterion("Fopen_internet =", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetNotEqualTo(Integer value) {
+            addCriterion("Fopen_internet <>", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetGreaterThan(Integer value) {
+            addCriterion("Fopen_internet >", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Fopen_internet >=", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetLessThan(Integer value) {
+            addCriterion("Fopen_internet <", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetLessThanOrEqualTo(Integer value) {
+            addCriterion("Fopen_internet <=", value, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetIn(List<Integer> values) {
+            addCriterion("Fopen_internet in", values, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetNotIn(List<Integer> values) {
+            addCriterion("Fopen_internet not in", values, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetBetween(Integer value1, Integer value2) {
+            addCriterion("Fopen_internet between", value1, value2, "openInternet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenInternetNotBetween(Integer value1, Integer value2) {
+            addCriterion("Fopen_internet not between", value1, value2, "openInternet");
+            return (Criteria) this;
+        }
+
         public Criteria andEnergyNumIsNull() {
             addCriterion("Fenergy_num is null");
             return (Criteria) this;
@@ -602,6 +663,126 @@ public class RoomInfoExample {
 
         public Criteria andWaterNumNotBetween(Integer value1, Integer value2) {
             addCriterion("Fwater_num not between", value1, value2, "waterNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitIsNull() {
+            addCriterion("Fenergy_unit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitIsNotNull() {
+            addCriterion("Fenergy_unit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_unit =", value, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitNotEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_unit <>", value, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitGreaterThan(BigDecimal value) {
+            addCriterion("Fenergy_unit >", value, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_unit >=", value, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitLessThan(BigDecimal value) {
+            addCriterion("Fenergy_unit <", value, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_unit <=", value, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitIn(List<BigDecimal> values) {
+            addCriterion("Fenergy_unit in", values, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitNotIn(List<BigDecimal> values) {
+            addCriterion("Fenergy_unit not in", values, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fenergy_unit between", value1, value2, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergyUnitNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fenergy_unit not between", value1, value2, "energyUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitIsNull() {
+            addCriterion("Fwater_unit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitIsNotNull() {
+            addCriterion("Fwater_unit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitEqualTo(BigDecimal value) {
+            addCriterion("Fwater_unit =", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitNotEqualTo(BigDecimal value) {
+            addCriterion("Fwater_unit <>", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitGreaterThan(BigDecimal value) {
+            addCriterion("Fwater_unit >", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fwater_unit >=", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitLessThan(BigDecimal value) {
+            addCriterion("Fwater_unit <", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fwater_unit <=", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitIn(List<BigDecimal> values) {
+            addCriterion("Fwater_unit in", values, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitNotIn(List<BigDecimal> values) {
+            addCriterion("Fwater_unit not in", values, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fwater_unit between", value1, value2, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fwater_unit not between", value1, value2, "waterUnit");
             return (Criteria) this;
         }
 

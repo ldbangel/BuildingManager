@@ -9,6 +9,7 @@
     <result column="Fenergy_use_count" property="energyUseCount" jdbcType="INTEGER" />
     <result column="Fwater_num" property="waterNum" jdbcType="INTEGER" />
     <result column="Fwater_use_count" property="waterUseCount" jdbcType="INTEGER" />
+    <result column="Fopen_internet" property="openInternet" jdbcType="INTEGER" />
     <result column="Frent_status" property="rentStatus" jdbcType="INTEGER" />
     <result column="Fread_time" property="readTime" jdbcType="TIMESTAMP" />
     <result column="Fcreate_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -76,7 +77,8 @@
   </sql>
   <sql id="Base_Column_List" >
     Fid, Froom_id, Frent, Fenergy_num, Fenergy_use_count, Fwater_num, Fwater_use_count, 
-    Frent_status, Fread_time, Fcreate_time, Fmodify_time, Foperator, Fversion
+    Fopen_internet, Frent_status, Fread_time, Fcreate_time, Fmodify_time, Foperator, 
+    Fversion
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.RoomDataExample" >
     select
@@ -111,14 +113,14 @@
   <insert id="insert" parameterType="com.yao.building.manage.domain.RoomData" useGeneratedKeys="true" keyProperty="id" >
     insert into t_room_data (Froom_id, Frent, Fenergy_num, 
       Fenergy_use_count, Fwater_num, Fwater_use_count, 
-      Frent_status, Fread_time, Fcreate_time, 
-      Fmodify_time, Foperator, Fversion
-      )
+      Fopen_internet, Frent_status, Fread_time, 
+      Fcreate_time, Fmodify_time, Foperator, 
+      Fversion)
     values (#{roomId,jdbcType=INTEGER}, #{rent,jdbcType=INTEGER}, #{energyNum,jdbcType=INTEGER}, 
       #{energyUseCount,jdbcType=INTEGER}, #{waterNum,jdbcType=INTEGER}, #{waterUseCount,jdbcType=INTEGER}, 
-      #{rentStatus,jdbcType=INTEGER}, #{readTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
-      )
+      #{openInternet,jdbcType=INTEGER}, #{rentStatus,jdbcType=INTEGER}, #{readTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yao.building.manage.domain.RoomData" useGeneratedKeys="true" keyProperty="id" >
     insert into t_room_data
@@ -140,6 +142,9 @@
       </if>
       <if test="waterUseCount != null" >
         Fwater_use_count,
+      </if>
+      <if test="openInternet != null" >
+        Fopen_internet,
       </if>
       <if test="rentStatus != null" >
         Frent_status,
@@ -178,6 +183,9 @@
       </if>
       <if test="waterUseCount != null" >
         #{waterUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="openInternet != null" >
+        #{openInternet,jdbcType=INTEGER},
       </if>
       <if test="rentStatus != null" >
         #{rentStatus,jdbcType=INTEGER},
@@ -229,6 +237,9 @@
       <if test="record.waterUseCount != null" >
         Fwater_use_count = #{record.waterUseCount,jdbcType=INTEGER},
       </if>
+      <if test="record.openInternet != null" >
+        Fopen_internet = #{record.openInternet,jdbcType=INTEGER},
+      </if>
       <if test="record.rentStatus != null" >
         Frent_status = #{record.rentStatus,jdbcType=INTEGER},
       </if>
@@ -261,6 +272,7 @@
       Fenergy_use_count = #{record.energyUseCount,jdbcType=INTEGER},
       Fwater_num = #{record.waterNum,jdbcType=INTEGER},
       Fwater_use_count = #{record.waterUseCount,jdbcType=INTEGER},
+      Fopen_internet = #{record.openInternet,jdbcType=INTEGER},
       Frent_status = #{record.rentStatus,jdbcType=INTEGER},
       Fread_time = #{record.readTime,jdbcType=TIMESTAMP},
       Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -292,6 +304,9 @@
       <if test="waterUseCount != null" >
         Fwater_use_count = #{waterUseCount,jdbcType=INTEGER},
       </if>
+      <if test="openInternet != null" >
+        Fopen_internet = #{openInternet,jdbcType=INTEGER},
+      </if>
       <if test="rentStatus != null" >
         Frent_status = #{rentStatus,jdbcType=INTEGER},
       </if>
@@ -321,6 +336,7 @@
       Fenergy_use_count = #{energyUseCount,jdbcType=INTEGER},
       Fwater_num = #{waterNum,jdbcType=INTEGER},
       Fwater_use_count = #{waterUseCount,jdbcType=INTEGER},
+      Fopen_internet = #{openInternet,jdbcType=INTEGER},
       Frent_status = #{rentStatus,jdbcType=INTEGER},
       Fread_time = #{readTime,jdbcType=TIMESTAMP},
       Fcreate_time = #{createTime,jdbcType=TIMESTAMP},

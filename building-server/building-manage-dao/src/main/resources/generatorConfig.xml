@@ -48,16 +48,16 @@
             <columnRenamingRule searchString="^F" replaceString=""/>
         </table>-->
 
-        <table tableName="t_room_fee" domainObjectName="RoomFee">
+        <!--<table tableName="t_room_fee" domainObjectName="RoomFee">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
+            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
         </table>
         <table tableName="t_room_fee_water" domainObjectName="RoomFeeWater">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
-        </table>
+            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+        </table>-->
 
         <!-- <table tableName="t_employee_building_info" domainObjectName="EmployeeBuildingInfo">
              <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
@@ -100,21 +100,21 @@
              &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
          </table>-->
 
-        <!--<table tableName="t_room_info" domainObjectName="RoomInfo">
+        <table tableName="t_room_info" domainObjectName="RoomInfo">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
         </table>
         <table tableName="t_room_info_water" domainObjectName="RoomInfoWater">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>-->
-        <!--<table tableName="t_room_data" domainObjectName="RoomData">
+            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
+        </table>
+        <table tableName="t_room_data" domainObjectName="RoomData">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>-->
+            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
+        </table>
 
 
 

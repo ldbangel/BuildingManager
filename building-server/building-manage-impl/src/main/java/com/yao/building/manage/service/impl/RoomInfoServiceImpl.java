@@ -149,6 +149,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 .map(response -> {
                     response.setRoomNo(roomInfo.getRoomNo());
                     response.setRoomId(roomInfo.getId());
+                    response.setRoomType(roomInfo.getRoomType());
+                    response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
                     return response;
                 }).collect(Collectors.toList());
 
@@ -329,10 +331,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
         //3、新增房间数据、修改房间状态信息
         AddRoomRentBaseInfoRequest addRentBaseInfoRequest = new AddRoomRentBaseInfoRequest();
-        addRentBaseInfoRequest.setRoomId(request.getRoomId());
-        addRentBaseInfoRequest.setEnergyNum(request.getEnergyNum());
-        addRentBaseInfoRequest.setWaterNum(request.getWaterNum());
-        addRentBaseInfoRequest.setReadTime(request.getRentBeginTime());
+        BeanUtils.copyProperties(request, addRentBaseInfoRequest);
         int addResult = addRoomRentDataInfo(addRentBaseInfoRequest, 1);
 
         return addResult;
@@ -355,6 +354,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     response.setRoomId(roomInfo.getId());
                     response.setRoomNo(roomInfo.getRoomNo());
                     response.setRentStatus(roomInfo.getRoomStatus() == 0 ? "未租" : "已租");
+                    response.setRoomType(roomInfo.getRoomType());
+                    response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -388,6 +389,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                         response.setRoomId(roomData.getRoomId());
                         response.setEnergyNum(roomData.getEnergyNum());
                         response.setWaterNum(roomData.getWaterNum());
+                        response.setOpenInternet(roomData.getOpenInternet());
                         response.setRent(roomData.getRent());
                         response.setReadTime(DateUtil.format(roomData.getReadTime(), DateUtil.yyyy_MM_dd));
                         response.setOperator(roomData.getOperator());
@@ -622,6 +624,26 @@ public class RoomInfoServiceImpl implements RoomInfoService {
      */
     private int addRoomRentDataInfo(AddRoomRentBaseInfoRequest request, Integer status){
         RoomInfo roomInfo = roomInfoDao.selectByPrimaryKey(request.getRoomId());
+        // 更新房间基本信息
+        roomInfo.setEnergyNum(request.getEnergyNum());
+        roomInfo.setWaterNum(request.getWaterNum());
+        roomInfo.setOpenInternet(request.getOpenInternet());
+        //如果是档口
+        if(roomInfo.getRoomType() == 2){
+            if(request.getWaterUnit() != null && request.getWaterUnit() != 0){
+                roomInfo.setWaterUnit(BigDecimal.valueOf(request.getWaterUnit()));
+            }
+            if(request.getEnergyUnit() != null && request.getEnergyUnit() != 0){
+                roomInfo.setEnergyUnit(BigDecimal.valueOf(request.getEnergyUnit()));
+            }
+        }
+        roomInfo.setModifyTime(new Date());
+        if(status == 0 || status == 1){
+            roomInfo.setRoomStatus(status);
+        }
+        roomInfoDal.update(roomInfo);
+
+
 
         /**
          * 放在这里主要是获取roomData数据插入之前的数据
@@ -639,6 +661,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         roomData.setRent(roomInfo.getRent());
         roomData.setEnergyNum(request.getEnergyNum());
         roomData.setWaterNum(request.getWaterNum());
+        roomData.setOpenInternet(roomInfo.getOpenInternet());
         roomData.setRentStatus(status);
         // 计算用水量和用电量
         int energyUseCount = request.getEnergyNum() - roomInfo.getEnergyNum();
@@ -655,15 +678,6 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         roomData.setModifyTime(now);
         int roomId = roomDataDao.insertSelective(roomData);
 
-        // 更新房间基本信息
-        roomInfo.setEnergyNum(request.getEnergyNum());
-        roomInfo.setWaterNum(request.getWaterNum());
-        roomInfo.setModifyTime(new Date());
-        if(status == 0 || status == 1){
-            roomInfo.setRoomStatus(status);
-        }
-        roomInfoDal.update(roomInfo);
-
         // 退租和续约类型的房间数据上报时，需要生成房间费用单
         if(status == 0 || status == 2){
             if(CollectionUtils.isEmpty(roomDatas)){
@@ -675,9 +689,18 @@ public class RoomInfoServiceImpl implements RoomInfoService {
             RoomFee roomFee = new RoomFee();
             roomFee.setRoomId(roomInfo.getId());
             roomFee.setManageFee(buildingInfo.getManageFee());
+            roomFee.setCleanFee(buildingInfo.getCleanFee());
+            if(roomInfo.getOpenInternet() == 1){
+                roomFee.setInternetFee(buildingInfo.getInternetFee());
+            }
             roomFee.setRentFee(roomInfo.getRent());
-            roomFee.setEnergyFee(BigDecimal.valueOf(energyUseCount * UnitPriceConstant.ENERGY_UNIT_PRICE));
-            roomFee.setWaterFee(BigDecimal.valueOf(waterUseCount * UnitPriceConstant.WATER_UNIT_PRICE));
+            if(roomInfo.getRoomType() == 2){ //档口
+                roomFee.setEnergyFee(BigDecimal.valueOf(energyUseCount).multiply(roomInfo.getEnergyUnit()));
+                roomFee.setWaterFee(BigDecimal.valueOf(waterUseCount).multiply(roomInfo.getWaterUnit()));
+            }else{  //住房
+                roomFee.setEnergyFee(BigDecimal.valueOf(energyUseCount * UnitPriceConstant.ENERGY_UNIT_PRICE));
+                roomFee.setWaterFee(BigDecimal.valueOf(waterUseCount * UnitPriceConstant.WATER_UNIT_PRICE));
+            }
             roomFee.setAllFee(roomFee.getEnergyFee()
                     .add(roomFee.getEnergyFee())
                     .add(BigDecimal.valueOf(roomFee.getRentFee()))

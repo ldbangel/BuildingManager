@@ -97,6 +97,8 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
                     response.setManageFee(roomFee.getManageFee());
                     response.setRentFee(roomFee.getRentFee());
                     response.setRoomId(roomFee.getRoomId());
+                    response.setCleanFee(roomFee.getCleanFee());
+                    response.setInternetFee(roomFee.getInternetFee());
                     return response;
                 })
                 .collect(Collectors.toList());

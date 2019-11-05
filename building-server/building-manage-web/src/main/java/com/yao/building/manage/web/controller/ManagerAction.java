@@ -52,7 +52,7 @@ public class ManagerAction {
      */
     @UserLoginToken
     @RequestMapping("getRoomRentDataInfos")
-    public List<RoomRentBaseInfoResponse> getRoomBaseDataInfoOfMonth(@RequestBody  GetRoomRentBaseInfoRequest request){
+    public List<RoomRentBaseInfoResponse> getRoomBaseDataInfoOfMonth(@RequestBody GetRoomRentBaseInfoRequest request){
         List<RoomRentBaseInfoResponse> responses = roomInfoService.getRoomRentBaseInfoOfMonth(request);
         return responses;
     }

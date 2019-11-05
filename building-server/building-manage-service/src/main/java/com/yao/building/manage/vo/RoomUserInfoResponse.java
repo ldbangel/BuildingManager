@@ -11,4 +11,6 @@ public class RoomUserInfoResponse extends BaseResponse {
     private String userMobile;
     private String userIdCard;
     private String rentBeginTime;
+
+
 }

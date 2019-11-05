@@ -5,11 +5,14 @@
     <id column="Fid" property="id" jdbcType="INTEGER" />
     <result column="Froom_no" property="roomNo" jdbcType="INTEGER" />
     <result column="Froom_desc" property="roomDesc" jdbcType="VARCHAR" />
-    <result column="Froom_type" property="roomType" jdbcType="TINYINT" />
+    <result column="Froom_type" property="roomType" jdbcType="INTEGER" />
     <result column="Froom_type_desc" property="roomTypeDesc" jdbcType="VARCHAR" />
     <result column="Frent" property="rent" jdbcType="INTEGER" />
+    <result column="Fopen_internet" property="openInternet" jdbcType="INTEGER" />
     <result column="Fenergy_num" property="energyNum" jdbcType="INTEGER" />
     <result column="Fwater_num" property="waterNum" jdbcType="INTEGER" />
+    <result column="Fenergy_unit" property="energyUnit" jdbcType="DECIMAL" />
+    <result column="Fwater_unit" property="waterUnit" jdbcType="DECIMAL" />
     <result column="Froom_status" property="roomStatus" jdbcType="INTEGER" />
     <result column="Fcreate_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="Fmodify_time" property="modifyTime" jdbcType="TIMESTAMP" />
@@ -75,8 +78,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Fid, Froom_no, Froom_desc, Froom_type, Froom_type_desc, Frent, Fenergy_num, Fwater_num, 
-    Froom_status, Fcreate_time, Fmodify_time, Foperator, Fversion
+    Fid, Froom_no, Froom_desc, Froom_type, Froom_type_desc, Frent, Fopen_internet, Fenergy_num, 
+    Fwater_num, Fenergy_unit, Fwater_unit, Froom_status, Fcreate_time, Fmodify_time, 
+    Foperator, Fversion
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.RoomInfoExample" >
     select
@@ -110,13 +114,15 @@
   </delete>
   <insert id="insert" parameterType="com.yao.building.manage.domain.RoomInfo" useGeneratedKeys="true" keyProperty="id" >
     insert into t_room_info (Froom_no, Froom_desc, Froom_type, 
-      Froom_type_desc, Frent, Fenergy_num, 
-      Fwater_num, Froom_status, Fcreate_time, 
+      Froom_type_desc, Frent, Fopen_internet, 
+      Fenergy_num, Fwater_num, Fenergy_unit, 
+      Fwater_unit, Froom_status, Fcreate_time, 
       Fmodify_time, Foperator, Fversion
       )
-    values (#{roomNo,jdbcType=INTEGER}, #{roomDesc,jdbcType=VARCHAR}, #{roomType,jdbcType=TINYINT}, 
-      #{roomTypeDesc,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, #{energyNum,jdbcType=INTEGER}, 
-      #{waterNum,jdbcType=INTEGER}, #{roomStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{roomNo,jdbcType=INTEGER}, #{roomDesc,jdbcType=VARCHAR}, #{roomType,jdbcType=INTEGER}, 
+      #{roomTypeDesc,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, #{openInternet,jdbcType=INTEGER}, 
+      #{energyNum,jdbcType=INTEGER}, #{waterNum,jdbcType=INTEGER}, #{energyUnit,jdbcType=DECIMAL}, 
+      #{waterUnit,jdbcType=DECIMAL}, #{roomStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
       )
   </insert>
@@ -138,11 +144,20 @@
       <if test="rent != null" >
         Frent,
       </if>
+      <if test="openInternet != null" >
+        Fopen_internet,
+      </if>
       <if test="energyNum != null" >
         Fenergy_num,
       </if>
       <if test="waterNum != null" >
         Fwater_num,
+      </if>
+      <if test="energyUnit != null" >
+        Fenergy_unit,
+      </if>
+      <if test="waterUnit != null" >
+        Fwater_unit,
       </if>
       <if test="roomStatus != null" >
         Froom_status,
@@ -168,7 +183,7 @@
         #{roomDesc,jdbcType=VARCHAR},
       </if>
       <if test="roomType != null" >
-        #{roomType,jdbcType=TINYINT},
+        #{roomType,jdbcType=INTEGER},
       </if>
       <if test="roomTypeDesc != null" >
         #{roomTypeDesc,jdbcType=VARCHAR},
@@ -176,11 +191,20 @@
       <if test="rent != null" >
         #{rent,jdbcType=INTEGER},
       </if>
+      <if test="openInternet != null" >
+        #{openInternet,jdbcType=INTEGER},
+      </if>
       <if test="energyNum != null" >
         #{energyNum,jdbcType=INTEGER},
       </if>
       <if test="waterNum != null" >
         #{waterNum,jdbcType=INTEGER},
+      </if>
+      <if test="energyUnit != null" >
+        #{energyUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="waterUnit != null" >
+        #{waterUnit,jdbcType=DECIMAL},
       </if>
       <if test="roomStatus != null" >
         #{roomStatus,jdbcType=INTEGER},
@@ -218,7 +242,7 @@
         Froom_desc = #{record.roomDesc,jdbcType=VARCHAR},
       </if>
       <if test="record.roomType != null" >
-        Froom_type = #{record.roomType,jdbcType=TINYINT},
+        Froom_type = #{record.roomType,jdbcType=INTEGER},
       </if>
       <if test="record.roomTypeDesc != null" >
         Froom_type_desc = #{record.roomTypeDesc,jdbcType=VARCHAR},
@@ -226,11 +250,20 @@
       <if test="record.rent != null" >
         Frent = #{record.rent,jdbcType=INTEGER},
       </if>
+      <if test="record.openInternet != null" >
+        Fopen_internet = #{record.openInternet,jdbcType=INTEGER},
+      </if>
       <if test="record.energyNum != null" >
         Fenergy_num = #{record.energyNum,jdbcType=INTEGER},
       </if>
       <if test="record.waterNum != null" >
         Fwater_num = #{record.waterNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.energyUnit != null" >
+        Fenergy_unit = #{record.energyUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.waterUnit != null" >
+        Fwater_unit = #{record.waterUnit,jdbcType=DECIMAL},
       </if>
       <if test="record.roomStatus != null" >
         Froom_status = #{record.roomStatus,jdbcType=INTEGER},
@@ -257,11 +290,14 @@
     set Fid = #{record.id,jdbcType=INTEGER},
       Froom_no = #{record.roomNo,jdbcType=INTEGER},
       Froom_desc = #{record.roomDesc,jdbcType=VARCHAR},
-      Froom_type = #{record.roomType,jdbcType=TINYINT},
+      Froom_type = #{record.roomType,jdbcType=INTEGER},
       Froom_type_desc = #{record.roomTypeDesc,jdbcType=VARCHAR},
       Frent = #{record.rent,jdbcType=INTEGER},
+      Fopen_internet = #{record.openInternet,jdbcType=INTEGER},
       Fenergy_num = #{record.energyNum,jdbcType=INTEGER},
       Fwater_num = #{record.waterNum,jdbcType=INTEGER},
+      Fenergy_unit = #{record.energyUnit,jdbcType=DECIMAL},
+      Fwater_unit = #{record.waterUnit,jdbcType=DECIMAL},
       Froom_status = #{record.roomStatus,jdbcType=INTEGER},
       Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
       Fmodify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
@@ -281,7 +317,7 @@
         Froom_desc = #{roomDesc,jdbcType=VARCHAR},
       </if>
       <if test="roomType != null" >
-        Froom_type = #{roomType,jdbcType=TINYINT},
+        Froom_type = #{roomType,jdbcType=INTEGER},
       </if>
       <if test="roomTypeDesc != null" >
         Froom_type_desc = #{roomTypeDesc,jdbcType=VARCHAR},
@@ -289,11 +325,20 @@
       <if test="rent != null" >
         Frent = #{rent,jdbcType=INTEGER},
       </if>
+      <if test="openInternet != null" >
+        Fopen_internet = #{openInternet,jdbcType=INTEGER},
+      </if>
       <if test="energyNum != null" >
         Fenergy_num = #{energyNum,jdbcType=INTEGER},
       </if>
       <if test="waterNum != null" >
         Fwater_num = #{waterNum,jdbcType=INTEGER},
+      </if>
+      <if test="energyUnit != null" >
+        Fenergy_unit = #{energyUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="waterUnit != null" >
+        Fwater_unit = #{waterUnit,jdbcType=DECIMAL},
       </if>
       <if test="roomStatus != null" >
         Froom_status = #{roomStatus,jdbcType=INTEGER},
@@ -317,11 +362,14 @@
     update t_room_info
     set Froom_no = #{roomNo,jdbcType=INTEGER},
       Froom_desc = #{roomDesc,jdbcType=VARCHAR},
-      Froom_type = #{roomType,jdbcType=TINYINT},
+      Froom_type = #{roomType,jdbcType=INTEGER},
       Froom_type_desc = #{roomTypeDesc,jdbcType=VARCHAR},
       Frent = #{rent,jdbcType=INTEGER},
+      Fopen_internet = #{openInternet,jdbcType=INTEGER},
       Fenergy_num = #{energyNum,jdbcType=INTEGER},
       Fwater_num = #{waterNum,jdbcType=INTEGER},
+      Fenergy_unit = #{energyUnit,jdbcType=DECIMAL},
+      Fwater_unit = #{waterUnit,jdbcType=DECIMAL},
       Froom_status = #{roomStatus,jdbcType=INTEGER},
       Fcreate_time = #{createTime,jdbcType=TIMESTAMP},
       Fmodify_time = #{modifyTime,jdbcType=TIMESTAMP},

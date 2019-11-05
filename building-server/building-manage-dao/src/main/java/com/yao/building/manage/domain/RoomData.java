@@ -17,6 +17,8 @@ public class RoomData {
 
     private Integer waterUseCount;
 
+    private Integer openInternet;
+
     private Integer rentStatus;
 
     private Date readTime;
@@ -83,6 +85,14 @@ public class RoomData {
 
     public void setWaterUseCount(Integer waterUseCount) {
         this.waterUseCount = waterUseCount;
+    }
+
+    public Integer getOpenInternet() {
+        return openInternet;
+    }
+
+    public void setOpenInternet(Integer openInternet) {
+        this.openInternet = openInternet;
     }
 
     public Integer getRentStatus() {

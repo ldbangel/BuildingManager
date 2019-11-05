@@ -29,6 +29,10 @@ public class BuildingInfo {
 
     private Integer manageFee;
 
+    private Integer cleanFee;
+
+    private Integer internetFee;
+
     private Integer status;
 
     private Date createTime;
@@ -141,6 +145,22 @@ public class BuildingInfo {
 
     public void setManageFee(Integer manageFee) {
         this.manageFee = manageFee;
+    }
+
+    public Integer getCleanFee() {
+        return cleanFee;
+    }
+
+    public void setCleanFee(Integer cleanFee) {
+        this.cleanFee = cleanFee;
+    }
+
+    public Integer getInternetFee() {
+        return internetFee;
+    }
+
+    public void setInternetFee(Integer internetFee) {
+        this.internetFee = internetFee;
     }
 
     public Integer getStatus() {

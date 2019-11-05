@@ -13,6 +13,7 @@ import com.yao.building.manage.response.RoomBaseInfoResponse;
 import com.yao.building.manage.service.BuildingManageService;
 import com.yao.building.manage.vo.PageBean;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -208,9 +209,21 @@ public class BuildingManageServiceImpl implements BuildingManageService {
 
     @Override
     public void deleteBuildingManager(DeleteBuildingManagerRequest request) {
+        EmployeeBuildingInfoExample ebExample = new EmployeeBuildingInfoExample();
+        EmployeeBuildingInfoExample.Criteria ebCriteria = ebExample.createCriteria();
+        ebCriteria.andEmployeeIdEqualTo(request.getEmployeeId());
+        ebCriteria.andStatusEqualTo(1);
+        List<EmployeeBuildingInfo> ebInfos = employeeBuildingInfoDao.selectByExample(ebExample);
+        if(CollectionUtils.isEmpty(ebInfos)){
+            throw new RuntimeException("数据错误");
+        }
+
         Employee employee = new Employee();
         employee.setId(request.getEmployeeId());
-        employee.setStatus(0);
+        // 如果当前管理员有效管理的不止一栋，只移除与这栋的关系，保留账户；若只有一栋，移除的同时直接冻结账号
+        if(ebInfos.size() == 1){
+            employee.setStatus(0);
+        }
         employee.setModifyTime(new Date());
         employeeDao.updateByPrimaryKeySelective(employee);
 

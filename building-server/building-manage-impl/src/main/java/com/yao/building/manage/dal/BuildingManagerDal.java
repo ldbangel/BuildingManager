@@ -2,8 +2,6 @@ package com.yao.building.manage.dal;
 
 import com.yao.building.manage.dao.EmployeeBuildingInfoDao;
 import com.yao.building.manage.dao.EmployeeBuildingInfoWaterDao;
-import com.yao.building.manage.domain.BuildingInfo;
-import com.yao.building.manage.domain.BuildingInfoWater;
 import com.yao.building.manage.domain.EmployeeBuildingInfo;
 import com.yao.building.manage.domain.EmployeeBuildingInfoWater;
 import org.springframework.beans.BeanUtils;

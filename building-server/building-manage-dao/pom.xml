@@ -11,6 +11,14 @@
 
     <artifactId>building-manage-dao</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.yao</groupId>
+            <artifactId>building-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

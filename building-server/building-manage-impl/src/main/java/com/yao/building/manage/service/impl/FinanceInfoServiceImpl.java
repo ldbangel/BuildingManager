@@ -1,6 +1,7 @@
 package com.yao.building.manage.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.yao.building.manage.common.utils.DateUtil;
 import com.yao.building.manage.dao.RoomFeeDao;
 import com.yao.building.manage.domain.BuildingInfo;
 import com.yao.building.manage.domain.RoomFee;
@@ -18,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -72,15 +72,14 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
     }
 
     private PageBean<FinancialInfoResponse> getFinancialRoomFeeInfos(GetFinanceInfoRequest request, PageBean<FinancialInfoResponse> responsePage) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         RoomFeeExample roomFeeExample = new RoomFeeExample();
         RoomFeeExample.Criteria roomFeeCriteria = roomFeeExample.createCriteria();
         roomFeeCriteria.andRoomIdEqualTo(request.getRoomId());
         if(StringUtils.isNotEmpty(request.getBeginTime())
                 && StringUtils.isNotEmpty(request.getEndTime())){
             try {
-                roomFeeCriteria.andEndFeeTimeGreaterThanOrEqualTo(format.parse(request.getBeginTime()));
-                roomFeeCriteria.andEndFeeTimeLessThanOrEqualTo(format.parse(request.getEndTime()));
+                roomFeeCriteria.andEndFeeTimeGreaterThanOrEqualTo(DateUtil.parse(request.getBeginTime(), DateUtil.yyyy_MM_dd));
+                roomFeeCriteria.andEndFeeTimeLessThanOrEqualTo(DateUtil.parse(request.getEndTime(), DateUtil.yyyy_MM_dd));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -92,9 +91,9 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
                 .map(roomFee -> {
                     FinancialInfoResponse response = new FinancialInfoResponse();
                     response.setAllFee(roomFee.getAllFee());
-                    response.setEndFeeTime(format.format(roomFee.getEndFeeTime()));
-                    response.setEnergyFee(roomFee.getEnergyNum());
-                    response.setWaterFee(roomFee.getWaterNum());
+                    response.setEndFeeTime(DateUtil.format(roomFee.getEndFeeTime(), DateUtil.yyyy_MM_dd));
+                    response.setEnergyFee(roomFee.getEnergyFee());
+                    response.setWaterFee(roomFee.getWaterFee());
                     response.setManageFee(roomFee.getManageFee());
                     response.setRentFee(roomFee.getRentFee());
                     response.setRoomId(roomFee.getRoomId());

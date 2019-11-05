@@ -11,6 +11,10 @@ public class RoomInfoWater {
 
     private String roomDesc;
 
+    private Byte roomType;
+
+    private String roomTypeDesc;
+
     private Integer rent;
 
     private Integer energyNum;
@@ -57,6 +61,22 @@ public class RoomInfoWater {
 
     public void setRoomDesc(String roomDesc) {
         this.roomDesc = roomDesc == null ? null : roomDesc.trim();
+    }
+
+    public Byte getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(Byte roomType) {
+        this.roomType = roomType;
+    }
+
+    public String getRoomTypeDesc() {
+        return roomTypeDesc;
+    }
+
+    public void setRoomTypeDesc(String roomTypeDesc) {
+        this.roomTypeDesc = roomTypeDesc == null ? null : roomTypeDesc.trim();
     }
 
     public Integer getRent() {

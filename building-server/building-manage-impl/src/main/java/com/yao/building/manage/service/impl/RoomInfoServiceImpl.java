@@ -1,6 +1,7 @@
 package com.yao.building.manage.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.yao.building.manage.common.utils.DateUtil;
 import com.yao.building.manage.constant.UnitPriceConstant;
 import com.yao.building.manage.dal.RoomInfoDal;
 import com.yao.building.manage.dal.RoomUserInfoDal;
@@ -74,8 +75,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     RoomUserInfoResponse response = new RoomUserInfoResponse();
                     BeanUtils.copyProperties(userInfo, response);
                     response.setUserId(userInfo.getId());
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    response.setRentBeginTime(format.format(userInfo.getRentBeginTime()));
+                    response.setRentBeginTime(DateUtil.format(userInfo.getRentBeginTime(), DateUtil.yyyy_MM_dd));
                     return response;
                 }).collect(Collectors.toList());
 
@@ -140,9 +140,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                         .map(roomData -> {
                             RoomRentBaseInfoResponse response =  new RoomRentBaseInfoResponse();
                             BeanUtils.copyProperties(roomData, response);
-                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            response.setReadTime(format.format(roomData.getReadTime()));
-                            response.setReportTime(format.format(roomData.getCreateTime()));
+                            response.setReadTime(DateUtil.format(roomData.getReadTime(), DateUtil.yyyy_MM_dd));
+                            response.setReportTime(DateUtil.format(roomData.getCreateTime(), DateUtil.yyyy_MM_dd));
                             return response;
                         }).collect(Collectors.toList());
 
@@ -202,9 +201,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
                     UserInfo userInfo = userInfoDao.selectByPrimaryKey(roomUserInfo.getUserId());
                     userInfo.setStatus(0);
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     try {
-                        userInfo.setRentEndTime(format.parse(request.getRentEndTime()));
+                        userInfo.setRentEndTime(DateUtil.parse(request.getRentEndTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -304,9 +302,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     userInfo.setUserMobile(userBaseInfo.getUserMobile());
                     userInfo.setUsername(userBaseInfo.getUsername());
                     userInfo.setStatus(1);
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     try {
-                        userInfo.setRentBeginTime(format.parse(request.getRentBeginTime()));
+                        userInfo.setRentBeginTime(DateUtil.parse(request.getRentBeginTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -367,7 +364,6 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
     @Override
     public PageBean<RoomAndDataInfoResponse> getRoomAndDataInfo(GetRoomAndDataInfoRequest request) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         PageBean<RoomAndDataInfoResponse> pageResponse = new PageBean<>();
         if(request.getRoomId() != null && request.getRoomId() != 0){
             BuildingInfo buildingInfo = commonService.getBuildingInfoByRoomId(request.getRoomId());
@@ -393,7 +389,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                         response.setEnergyNum(roomData.getEnergyNum());
                         response.setWaterNum(roomData.getWaterNum());
                         response.setRent(roomData.getRent());
-                        response.setReadTime(format.format(roomData.getReadTime()));
+                        response.setReadTime(DateUtil.format(roomData.getReadTime(), DateUtil.yyyy_MM_dd));
                         response.setOperator(roomData.getOperator());
                         response.setManageFee(buildingInfo.getManageFee());
                         response.setAreaName(buildingInfo.getAreaName());
@@ -418,7 +414,6 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     @Override
     public PageBean<UserBaseAndAddressInfoResponse> getUserBaseAndAddressInfo(GetHistoryUserInfoRequest request) {
         PageBean<UserBaseAndAddressInfoResponse> responsePage = new PageBean<>();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if(StringUtils.isNotEmpty(request.getUserIdCard())
                 || StringUtils.isNotEmpty(request.getUserMobile())
                 || StringUtils.isNotEmpty(request.getUsername())){
@@ -448,8 +443,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                         response.setUsername(userInfo.getUsername());
                         response.setUserMobile(userInfo.getUserMobile());
                         response.setStatus(userInfo.getStatus() == 0 ? "退租" : "在租");
-                        response.setRentBeginTime(format.format(userInfo.getRentBeginTime()));
-                        response.setRentEndTime(format.format(userInfo.getRentEndTime()));
+                        response.setRentBeginTime(DateUtil.format(userInfo.getRentBeginTime(), DateUtil.yyyy_MM_dd));
+                        response.setRentEndTime(DateUtil.format(userInfo.getRentEndTime(), DateUtil.yyyy_MM_dd));
                         return response;
                     }).collect(Collectors.toList());
 
@@ -548,8 +543,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                         response.setUserMobile(userInfo.getUserMobile());
                         response.setUserIdCard(userInfo.getUserIdCard());
                         response.setStatus(userInfo.getStatus() == 0 ? "退租" : "在租");
-                        response.setRentBeginTime(format.format(userInfo.getRentBeginTime()));
-                        response.setRentEndTime(format.format(userInfo.getRentEndTime()));
+                        response.setRentBeginTime(DateUtil.format(userInfo.getRentBeginTime(), DateUtil.yyyy_MM_dd));
+                        response.setRentEndTime(DateUtil.format(userInfo.getRentEndTime(), DateUtil.yyyy_MM_dd));
                         return response;
                     })
                     .collect(Collectors.toList());
@@ -650,9 +645,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         int waterUseCount = request.getWaterNum() - roomInfo.getWaterNum();
         roomData.setEnergyUseCount(energyUseCount);
         roomData.setWaterUseCount(waterUseCount);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            roomData.setReadTime(dateFormat.parse(request.getReadTime()));
+            roomData.setReadTime(DateUtil.parse(request.getReadTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -682,16 +676,16 @@ public class RoomInfoServiceImpl implements RoomInfoService {
             roomFee.setRoomId(roomInfo.getId());
             roomFee.setManageFee(buildingInfo.getManageFee());
             roomFee.setRentFee(roomInfo.getRent());
-            roomFee.setEnergyNum(BigDecimal.valueOf(energyUseCount * UnitPriceConstant.ENERGY_UNIT_PRICE));
-            roomFee.setWaterNum(BigDecimal.valueOf(waterUseCount * UnitPriceConstant.WATER_UNIT_PRICE));
-            roomFee.setAllFee(roomFee.getEnergyNum()
-                    .add(roomFee.getEnergyNum())
+            roomFee.setEnergyFee(BigDecimal.valueOf(energyUseCount * UnitPriceConstant.ENERGY_UNIT_PRICE));
+            roomFee.setWaterFee(BigDecimal.valueOf(waterUseCount * UnitPriceConstant.WATER_UNIT_PRICE));
+            roomFee.setAllFee(roomFee.getEnergyFee()
+                    .add(roomFee.getEnergyFee())
                     .add(BigDecimal.valueOf(roomFee.getRentFee()))
                     .add(BigDecimal.valueOf(roomFee.getManageFee())));
 
             roomFee.setStartFeeTime(beforeRoomDatas.getReadTime());
             try {
-                roomFee.setEndFeeTime(dateFormat.parse(request.getReadTime()));
+                roomFee.setEndFeeTime(DateUtil.parse(request.getReadTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

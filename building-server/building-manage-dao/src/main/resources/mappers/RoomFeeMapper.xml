@@ -5,9 +5,11 @@
     <id column="Fid" property="id" jdbcType="INTEGER" />
     <result column="Froom_id" property="roomId" jdbcType="INTEGER" />
     <result column="Frent_fee" property="rentFee" jdbcType="INTEGER" />
-    <result column="Fenergy_num" property="energyNum" jdbcType="DECIMAL" />
-    <result column="Fwater_num" property="waterNum" jdbcType="DECIMAL" />
+    <result column="Fenergy_fee" property="energyFee" jdbcType="DECIMAL" />
+    <result column="Fwater_fee" property="waterFee" jdbcType="DECIMAL" />
     <result column="Fmanage_fee" property="manageFee" jdbcType="INTEGER" />
+    <result column="Fclean_fee" property="cleanFee" jdbcType="INTEGER" />
+    <result column="Finternet_fee" property="internetFee" jdbcType="INTEGER" />
     <result column="Fall_fee" property="allFee" jdbcType="DECIMAL" />
     <result column="Fpay_status" property="payStatus" jdbcType="INTEGER" />
     <result column="Fstart_fee_time" property="startFeeTime" jdbcType="TIMESTAMP" />
@@ -76,8 +78,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Fid, Froom_id, Frent_fee, Fenergy_num, Fwater_num, Fmanage_fee, Fall_fee, Fpay_status, 
-    Fstart_fee_time, Fend_fee_time, Fcreate_time, Fmodify_time, Foperator, Fversion
+    Fid, Froom_id, Frent_fee, Fenergy_fee, Fwater_fee, Fmanage_fee, Fclean_fee, Finternet_fee, 
+    Fall_fee, Fpay_status, Fstart_fee_time, Fend_fee_time, Fcreate_time, Fmodify_time, 
+    Foperator, Fversion
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.RoomFeeExample" >
     select
@@ -110,16 +113,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yao.building.manage.domain.RoomFee" useGeneratedKeys="true" keyProperty="id" >
-    insert into t_room_fee (Froom_id, Frent_fee, Fenergy_num, 
-      Fwater_num, Fmanage_fee, Fall_fee, 
-      Fpay_status, Fstart_fee_time, Fend_fee_time, 
-      Fcreate_time, Fmodify_time, Foperator, 
-      Fversion)
-    values (#{roomId,jdbcType=INTEGER}, #{rentFee,jdbcType=INTEGER}, #{energyNum,jdbcType=DECIMAL}, 
-      #{waterNum,jdbcType=DECIMAL}, #{manageFee,jdbcType=INTEGER}, #{allFee,jdbcType=DECIMAL}, 
-      #{payStatus,jdbcType=INTEGER}, #{startFeeTime,jdbcType=TIMESTAMP}, #{endFeeTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, 
-      #{version,jdbcType=INTEGER})
+    insert into t_room_fee (Froom_id, Frent_fee, Fenergy_fee, 
+      Fwater_fee, Fmanage_fee, Fclean_fee, 
+      Finternet_fee, Fall_fee, Fpay_status, 
+      Fstart_fee_time, Fend_fee_time, Fcreate_time, 
+      Fmodify_time, Foperator, Fversion
+      )
+    values (#{roomId,jdbcType=INTEGER}, #{rentFee,jdbcType=INTEGER}, #{energyFee,jdbcType=DECIMAL}, 
+      #{waterFee,jdbcType=DECIMAL}, #{manageFee,jdbcType=INTEGER}, #{cleanFee,jdbcType=INTEGER}, 
+      #{internetFee,jdbcType=INTEGER}, #{allFee,jdbcType=DECIMAL}, #{payStatus,jdbcType=INTEGER}, 
+      #{startFeeTime,jdbcType=TIMESTAMP}, #{endFeeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yao.building.manage.domain.RoomFee" useGeneratedKeys="true" keyProperty="id" >
     insert into t_room_fee
@@ -130,14 +135,20 @@
       <if test="rentFee != null" >
         Frent_fee,
       </if>
-      <if test="energyNum != null" >
-        Fenergy_num,
+      <if test="energyFee != null" >
+        Fenergy_fee,
       </if>
-      <if test="waterNum != null" >
-        Fwater_num,
+      <if test="waterFee != null" >
+        Fwater_fee,
       </if>
       <if test="manageFee != null" >
         Fmanage_fee,
+      </if>
+      <if test="cleanFee != null" >
+        Fclean_fee,
+      </if>
+      <if test="internetFee != null" >
+        Finternet_fee,
       </if>
       <if test="allFee != null" >
         Fall_fee,
@@ -171,14 +182,20 @@
       <if test="rentFee != null" >
         #{rentFee,jdbcType=INTEGER},
       </if>
-      <if test="energyNum != null" >
-        #{energyNum,jdbcType=DECIMAL},
+      <if test="energyFee != null" >
+        #{energyFee,jdbcType=DECIMAL},
       </if>
-      <if test="waterNum != null" >
-        #{waterNum,jdbcType=DECIMAL},
+      <if test="waterFee != null" >
+        #{waterFee,jdbcType=DECIMAL},
       </if>
       <if test="manageFee != null" >
         #{manageFee,jdbcType=INTEGER},
+      </if>
+      <if test="cleanFee != null" >
+        #{cleanFee,jdbcType=INTEGER},
+      </if>
+      <if test="internetFee != null" >
+        #{internetFee,jdbcType=INTEGER},
       </if>
       <if test="allFee != null" >
         #{allFee,jdbcType=DECIMAL},
@@ -224,14 +241,20 @@
       <if test="record.rentFee != null" >
         Frent_fee = #{record.rentFee,jdbcType=INTEGER},
       </if>
-      <if test="record.energyNum != null" >
-        Fenergy_num = #{record.energyNum,jdbcType=DECIMAL},
+      <if test="record.energyFee != null" >
+        Fenergy_fee = #{record.energyFee,jdbcType=DECIMAL},
       </if>
-      <if test="record.waterNum != null" >
-        Fwater_num = #{record.waterNum,jdbcType=DECIMAL},
+      <if test="record.waterFee != null" >
+        Fwater_fee = #{record.waterFee,jdbcType=DECIMAL},
       </if>
       <if test="record.manageFee != null" >
         Fmanage_fee = #{record.manageFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.cleanFee != null" >
+        Fclean_fee = #{record.cleanFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.internetFee != null" >
+        Finternet_fee = #{record.internetFee,jdbcType=INTEGER},
       </if>
       <if test="record.allFee != null" >
         Fall_fee = #{record.allFee,jdbcType=DECIMAL},
@@ -267,9 +290,11 @@
     set Fid = #{record.id,jdbcType=INTEGER},
       Froom_id = #{record.roomId,jdbcType=INTEGER},
       Frent_fee = #{record.rentFee,jdbcType=INTEGER},
-      Fenergy_num = #{record.energyNum,jdbcType=DECIMAL},
-      Fwater_num = #{record.waterNum,jdbcType=DECIMAL},
+      Fenergy_fee = #{record.energyFee,jdbcType=DECIMAL},
+      Fwater_fee = #{record.waterFee,jdbcType=DECIMAL},
       Fmanage_fee = #{record.manageFee,jdbcType=INTEGER},
+      Fclean_fee = #{record.cleanFee,jdbcType=INTEGER},
+      Finternet_fee = #{record.internetFee,jdbcType=INTEGER},
       Fall_fee = #{record.allFee,jdbcType=DECIMAL},
       Fpay_status = #{record.payStatus,jdbcType=INTEGER},
       Fstart_fee_time = #{record.startFeeTime,jdbcType=TIMESTAMP},
@@ -291,14 +316,20 @@
       <if test="rentFee != null" >
         Frent_fee = #{rentFee,jdbcType=INTEGER},
       </if>
-      <if test="energyNum != null" >
-        Fenergy_num = #{energyNum,jdbcType=DECIMAL},
+      <if test="energyFee != null" >
+        Fenergy_fee = #{energyFee,jdbcType=DECIMAL},
       </if>
-      <if test="waterNum != null" >
-        Fwater_num = #{waterNum,jdbcType=DECIMAL},
+      <if test="waterFee != null" >
+        Fwater_fee = #{waterFee,jdbcType=DECIMAL},
       </if>
       <if test="manageFee != null" >
         Fmanage_fee = #{manageFee,jdbcType=INTEGER},
+      </if>
+      <if test="cleanFee != null" >
+        Fclean_fee = #{cleanFee,jdbcType=INTEGER},
+      </if>
+      <if test="internetFee != null" >
+        Finternet_fee = #{internetFee,jdbcType=INTEGER},
       </if>
       <if test="allFee != null" >
         Fall_fee = #{allFee,jdbcType=DECIMAL},
@@ -331,9 +362,11 @@
     update t_room_fee
     set Froom_id = #{roomId,jdbcType=INTEGER},
       Frent_fee = #{rentFee,jdbcType=INTEGER},
-      Fenergy_num = #{energyNum,jdbcType=DECIMAL},
-      Fwater_num = #{waterNum,jdbcType=DECIMAL},
+      Fenergy_fee = #{energyFee,jdbcType=DECIMAL},
+      Fwater_fee = #{waterFee,jdbcType=DECIMAL},
       Fmanage_fee = #{manageFee,jdbcType=INTEGER},
+      Fclean_fee = #{cleanFee,jdbcType=INTEGER},
+      Finternet_fee = #{internetFee,jdbcType=INTEGER},
       Fall_fee = #{allFee,jdbcType=DECIMAL},
       Fpay_status = #{payStatus,jdbcType=INTEGER},
       Fstart_fee_time = #{startFeeTime,jdbcType=TIMESTAMP},

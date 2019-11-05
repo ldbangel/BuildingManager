@@ -16,6 +16,8 @@
     <result column="Fvillage_name" property="villageName" jdbcType="VARCHAR" />
     <result column="Fbuilding_desc" property="buildingDesc" jdbcType="VARCHAR" />
     <result column="Fmanage_fee" property="manageFee" jdbcType="INTEGER" />
+    <result column="Fclean_fee" property="cleanFee" jdbcType="INTEGER" />
+    <result column="Finternet_fee" property="internetFee" jdbcType="INTEGER" />
     <result column="Fstatus" property="status" jdbcType="INTEGER" />
     <result column="Fcreate_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="Fmodify_time" property="modifyTime" jdbcType="TIMESTAMP" />
@@ -83,7 +85,7 @@
   <sql id="Base_Column_List" >
     Fid, Findex, Fprovince_id, Fprovince_name, Fcity_id, Fcity_name, Farea_id, Farea_name, 
     Fstreet_id, Fstreet_name, Fvillage_id, Fvillage_name, Fbuilding_desc, Fmanage_fee, 
-    Fstatus, Fcreate_time, Fmodify_time, Foperator, Fversion
+    Fclean_fee, Finternet_fee, Fstatus, Fcreate_time, Fmodify_time, Foperator, Fversion
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.BuildingInfoWaterExample" >
     select
@@ -120,16 +122,16 @@
       Fcity_id, Fcity_name, Farea_id, 
       Farea_name, Fstreet_id, Fstreet_name, 
       Fvillage_id, Fvillage_name, Fbuilding_desc, 
-      Fmanage_fee, Fstatus, Fcreate_time, 
-      Fmodify_time, Foperator, Fversion
-      )
+      Fmanage_fee, Fclean_fee, Finternet_fee, 
+      Fstatus, Fcreate_time, Fmodify_time, 
+      Foperator, Fversion)
     values (#{index,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, 
       #{cityId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, 
       #{areaName,jdbcType=VARCHAR}, #{streetId,jdbcType=INTEGER}, #{streetName,jdbcType=VARCHAR}, 
       #{villageId,jdbcType=INTEGER}, #{villageName,jdbcType=VARCHAR}, #{buildingDesc,jdbcType=VARCHAR}, 
-      #{manageFee,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
-      )
+      #{manageFee,jdbcType=INTEGER}, #{cleanFee,jdbcType=INTEGER}, #{internetFee,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yao.building.manage.domain.BuildingInfoWater" useGeneratedKeys="true" keyProperty="id" >
     insert into t_building_info_water
@@ -172,6 +174,12 @@
       </if>
       <if test="manageFee != null" >
         Fmanage_fee,
+      </if>
+      <if test="cleanFee != null" >
+        Fclean_fee,
+      </if>
+      <if test="internetFee != null" >
+        Finternet_fee,
       </if>
       <if test="status != null" >
         Fstatus,
@@ -228,6 +236,12 @@
       </if>
       <if test="manageFee != null" >
         #{manageFee,jdbcType=INTEGER},
+      </if>
+      <if test="cleanFee != null" >
+        #{cleanFee,jdbcType=INTEGER},
+      </if>
+      <if test="internetFee != null" >
+        #{internetFee,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -297,6 +311,12 @@
       <if test="record.manageFee != null" >
         Fmanage_fee = #{record.manageFee,jdbcType=INTEGER},
       </if>
+      <if test="record.cleanFee != null" >
+        Fclean_fee = #{record.cleanFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.internetFee != null" >
+        Finternet_fee = #{record.internetFee,jdbcType=INTEGER},
+      </if>
       <if test="record.status != null" >
         Fstatus = #{record.status,jdbcType=INTEGER},
       </if>
@@ -333,6 +353,8 @@
       Fvillage_name = #{record.villageName,jdbcType=VARCHAR},
       Fbuilding_desc = #{record.buildingDesc,jdbcType=VARCHAR},
       Fmanage_fee = #{record.manageFee,jdbcType=INTEGER},
+      Fclean_fee = #{record.cleanFee,jdbcType=INTEGER},
+      Finternet_fee = #{record.internetFee,jdbcType=INTEGER},
       Fstatus = #{record.status,jdbcType=INTEGER},
       Fcreate_time = #{record.createTime,jdbcType=TIMESTAMP},
       Fmodify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
@@ -384,6 +406,12 @@
       <if test="manageFee != null" >
         Fmanage_fee = #{manageFee,jdbcType=INTEGER},
       </if>
+      <if test="cleanFee != null" >
+        Fclean_fee = #{cleanFee,jdbcType=INTEGER},
+      </if>
+      <if test="internetFee != null" >
+        Finternet_fee = #{internetFee,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         Fstatus = #{status,jdbcType=INTEGER},
       </if>
@@ -417,6 +445,8 @@
       Fvillage_name = #{villageName,jdbcType=VARCHAR},
       Fbuilding_desc = #{buildingDesc,jdbcType=VARCHAR},
       Fmanage_fee = #{manageFee,jdbcType=INTEGER},
+      Fclean_fee = #{cleanFee,jdbcType=INTEGER},
+      Finternet_fee = #{internetFee,jdbcType=INTEGER},
       Fstatus = #{status,jdbcType=INTEGER},
       Fcreate_time = #{createTime,jdbcType=TIMESTAMP},
       Fmodify_time = #{modifyTime,jdbcType=TIMESTAMP},

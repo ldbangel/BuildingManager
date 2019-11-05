@@ -295,6 +295,136 @@ public class RoomInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andRoomTypeIsNull() {
+            addCriterion("Froom_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeIsNotNull() {
+            addCriterion("Froom_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeEqualTo(Byte value) {
+            addCriterion("Froom_type =", value, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeNotEqualTo(Byte value) {
+            addCriterion("Froom_type <>", value, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeGreaterThan(Byte value) {
+            addCriterion("Froom_type >", value, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("Froom_type >=", value, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeLessThan(Byte value) {
+            addCriterion("Froom_type <", value, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("Froom_type <=", value, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeIn(List<Byte> values) {
+            addCriterion("Froom_type in", values, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeNotIn(List<Byte> values) {
+            addCriterion("Froom_type not in", values, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeBetween(Byte value1, Byte value2) {
+            addCriterion("Froom_type between", value1, value2, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("Froom_type not between", value1, value2, "roomType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescIsNull() {
+            addCriterion("Froom_type_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescIsNotNull() {
+            addCriterion("Froom_type_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescEqualTo(String value) {
+            addCriterion("Froom_type_desc =", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescNotEqualTo(String value) {
+            addCriterion("Froom_type_desc <>", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescGreaterThan(String value) {
+            addCriterion("Froom_type_desc >", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescGreaterThanOrEqualTo(String value) {
+            addCriterion("Froom_type_desc >=", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescLessThan(String value) {
+            addCriterion("Froom_type_desc <", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescLessThanOrEqualTo(String value) {
+            addCriterion("Froom_type_desc <=", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescLike(String value) {
+            addCriterion("Froom_type_desc like", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescNotLike(String value) {
+            addCriterion("Froom_type_desc not like", value, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescIn(List<String> values) {
+            addCriterion("Froom_type_desc in", values, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescNotIn(List<String> values) {
+            addCriterion("Froom_type_desc not in", values, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescBetween(String value1, String value2) {
+            addCriterion("Froom_type_desc between", value1, value2, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoomTypeDescNotBetween(String value1, String value2) {
+            addCriterion("Froom_type_desc not between", value1, value2, "roomTypeDesc");
+            return (Criteria) this;
+        }
+
         public Criteria andRentIsNull() {
             addCriterion("Frent is null");
             return (Criteria) this;

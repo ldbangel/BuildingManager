@@ -1,8 +1,9 @@
 package com.yao.building.manage.dao;
 
+import java.util.List;
+
 import com.yao.building.manage.domain.BuildingInfoWater;
 import com.yao.building.manage.domain.BuildingInfoWaterExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 

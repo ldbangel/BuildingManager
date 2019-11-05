@@ -286,123 +286,123 @@ public class RoomFeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumIsNull() {
-            addCriterion("Fenergy_num is null");
+        public Criteria andEnergyFeeIsNull() {
+            addCriterion("Fenergy_fee is null");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumIsNotNull() {
-            addCriterion("Fenergy_num is not null");
+        public Criteria andEnergyFeeIsNotNull() {
+            addCriterion("Fenergy_fee is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumEqualTo(BigDecimal value) {
-            addCriterion("Fenergy_num =", value, "energyNum");
+        public Criteria andEnergyFeeEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_fee =", value, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumNotEqualTo(BigDecimal value) {
-            addCriterion("Fenergy_num <>", value, "energyNum");
+        public Criteria andEnergyFeeNotEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_fee <>", value, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumGreaterThan(BigDecimal value) {
-            addCriterion("Fenergy_num >", value, "energyNum");
+        public Criteria andEnergyFeeGreaterThan(BigDecimal value) {
+            addCriterion("Fenergy_fee >", value, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("Fenergy_num >=", value, "energyNum");
+        public Criteria andEnergyFeeGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_fee >=", value, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumLessThan(BigDecimal value) {
-            addCriterion("Fenergy_num <", value, "energyNum");
+        public Criteria andEnergyFeeLessThan(BigDecimal value) {
+            addCriterion("Fenergy_fee <", value, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("Fenergy_num <=", value, "energyNum");
+        public Criteria andEnergyFeeLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fenergy_fee <=", value, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumIn(List<BigDecimal> values) {
-            addCriterion("Fenergy_num in", values, "energyNum");
+        public Criteria andEnergyFeeIn(List<BigDecimal> values) {
+            addCriterion("Fenergy_fee in", values, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumNotIn(List<BigDecimal> values) {
-            addCriterion("Fenergy_num not in", values, "energyNum");
+        public Criteria andEnergyFeeNotIn(List<BigDecimal> values) {
+            addCriterion("Fenergy_fee not in", values, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("Fenergy_num between", value1, value2, "energyNum");
+        public Criteria andEnergyFeeBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fenergy_fee between", value1, value2, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andEnergyNumNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("Fenergy_num not between", value1, value2, "energyNum");
+        public Criteria andEnergyFeeNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fenergy_fee not between", value1, value2, "energyFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumIsNull() {
-            addCriterion("Fwater_num is null");
+        public Criteria andWaterFeeIsNull() {
+            addCriterion("Fwater_fee is null");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumIsNotNull() {
-            addCriterion("Fwater_num is not null");
+        public Criteria andWaterFeeIsNotNull() {
+            addCriterion("Fwater_fee is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumEqualTo(BigDecimal value) {
-            addCriterion("Fwater_num =", value, "waterNum");
+        public Criteria andWaterFeeEqualTo(BigDecimal value) {
+            addCriterion("Fwater_fee =", value, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumNotEqualTo(BigDecimal value) {
-            addCriterion("Fwater_num <>", value, "waterNum");
+        public Criteria andWaterFeeNotEqualTo(BigDecimal value) {
+            addCriterion("Fwater_fee <>", value, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumGreaterThan(BigDecimal value) {
-            addCriterion("Fwater_num >", value, "waterNum");
+        public Criteria andWaterFeeGreaterThan(BigDecimal value) {
+            addCriterion("Fwater_fee >", value, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("Fwater_num >=", value, "waterNum");
+        public Criteria andWaterFeeGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fwater_fee >=", value, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumLessThan(BigDecimal value) {
-            addCriterion("Fwater_num <", value, "waterNum");
+        public Criteria andWaterFeeLessThan(BigDecimal value) {
+            addCriterion("Fwater_fee <", value, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("Fwater_num <=", value, "waterNum");
+        public Criteria andWaterFeeLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("Fwater_fee <=", value, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumIn(List<BigDecimal> values) {
-            addCriterion("Fwater_num in", values, "waterNum");
+        public Criteria andWaterFeeIn(List<BigDecimal> values) {
+            addCriterion("Fwater_fee in", values, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumNotIn(List<BigDecimal> values) {
-            addCriterion("Fwater_num not in", values, "waterNum");
+        public Criteria andWaterFeeNotIn(List<BigDecimal> values) {
+            addCriterion("Fwater_fee not in", values, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("Fwater_num between", value1, value2, "waterNum");
+        public Criteria andWaterFeeBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fwater_fee between", value1, value2, "waterFee");
             return (Criteria) this;
         }
 
-        public Criteria andWaterNumNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("Fwater_num not between", value1, value2, "waterNum");
+        public Criteria andWaterFeeNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("Fwater_fee not between", value1, value2, "waterFee");
             return (Criteria) this;
         }
 
@@ -463,6 +463,126 @@ public class RoomFeeExample {
 
         public Criteria andManageFeeNotBetween(Integer value1, Integer value2) {
             addCriterion("Fmanage_fee not between", value1, value2, "manageFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeIsNull() {
+            addCriterion("Fclean_fee is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeIsNotNull() {
+            addCriterion("Fclean_fee is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeEqualTo(Integer value) {
+            addCriterion("Fclean_fee =", value, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeNotEqualTo(Integer value) {
+            addCriterion("Fclean_fee <>", value, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeGreaterThan(Integer value) {
+            addCriterion("Fclean_fee >", value, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Fclean_fee >=", value, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeLessThan(Integer value) {
+            addCriterion("Fclean_fee <", value, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeLessThanOrEqualTo(Integer value) {
+            addCriterion("Fclean_fee <=", value, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeIn(List<Integer> values) {
+            addCriterion("Fclean_fee in", values, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeNotIn(List<Integer> values) {
+            addCriterion("Fclean_fee not in", values, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeBetween(Integer value1, Integer value2) {
+            addCriterion("Fclean_fee between", value1, value2, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andCleanFeeNotBetween(Integer value1, Integer value2) {
+            addCriterion("Fclean_fee not between", value1, value2, "cleanFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeIsNull() {
+            addCriterion("Finternet_fee is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeIsNotNull() {
+            addCriterion("Finternet_fee is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeEqualTo(Integer value) {
+            addCriterion("Finternet_fee =", value, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeNotEqualTo(Integer value) {
+            addCriterion("Finternet_fee <>", value, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeGreaterThan(Integer value) {
+            addCriterion("Finternet_fee >", value, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Finternet_fee >=", value, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeLessThan(Integer value) {
+            addCriterion("Finternet_fee <", value, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeLessThanOrEqualTo(Integer value) {
+            addCriterion("Finternet_fee <=", value, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeIn(List<Integer> values) {
+            addCriterion("Finternet_fee in", values, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeNotIn(List<Integer> values) {
+            addCriterion("Finternet_fee not in", values, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeBetween(Integer value1, Integer value2) {
+            addCriterion("Finternet_fee between", value1, value2, "internetFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andInternetFeeNotBetween(Integer value1, Integer value2) {
+            addCriterion("Finternet_fee not between", value1, value2, "internetFee");
             return (Criteria) this;
         }
 

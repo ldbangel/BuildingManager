@@ -10,11 +10,15 @@ public class RoomFee {
 
     private Integer rentFee;
 
-    private BigDecimal energyNum;
+    private BigDecimal energyFee;
 
-    private BigDecimal waterNum;
+    private BigDecimal waterFee;
 
     private Integer manageFee;
+
+    private Integer cleanFee;
+
+    private Integer internetFee;
 
     private BigDecimal allFee;
 
@@ -56,20 +60,20 @@ public class RoomFee {
         this.rentFee = rentFee;
     }
 
-    public BigDecimal getEnergyNum() {
-        return energyNum;
+    public BigDecimal getEnergyFee() {
+        return energyFee;
     }
 
-    public void setEnergyNum(BigDecimal energyNum) {
-        this.energyNum = energyNum;
+    public void setEnergyFee(BigDecimal energyFee) {
+        this.energyFee = energyFee;
     }
 
-    public BigDecimal getWaterNum() {
-        return waterNum;
+    public BigDecimal getWaterFee() {
+        return waterFee;
     }
 
-    public void setWaterNum(BigDecimal waterNum) {
-        this.waterNum = waterNum;
+    public void setWaterFee(BigDecimal waterFee) {
+        this.waterFee = waterFee;
     }
 
     public Integer getManageFee() {
@@ -78,6 +82,22 @@ public class RoomFee {
 
     public void setManageFee(Integer manageFee) {
         this.manageFee = manageFee;
+    }
+
+    public Integer getCleanFee() {
+        return cleanFee;
+    }
+
+    public void setCleanFee(Integer cleanFee) {
+        this.cleanFee = cleanFee;
+    }
+
+    public Integer getInternetFee() {
+        return internetFee;
+    }
+
+    public void setInternetFee(Integer internetFee) {
+        this.internetFee = internetFee;
     }
 
     public BigDecimal getAllFee() {

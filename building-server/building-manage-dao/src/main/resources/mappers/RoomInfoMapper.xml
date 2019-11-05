@@ -5,6 +5,8 @@
     <id column="Fid" property="id" jdbcType="INTEGER" />
     <result column="Froom_no" property="roomNo" jdbcType="INTEGER" />
     <result column="Froom_desc" property="roomDesc" jdbcType="VARCHAR" />
+    <result column="Froom_type" property="roomType" jdbcType="TINYINT" />
+    <result column="Froom_type_desc" property="roomTypeDesc" jdbcType="VARCHAR" />
     <result column="Frent" property="rent" jdbcType="INTEGER" />
     <result column="Fenergy_num" property="energyNum" jdbcType="INTEGER" />
     <result column="Fwater_num" property="waterNum" jdbcType="INTEGER" />
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Fid, Froom_no, Froom_desc, Frent, Fenergy_num, Fwater_num, Froom_status, Fcreate_time, 
-    Fmodify_time, Foperator, Fversion
+    Fid, Froom_no, Froom_desc, Froom_type, Froom_type_desc, Frent, Fenergy_num, Fwater_num, 
+    Froom_status, Fcreate_time, Fmodify_time, Foperator, Fversion
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yao.building.manage.domain.RoomInfoExample" >
     select
@@ -107,14 +109,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yao.building.manage.domain.RoomInfo" useGeneratedKeys="true" keyProperty="id" >
-    insert into t_room_info (Froom_no, Froom_desc, Frent, 
-      Fenergy_num, Fwater_num, Froom_status, 
-      Fcreate_time, Fmodify_time, Foperator, 
-      Fversion)
-    values (#{roomNo,jdbcType=INTEGER}, #{roomDesc,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, 
-      #{energyNum,jdbcType=INTEGER}, #{waterNum,jdbcType=INTEGER}, #{roomStatus,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, 
-      #{version,jdbcType=INTEGER})
+    insert into t_room_info (Froom_no, Froom_desc, Froom_type, 
+      Froom_type_desc, Frent, Fenergy_num, 
+      Fwater_num, Froom_status, Fcreate_time, 
+      Fmodify_time, Foperator, Fversion
+      )
+    values (#{roomNo,jdbcType=INTEGER}, #{roomDesc,jdbcType=VARCHAR}, #{roomType,jdbcType=TINYINT}, 
+      #{roomTypeDesc,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, #{energyNum,jdbcType=INTEGER}, 
+      #{waterNum,jdbcType=INTEGER}, #{roomStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yao.building.manage.domain.RoomInfo" useGeneratedKeys="true" keyProperty="id" >
     insert into t_room_info
@@ -124,6 +128,12 @@
       </if>
       <if test="roomDesc != null" >
         Froom_desc,
+      </if>
+      <if test="roomType != null" >
+        Froom_type,
+      </if>
+      <if test="roomTypeDesc != null" >
+        Froom_type_desc,
       </if>
       <if test="rent != null" >
         Frent,
@@ -156,6 +166,12 @@
       </if>
       <if test="roomDesc != null" >
         #{roomDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=TINYINT},
+      </if>
+      <if test="roomTypeDesc != null" >
+        #{roomTypeDesc,jdbcType=VARCHAR},
       </if>
       <if test="rent != null" >
         #{rent,jdbcType=INTEGER},
@@ -201,6 +217,12 @@
       <if test="record.roomDesc != null" >
         Froom_desc = #{record.roomDesc,jdbcType=VARCHAR},
       </if>
+      <if test="record.roomType != null" >
+        Froom_type = #{record.roomType,jdbcType=TINYINT},
+      </if>
+      <if test="record.roomTypeDesc != null" >
+        Froom_type_desc = #{record.roomTypeDesc,jdbcType=VARCHAR},
+      </if>
       <if test="record.rent != null" >
         Frent = #{record.rent,jdbcType=INTEGER},
       </if>
@@ -235,6 +257,8 @@
     set Fid = #{record.id,jdbcType=INTEGER},
       Froom_no = #{record.roomNo,jdbcType=INTEGER},
       Froom_desc = #{record.roomDesc,jdbcType=VARCHAR},
+      Froom_type = #{record.roomType,jdbcType=TINYINT},
+      Froom_type_desc = #{record.roomTypeDesc,jdbcType=VARCHAR},
       Frent = #{record.rent,jdbcType=INTEGER},
       Fenergy_num = #{record.energyNum,jdbcType=INTEGER},
       Fwater_num = #{record.waterNum,jdbcType=INTEGER},
@@ -255,6 +279,12 @@
       </if>
       <if test="roomDesc != null" >
         Froom_desc = #{roomDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null" >
+        Froom_type = #{roomType,jdbcType=TINYINT},
+      </if>
+      <if test="roomTypeDesc != null" >
+        Froom_type_desc = #{roomTypeDesc,jdbcType=VARCHAR},
       </if>
       <if test="rent != null" >
         Frent = #{rent,jdbcType=INTEGER},
@@ -287,6 +317,8 @@
     update t_room_info
     set Froom_no = #{roomNo,jdbcType=INTEGER},
       Froom_desc = #{roomDesc,jdbcType=VARCHAR},
+      Froom_type = #{roomType,jdbcType=TINYINT},
+      Froom_type_desc = #{roomTypeDesc,jdbcType=VARCHAR},
       Frent = #{rent,jdbcType=INTEGER},
       Fenergy_num = #{energyNum,jdbcType=INTEGER},
       Fwater_num = #{waterNum,jdbcType=INTEGER},

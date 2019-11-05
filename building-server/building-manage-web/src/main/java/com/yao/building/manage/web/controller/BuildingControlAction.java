@@ -8,7 +8,6 @@ import com.yao.building.manage.dao.EmployeeBuildingInfoDao;
 import com.yao.building.manage.dao.PlaceDictDao;
 import com.yao.building.manage.domain.*;
 import com.yao.building.manage.request.*;
-import com.yao.building.manage.request.PageRequest.BaseRequest;
 import com.yao.building.manage.response.*;
 import com.yao.building.manage.service.BuildingManageService;
 import com.yao.building.manage.service.EmployeeService;

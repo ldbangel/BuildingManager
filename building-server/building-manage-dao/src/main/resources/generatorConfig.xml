@@ -42,74 +42,74 @@
         <!--<table tableName="t_building_info" domainObjectName="BuildingInfo">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
         </table>
         <table tableName="t_building_info_water" domainObjectName="BuildingInfoWater">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_employee_building_info" domainObjectName="EmployeeBuildingInfo">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_employee_building_info_water" domainObjectName="EmployeeBuildingInfoWater">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
+        </table>-->
+
         <table tableName="t_room_fee" domainObjectName="RoomFee">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
         </table>
         <table tableName="t_room_fee_water" domainObjectName="RoomFeeWater">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_room_user_info" domainObjectName="RoomUserInfo">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_room_user_info_water" domainObjectName="RoomUserInfoWater">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_building_room_info" domainObjectName="BuildingRoomInfo">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_employee" domainObjectName="Employee">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_place_dict" domainObjectName="PlaceDict">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>
-        <table tableName="t_user_info" domainObjectName="UserInfo">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
-            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
-        </table>-->
-
-        <table tableName="t_room_info" domainObjectName="RoomInfo">
-            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
-            <columnRenamingRule searchString="^F" replaceString=""/>
             <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
+        </table>
+
+        <!-- <table tableName="t_employee_building_info" domainObjectName="EmployeeBuildingInfo">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_employee_building_info_water" domainObjectName="EmployeeBuildingInfoWater">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_room_user_info" domainObjectName="RoomUserInfo">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_room_user_info_water" domainObjectName="RoomUserInfoWater">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_building_room_info" domainObjectName="BuildingRoomInfo">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_employee" domainObjectName="Employee">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_place_dict" domainObjectName="PlaceDict">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>
+         <table tableName="t_user_info" domainObjectName="UserInfo">
+             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+             <columnRenamingRule searchString="^F" replaceString=""/>
+             &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+         </table>-->
+
+        <!--<table tableName="t_room_info" domainObjectName="RoomInfo">
+            <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
+            <columnRenamingRule searchString="^F" replaceString=""/>
+            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
         </table>
         <table tableName="t_room_info_water" domainObjectName="RoomInfoWater">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>
-            <!--<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>-->
-        </table>
+            &lt;!&ndash;<ignoreColumn column="Fjg_auto_test_id"></ignoreColumn>&ndash;&gt;
+        </table>-->
         <!--<table tableName="t_room_data" domainObjectName="RoomData">
             <generatedKey column="Fid" sqlStatement="JDBC" identity="true" />
             <columnRenamingRule searchString="^F" replaceString=""/>

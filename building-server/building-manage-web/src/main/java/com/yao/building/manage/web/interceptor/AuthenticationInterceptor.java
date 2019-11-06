@@ -6,10 +6,12 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.yao.building.manage.component.RedisUtils;
 import com.yao.building.manage.domain.Employee;
 import com.yao.building.manage.service.EmployeeService;
 import com.yao.building.manage.web.annotation.PassToken;
 import com.yao.building.manage.web.annotation.UserLoginToken;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Date;
 
 /**
  * 拦截器
@@ -26,6 +27,8 @@ import java.util.Date;
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private RedisUtils redisUtils;
 
     public boolean preHandle(HttpServletRequest httpServletRequest,
                              HttpServletResponse httpServletResponse, Object object) throws Exception {
@@ -50,26 +53,28 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             if (userLoginToken.required()) {
                 // 执行认证
                 if (token == null) {
-                    throw new RuntimeException("无token，请重新登录");
+                    throw new RuntimeException("token无效，请重新登录");
                 }
-
-                /*if(httpServletRequest.getSession().getAttribute("employee") == null){  //用户退出了，session没有数据，请重新登录
-                    throw new RuntimeException("无token，请重新登录");
-                }*/
                 // 获取 token 中的 employee id
                 Employee employee;
-                Date expire;
+                boolean isValid;
                 try {
                     String employeeString = JWT.decode(token).getAudience().get(0);
                     employee = JSONObject.parseObject(employeeString, Employee.class);
-                    expire = JWT.decode(token).getExpiresAt();
+                    isValid = redisUtils.hasKey(employee.getEmployeeMobile()+"_"+employee.getId());
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("401");
                 }
-                // token过期判断
-                if(expire.compareTo(new Date()) < 0){
-                    throw new RuntimeException("token已过期，请重新登录");
+                // redis里面无对应token，判为无效token
+                if(!isValid){
+                    throw new RuntimeException("token无效，请重新登录");
+                }else{
+                    String redisToken = redisUtils.get(employee.getEmployeeMobile()+"_"+employee.getId()).toString();
+                    if(!StringUtils.equals(redisToken, token)){
+                        throw new RuntimeException("token无效，请重新登录");
+                    }
                 }
+
                 employee = employeeService.findEmployeeById(employee.getId());
                 if (employee == null) {
                     throw new RuntimeException("用户不存在，请重新登录");
@@ -91,6 +96,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                            HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
     }
+
+
     public void afterCompletion(HttpServletRequest httpServletRequest,
                                 HttpServletResponse response, Object o, Exception e) throws Exception {
         response.setHeader("Access-Control-Allow-Credentials", "true");

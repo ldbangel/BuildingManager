@@ -1,4 +1,4 @@
-package com.yao.building.manage.service.impl;
+package com.yao.building.manage.component;
 
 import com.github.pagehelper.PageHelper;
 import com.yao.building.manage.dao.BuildingInfoDao;

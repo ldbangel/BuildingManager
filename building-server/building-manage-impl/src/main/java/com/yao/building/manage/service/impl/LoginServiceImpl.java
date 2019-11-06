@@ -1,5 +1,6 @@
 package com.yao.building.manage.service.impl;
 
+import com.yao.building.manage.component.RedisUtils;
 import com.yao.building.manage.dao.EmployeeDao;
 import com.yao.building.manage.domain.Employee;
 import com.yao.building.manage.domain.EmployeeExample;
@@ -27,13 +28,12 @@ public class LoginServiceImpl implements LoginService {
         List<Employee> employees = employeeDao.selectByExample(employeeExample);
         if(CollectionUtils.isEmpty(employees)){
             log.info("员工信息不存在，mobile = {}", request.getEmployeeMobile());
-            return null;
+            throw new RuntimeException("参数错误");
         }
         Employee employee = employees.get(0);
         return employee;
     }
 
     public void employeeSignOut() {
-
     }
 }

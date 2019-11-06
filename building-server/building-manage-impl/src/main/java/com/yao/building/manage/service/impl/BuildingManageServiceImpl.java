@@ -1,6 +1,7 @@
 package com.yao.building.manage.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.yao.building.manage.component.CommonService;
 import com.yao.building.manage.dal.BuildingInfoDal;
 import com.yao.building.manage.dal.BuildingManagerDal;
 import com.yao.building.manage.dal.RoomInfoDal;

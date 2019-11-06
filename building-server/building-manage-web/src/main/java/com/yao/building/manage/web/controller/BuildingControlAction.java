@@ -12,7 +12,7 @@ import com.yao.building.manage.response.*;
 import com.yao.building.manage.service.BuildingManageService;
 import com.yao.building.manage.service.EmployeeService;
 import com.yao.building.manage.service.RoomInfoService;
-import com.yao.building.manage.service.impl.CommonService;
+import com.yao.building.manage.component.CommonService;
 import com.yao.building.manage.vo.PageBean;
 import com.yao.building.manage.web.annotation.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;

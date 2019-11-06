@@ -7,6 +7,7 @@ import com.yao.building.manage.response.AbleCancelRoomResponse;
 import com.yao.building.manage.response.AbleToRentRoomResponse;
 import com.yao.building.manage.response.RoomRentBaseInfoResponse;
 import com.yao.building.manage.service.RoomInfoService;
+import com.yao.building.manage.vo.PageBean;
 import com.yao.building.manage.vo.RoomUserInfoResponse;
 import com.yao.building.manage.web.annotation.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,7 @@ public class ManagerAction {
      */
     @UserLoginToken
     @RequestMapping("getRoomInfos")
-    public List<RoomUserInfoResponse> getManageRoomUserInfo(@RequestBody GetRoomUserInfoRequest request,
-                                                            HttpServletRequest servletRequest){
+    public List<RoomUserInfoResponse> getManageRoomUserInfo(@RequestBody GetRoomUserInfoRequest request){
         List<RoomUserInfoResponse> responseList = roomInfoService.getRoomUserInfo(request);
         return responseList;
     }
@@ -79,9 +79,9 @@ public class ManagerAction {
      */
     @UserLoginToken
     @RequestMapping("getAbleCancelRoomInfos")
-    public List<AbleCancelRoomResponse> getAllAbleCancelRentRoomInfos(@RequestBody GetAllAbleToCancelRoomRequest request){
-        List<AbleCancelRoomResponse> responseList = roomInfoService.getAllAbleToCancelRoomInfo(request);
-        return responseList;
+    public PageBean<AbleCancelRoomResponse> getAllAbleCancelRentRoomInfos(@RequestBody GetAllAbleToCancelRoomRequest request){
+        PageBean<AbleCancelRoomResponse> pageBean = roomInfoService.getAllAbleToCancelRoomInfo(request);
+        return pageBean;
     }
 
     /**

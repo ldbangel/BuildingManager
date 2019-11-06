@@ -15,6 +15,7 @@ import com.yao.building.manage.service.RoomInfoService;
 import com.yao.building.manage.component.CommonService;
 import com.yao.building.manage.vo.PageBean;
 import com.yao.building.manage.web.annotation.UserLoginToken;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,10 @@ public class BuildingControlAction {
         if(employee == null){
             throw new RuntimeException("请重新登录");
         }
+
+        if(request == null || request.getPId() == null || request.getPId() == 0){
+            return null;
+        }
         List<PlaceEntryResponse> responseList = new ArrayList<>();
         // 大于100000时为buildingId,这里直接查询buildingId所有的房间就行了
         if(request.getPId() > BUILDING_ID_START){
@@ -70,6 +75,9 @@ public class BuildingControlAction {
             BuildingRoomInfoExample.Criteria criteria = example.createCriteria();
             criteria.andBuildingIdEqualTo(request.getPId());
             List<BuildingRoomInfo> buildingRoomInfoList = buildingRoomInfoDao.selectByExample(example);
+            if(CollectionUtils.isEmpty(buildingRoomInfoList)){
+                return (List<PlaceEntryResponse>) CollectionUtils.EMPTY_COLLECTION;
+            }
             List<Integer> roomIdList = buildingRoomInfoList.stream().map(buildingRoomInfo -> buildingRoomInfo.getRoomId()).collect(Collectors.toList());
             List<RoomInfo> roomInfoList = commonService.getRoomInfosByIds(roomIdList, null);
             responseList = roomInfoList.stream()
@@ -81,7 +89,16 @@ public class BuildingControlAction {
                     }).collect(Collectors.toList());
             return responseList;
         }
-        PlaceDict pPlaceDict = placeDictDao.selectByPrimaryKey(request.getPId());
+
+        PlaceDictExample pdExample = new PlaceDictExample();
+        PlaceDictExample.Criteria pdCriteria = pdExample.createCriteria();
+        pdCriteria.andIdEqualTo(request.getPId());
+        pdCriteria.andStatusEqualTo(1);
+        List<PlaceDict> pPlaceDictList = placeDictDao.selectByExample(pdExample);
+        if(CollectionUtils.isEmpty(pPlaceDictList)){
+            return (List<PlaceEntryResponse>) CollectionUtils.EMPTY_COLLECTION;
+        }
+        PlaceDict pPlaceDict = pPlaceDictList.get(0);
         int pPlaceLevel = pPlaceDict.getPlaceLevel();
 
 
@@ -153,6 +170,7 @@ public class BuildingControlAction {
                 PlaceDictExample example = new PlaceDictExample();
                 PlaceDictExample.Criteria criteria = example.createCriteria();
                 criteria.andPIdEqualTo(request.getPId());
+                criteria.andStatusEqualTo(1);
                 List<PlaceDict> placeDictList = placeDictDao.selectByExample(example);
                 responseList = placeDictList.stream()
                         .map(placeDict -> {

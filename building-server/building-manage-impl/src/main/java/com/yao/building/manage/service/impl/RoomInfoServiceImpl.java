@@ -62,8 +62,12 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
         List<RoomInfo> roomInfoList = commonService.getRoomInfosByIds(roomIdList, request.getStatus());
 
+        if(CollectionUtils.isEmpty(roomInfoList)){
+            return (List<RoomUserInfoResponse>) CollectionUtils.EMPTY_COLLECTION;
+        }
         // 房间和租客关系信息查询
         List<RoomUserInfo> roomUserInfoList = getRoomUserInfosByRoomIds(roomIdList);
+
 
         List<Integer> userIds = roomUserInfoList.stream()
                 .map(roomUserInfo -> roomUserInfo.getUserId())
@@ -214,15 +218,20 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     }
 
     @Override
-    public List<AbleCancelRoomResponse> getAllAbleToCancelRoomInfo(GetAllAbleToCancelRoomRequest request) {
+    public PageBean<AbleCancelRoomResponse> getAllAbleToCancelRoomInfo(GetAllAbleToCancelRoomRequest request) {
+        PageBean<AbleCancelRoomResponse> pageResponse = new PageBean<>();
         request.setStatus(1);
         List<BaseResponse> baseResponseList = commonService.getAllRoomIds(request);
         List<Integer> roomIds = baseResponseList.stream()
                 .map(baseResponse -> baseResponse.getRoomId())
                 .collect(Collectors.toList());
 
-        List<RoomInfo> roomInfoList = commonService.getRoomInfosByIds(roomIds, request.getStatus());
+        PageBean<RoomInfo> pageBean = commonService.getRoomPageInfosByIds(roomIds, request.getStatus(), request.getPage(), request.getLimit());
+        List<RoomInfo> roomInfoList = pageBean.getList();
 
+        if(CollectionUtils.isEmpty(roomInfoList)){
+            return pageResponse;
+        }
         List<Integer> validRoomIds = roomInfoList.stream()
                 .map(RoomInfo -> RoomInfo.getId())
                 .collect(Collectors.toList());
@@ -267,8 +276,9 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 .collect(Collectors.toList());
 
         commonService.coverBaseInfoToResponse(responseList, baseResponseList);
-
-        return responseList;
+        BeanUtils.copyProperties(pageBean, pageResponse);
+        pageResponse.setList(responseList);
+        return pageResponse;
     }
 
     @Override

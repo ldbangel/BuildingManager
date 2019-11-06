@@ -55,7 +55,7 @@ public interface RoomInfoService {
      * @param request
      * @return
      */
-    List<AbleCancelRoomResponse> getAllAbleToCancelRoomInfo(GetAllAbleToCancelRoomRequest request);
+    PageBean<AbleCancelRoomResponse> getAllAbleToCancelRoomInfo(GetAllAbleToCancelRoomRequest request);
 
     /**
      * 获取可出租的房间信息

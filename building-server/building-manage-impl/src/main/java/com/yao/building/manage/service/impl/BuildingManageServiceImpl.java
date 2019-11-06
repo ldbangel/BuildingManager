@@ -152,6 +152,9 @@ public class BuildingManageServiceImpl implements BuildingManageService {
         PageBean<RoomBaseInfoResponse> responsePage = new PageBean<>();
         List<BaseResponse> baseResponseList = commonService.getAllRoomIds(request);
         List<Integer> roomIds = baseResponseList.stream().map(baseResponse -> baseResponse.getRoomId()).distinct().collect(Collectors.toList());
+        if(CollectionUtils.isEmpty(roomIds)){
+            return null;
+        }
         PageBean<RoomInfo> pageBean = commonService.getRoomPageInfosByIds(roomIds, request.getStatus(), request.getPage(), request.getLimit());
         List<RoomInfo> roomInfoList = pageBean.getList();
         List<RoomBaseInfoResponse> responseList = roomInfoList.stream()
@@ -183,7 +186,7 @@ public class BuildingManageServiceImpl implements BuildingManageService {
             RoomInfo roomInfo = new RoomInfo();
             BeanUtils.copyProperties(request, roomInfo);
             roomInfo.setRoomStatus(0);
-            if(request.getRoomType() == 2){
+            if(request.getRoomType() != null && request.getRoomType() == 2){
                 roomInfo.setRoomTypeDesc("档口");
             }
             roomInfo.setCreateTime(new Date());

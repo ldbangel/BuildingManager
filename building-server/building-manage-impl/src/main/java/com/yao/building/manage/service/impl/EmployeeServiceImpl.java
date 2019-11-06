@@ -94,8 +94,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     response.setStreetName(buildingInfo.getStreetName());
                     response.setVillageName(buildingInfo.getVillageName());
                     return response;
-                })
-                .collect(Collectors.toList());
+                }).distinct().collect(Collectors.toList());
 
         List<Integer> validBuildingIds = buildingInfoList.stream().map(buildingInfo -> buildingInfo.getId()).collect(Collectors.toList());
 
@@ -105,48 +104,38 @@ public class EmployeeServiceImpl implements EmployeeService {
         empBuildInfoCriteria.andStatusEqualTo(1);
         List<EmployeeBuildingInfo> employeeBuildingInfos= employeeBuildingInfoDao.selectByExample(empBuildInfoExample);
 
-        // 这里有待考证
-        /*responseList.stream()
-                .map(response -> employeeBuildingInfos.stream()
-                        .filter(employeeBuildingInfo -> Objects.equals(employeeBuildingInfo.getBuildingId(), response.getBuildingId()))
-                        .map(employeeBuildingInfo -> {
-                            EmployeeEntry employeeEntry = new EmployeeEntry();
-                            employeeEntry.setEmployeeId(employeeBuildingInfo.getEmployeeId());
-                            response.getEmployeeEntries().add(employeeEntry);
-                            return response;
-                        }))
-                .collect(Collectors.toList());*/
+        if(CollectionUtils.isNotEmpty(employeeBuildingInfos)){
+            responseList.stream()
+                    .forEach(response -> response.setEmployeeEntries(
+                            employeeBuildingInfos.stream()
+                                    .filter(employeeBuildingInfo -> Objects.equals(employeeBuildingInfo.getBuildingId(), response.getBuildingId()))
+                                    .map(employeeBuildingInfo -> {
+                                        EmployeeEntry employeeEntry = new EmployeeEntry();
+                                        employeeEntry.setEmployeeId(employeeBuildingInfo.getEmployeeId());
+                                        return employeeEntry;
+                                    }).collect(Collectors.toList())));
 
-        responseList.stream()
-                .forEach(response -> response.setEmployeeEntries(
-                        employeeBuildingInfos.stream()
-                                .filter(employeeBuildingInfo -> Objects.equals(employeeBuildingInfo.getBuildingId(), response.getBuildingId()))
-                                .map(employeeBuildingInfo -> {
-                                    EmployeeEntry employeeEntry = new EmployeeEntry();
-                                    employeeEntry.setEmployeeId(employeeBuildingInfo.getEmployeeId());
-                                    return employeeEntry;
-                                }).collect(Collectors.toList())));
+            List<Integer> employeeIds = employeeBuildingInfos.stream().map(employeeBuildingInfo -> employeeBuildingInfo.getEmployeeId()).collect(Collectors.toList());
 
-        List<Integer> employeeIds = employeeBuildingInfos.stream().map(employeeBuildingInfo -> employeeBuildingInfo.getEmployeeId()).collect(Collectors.toList());
+            EmployeeExample employeeExample = new EmployeeExample();
+            EmployeeExample.Criteria employeeCriteria = employeeExample.createCriteria();
+            employeeCriteria.andIdIn(employeeIds);
+            employeeCriteria.andStatusEqualTo(1);
+            List<Employee> employeeList = employeeDao.selectByExample(employeeExample);
 
-        EmployeeExample employeeExample = new EmployeeExample();
-        EmployeeExample.Criteria employeeCriteria = employeeExample.createCriteria();
-        employeeCriteria.andIdIn(employeeIds);
-        employeeCriteria.andStatusEqualTo(1);
-        List<Employee> employeeList = employeeDao.selectByExample(employeeExample);
-
-        // 这里有待考证
-        responseList.stream()
-                .map(response -> response.getEmployeeEntries().stream()
-                        .map(employeeEntry -> employeeList.stream()
-                                .filter(employee -> Objects.equals(employee.getId(), employeeEntry.getEmployeeId()))
-                                .findFirst()
-                                .map(employee -> {
-                                    employeeEntry.setEmployeeName(employee.getEmployeeName());
-                                    return employeeEntry;
-                                }).orElse(employeeEntry))
-                        .collect(Collectors.toList()))
-                .collect(Collectors.toList());
+            // 这里有待考证
+            responseList.stream()
+                    .map(response -> response.getEmployeeEntries().stream()
+                            .map(employeeEntry -> employeeList.stream()
+                                    .filter(employee -> Objects.equals(employee.getId(), employeeEntry.getEmployeeId()))
+                                    .findFirst()
+                                    .map(employee -> {
+                                        employeeEntry.setEmployeeName(employee.getEmployeeName());
+                                        return employeeEntry;
+                                    }).orElse(employeeEntry))
+                            .collect(Collectors.toList()))
+                    .collect(Collectors.toList());
+        }
 
         BeanUtils.copyProperties(pageBean, responsePage);
         responsePage.setList(responseList);

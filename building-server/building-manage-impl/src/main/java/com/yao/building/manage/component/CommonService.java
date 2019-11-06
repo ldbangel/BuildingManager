@@ -13,10 +13,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -67,9 +64,15 @@ public class CommonService {
             BuildingRoomInfoExample.Criteria criteria = example.createCriteria();
             criteria.andBuildingIdIn(buildingIdList);
             List<BuildingRoomInfo> buildingRoomInfos = buildingRoomInfoDao.selectByExample(example);
-
-            if(buildingRoomInfos == null || buildingRoomInfos.size() < 1){
-                throw new RuntimeException("楼栋房间信息为空！");
+            if(CollectionUtils.isEmpty(buildingRoomInfos)){
+                responseList = buildingInfoList.stream()
+                        .map(buildingInfo -> {
+                            T1 response = (T1) new BaseResponse();
+                            coverBuildingInfoToResponse(response, buildingInfo);
+                            response.setBuildingId(buildingInfo.getId());
+                            return response;
+                        }).collect(Collectors.toList());
+                return responseList;
             }
 
             responseList = buildingRoomInfos.stream()

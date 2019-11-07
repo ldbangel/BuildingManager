@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextName>logback</contextName>
+    <!--日志路径配置-->
+    <property name="LOG_BACK_DIR" value="/home/tomcat/logs"/>
+    <!--日志pattern -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS}|%X{threadId}|%X{traceId}|%X{rpcId}|%level|%C|%M|%L|uid=%X{uid},deviceId=%X{deviceId},sessionId=%X{sessionId},requestId=%X{requestId},tradeId=%X{tradeId},clientIp=%X{clientIp}|%.-512msg|%X{callChain}%n"/>
+    <!--单个文件最大大小256MB-->
+    <property name="LOG_MAXSIZE" value="256MB"/>
+    <!--INFO,DEBUG日志按小时输出，日志保持的最大小时数，删除之前的旧文件（运维归档过的不会删除），根据具体情况调整-->
+    <property name="LOG_INFO_DEBUG_MAX_HISTORY" value="48" />
+    <!--ERROR,WARN日志按天输出，日志保持的最大天数，删除之前的旧文件（运维归档过的不会删除），根据具体情况调整-->
+    <property name="LOG_ERROR_WARN_MAX_HISTORY" value="15" />
+    <!--LOG字符集-->
+    <property name="LOG_CHARSET" value="UTF-8"/>
+    <!-- logback 工程的日志配置-->
+    <appender name="INFO_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_BACK_DIR}/info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--按天滚动,单个文件超过最大大小后,当前活动文件按%i递增滚动-->
+            <fileNamePattern>${LOG_BACK_DIR}/info_%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${LOG_MAXSIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${LOG_INFO_DEBUG_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+        <!--临界值过滤器，info日志文件里会打印INFO,WARN,ERROR等级的日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+    <appender name="WARN_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_BACK_DIR}/warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--按天滚动,单个文件超过最大大小后,当前活动文件按%i递增滚动-->
+            <fileNamePattern>${LOG_BACK_DIR}/warn_%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${LOG_MAXSIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${LOG_ERROR_WARN_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+        <!--临界值过滤器,warn日志文件里会打印WARN,ERROR等级的日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+    <appender name="ERROR_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_BACK_DIR}/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--按天滚动,单个文件超过最大大小后,当前活动文件按%i递增滚动-->
+            <fileNamePattern>${LOG_BACK_DIR}/error_%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${LOG_MAXSIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${LOG_ERROR_WARN_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+        <!--临界值过滤器，error日志文件里会打印ERROR等级的日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+    <appender name="DEBUG_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_BACK_DIR}/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--按小时滚动,单个文件超过最大大小后,当前活动文件按%i递增滚动-->
+            <fileNamePattern>${LOG_BACK_DIR}/debug_%d{yyyyMMddHH}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${LOG_MAXSIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${LOG_INFO_DEBUG_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+        <!--临界值过滤器,debug日志文件里会打印DEBUG,INFO,WARN,ERROR等级的日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+    <!-- 开发环境使用 打印在控制台-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <param name="Pattern" value="${LOG_PATTERN}"/>
+        </layout>
+    </appender>
+    <!--下面的logger配置了level没有配置appender，会传递至root，在root不再判断是否满足root的level-->
+    <!-- 以org.springframework开头的包,只打印WARN及以上级别日志 -->
+    <logger name="org.springframework" level="INFO" />
+    <!-- 以java.sql.Connection开头的包,只打印INFO及以上级别日志 -->
+    <logger name="java.sql.Connection" level="INFO" />
+    <!-- 以java.sql.ResultSet开头的包,只打印INFO及以上级别日志 -->
+    <logger name="java.sql.ResultSet" level="INFO" />
+    <!-- 以org.mybatis.spring.SqlSessionUtils开头的包,只打印WARN及以上级别日志 -->
+    <logger name="org.mybatis.spring.SqlSessionUtils" level="WARN" />
+
+    <!--开发环境为DEBUG等级，生产环境必须设置为INFO或以上级别-->
+    <root level="DEBUG">
+        <!--打印到控制台，本地开发测试才使用-->
+        <appender-ref ref="STDOUT" />
+        <!--输出到DEBUG文件，开发环境才使用-->
+        <appender-ref ref="DEBUG_APPENDER"/>
+        <appender-ref ref="INFO_APPENDER"/>
+        <appender-ref ref="WARN_APPENDER"/>
+        <appender-ref ref="ERROR_APPENDER"/>
+    </root>
+</configuration>

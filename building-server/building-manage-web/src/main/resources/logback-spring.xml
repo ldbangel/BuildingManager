@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <contextName>logback</contextName>
+    <property resource="application.properties" />
     <!--日志路径配置-->
     <property name="LOG_BACK_DIR" value="/home/tomcat/logs"/>
     <!--日志pattern -->
@@ -75,7 +76,7 @@
         <file>${LOG_BACK_DIR}/debug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--按小时滚动,单个文件超过最大大小后,当前活动文件按%i递增滚动-->
-            <fileNamePattern>${LOG_BACK_DIR}/debug_%d{yyyyMMddHH}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_BACK_DIR}/debug_%d{yyyyMMdd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>${LOG_MAXSIZE}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -107,7 +108,7 @@
     <logger name="org.mybatis.spring.SqlSessionUtils" level="WARN" />
 
     <!--开发环境为DEBUG等级，生产环境必须设置为INFO或以上级别-->
-    <root level="DEBUG">
+    <root level="INFO">
         <!--打印到控制台，本地开发测试才使用-->
         <appender-ref ref="STDOUT" />
         <!--输出到DEBUG文件，开发环境才使用-->

@@ -27,7 +27,7 @@ public class RoomInfoDal {
         roomInfoWaterDao.insertSelective(roomInfoWater);
     }
 
-    public void  update(RoomInfo roomInfo){
+    public RoomInfo  update(RoomInfo roomInfo){
         roomInfoDao.updateByPrimaryKeySelective(roomInfo);
         RoomInfo newRoomInfo = roomInfoDao.selectByPrimaryKey(roomInfo.getId());
         RoomInfoWater roomInfoWater = new RoomInfoWater();
@@ -36,5 +36,6 @@ public class RoomInfoDal {
         roomInfoWater.setCreateTime(new Date());
         roomInfoWater.setModifyTime(new Date());
         roomInfoWaterDao.insertSelective(roomInfoWater);
+        return newRoomInfo;
     }
 }

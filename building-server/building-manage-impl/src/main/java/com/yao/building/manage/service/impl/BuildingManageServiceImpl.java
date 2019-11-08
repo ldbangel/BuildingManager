@@ -167,6 +167,9 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                     response.setRentStatus(roomInfo.getRoomStatus() == 1 ? "在租" : "未租");
                     response.setRoomType(roomInfo.getRoomType());
                     response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
+                    response.setRent(roomInfo.getRent());
+                    response.setEnergyUnit(roomInfo.getEnergyUnit());
+                    response.setWaterUnit(roomInfo.getWaterUnit());
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -216,6 +219,12 @@ public class BuildingManageServiceImpl implements BuildingManageService {
                 }
                 if(request.getEnergyNum() != null && request.getEnergyNum() != 0){
                     roomInfo.setEnergyNum(request.getEnergyNum());
+                }
+                if(request.getWaterUnit() != null){
+                    roomInfo.setWaterUnit(request.getWaterUnit());
+                }
+                if(request.getEnergyUnit() != null){
+                    roomInfo.setEnergyUnit(request.getEnergyUnit());
                 }
                 if(request.getRoomType() != null && request.getRoomType() != 0){
                     roomInfo.setRoomType(request.getRoomType());

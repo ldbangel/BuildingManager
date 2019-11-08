@@ -21,6 +21,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -210,7 +211,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     UserInfo userInfo = userInfoDao.selectByPrimaryKey(roomUserInfo.getUserId());
                     userInfo.setStatus(0);
                     try {
-                        userInfo.setRentEndTime(DateUtil.parse(request.getRentEndTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
+                        userInfo.setRentEndTime(DateUtil.parse(request.getRentEndTime(), DateUtil.yyyy_MM_dd));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -636,10 +637,15 @@ public class RoomInfoServiceImpl implements RoomInfoService {
      */
     private int addRoomRentDataInfo(AddRoomRentBaseInfoRequest request, Integer status){
         RoomInfo roomInfo = roomInfoDao.selectByPrimaryKey(request.getRoomId());
+        Integer oldEnergyNum = roomInfo.getEnergyNum();
+        Integer oldWaterNum = roomInfo.getWaterNum();
         // 更新房间基本信息
         roomInfo.setEnergyNum(request.getEnergyNum());
         roomInfo.setWaterNum(request.getWaterNum());
-        roomInfo.setOpenInternet(request.getOpenInternet());
+        // 需要修改的时候传值就修改
+        if(request.getOpenInternet() != null){
+            roomInfo.setOpenInternet(request.getOpenInternet());
+        }
         //如果是档口
         if(roomInfo.getRoomType() == 2){
             if(request.getWaterUnit() != null && request.getWaterUnit() != 0){
@@ -653,8 +659,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         if(status == 0 || status == 1){
             roomInfo.setRoomStatus(status);
         }
-        roomInfoDal.update(roomInfo);
-
+        roomInfo = roomInfoDal.update(roomInfo);
 
 
         /**
@@ -676,8 +681,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         roomData.setOpenInternet(roomInfo.getOpenInternet());
         roomData.setRentStatus(status);
         // 计算用水量和用电量
-        int energyUseCount = request.getEnergyNum() - roomInfo.getEnergyNum();
-        int waterUseCount = request.getWaterNum() - roomInfo.getWaterNum();
+        int energyUseCount = request.getEnergyNum() - oldEnergyNum;
+        int waterUseCount = request.getWaterNum() - oldWaterNum;
         roomData.setEnergyUseCount(energyUseCount);
         roomData.setWaterUseCount(waterUseCount);
         try {
@@ -720,7 +725,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
             roomFee.setStartFeeTime(beforeRoomDatas.getReadTime());
             try {
-                roomFee.setEndFeeTime(DateUtil.parse(request.getReadTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
+                roomFee.setEndFeeTime(DateUtil.parse(request.getReadTime(), DateUtil.yyyy_MM_dd));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

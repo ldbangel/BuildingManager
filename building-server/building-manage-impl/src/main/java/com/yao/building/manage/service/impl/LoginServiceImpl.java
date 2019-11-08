@@ -1,9 +1,10 @@
 package com.yao.building.manage.service.impl;
 
-import com.yao.building.manage.component.RedisUtils;
 import com.yao.building.manage.dao.EmployeeDao;
 import com.yao.building.manage.domain.Employee;
 import com.yao.building.manage.domain.EmployeeExample;
+import com.yao.building.manage.exception.BuildingErrorCode;
+import com.yao.building.manage.exception.BuildingException;
 import com.yao.building.manage.request.EmployeeLoginRequest;
 import com.yao.building.manage.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ public class LoginServiceImpl implements LoginService {
         List<Employee> employees = employeeDao.selectByExample(employeeExample);
         if(CollectionUtils.isEmpty(employees)){
             log.info("员工信息不存在，mobile = {}", request.getEmployeeMobile());
-            throw new RuntimeException("参数错误");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         Employee employee = employees.get(0);
         return employee;

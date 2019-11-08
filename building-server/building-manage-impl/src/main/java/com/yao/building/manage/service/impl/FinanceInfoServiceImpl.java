@@ -8,6 +8,8 @@ import com.yao.building.manage.domain.BuildingInfo;
 import com.yao.building.manage.domain.RoomFee;
 import com.yao.building.manage.domain.RoomFeeExample;
 import com.yao.building.manage.domain.RoomInfo;
+import com.yao.building.manage.exception.BuildingErrorCode;
+import com.yao.building.manage.exception.BuildingException;
 import com.yao.building.manage.request.GetFinanceInfoRequest;
 import com.yao.building.manage.response.BaseResponse;
 import com.yao.building.manage.response.FinancialInfoResponse;
@@ -36,7 +38,7 @@ public class FinanceInfoServiceImpl implements FinanceInfoService {
     @Override
     public PageBean<FinancialInfoResponse> getFinancialInfoByConditions(GetFinanceInfoRequest request) {
         if(request == null){
-            throw new RuntimeException("无效的请求参数");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         List<FinancialInfoResponse> responseList = new ArrayList<>();
         PageBean<FinancialInfoResponse> responsePage = new PageBean<>();

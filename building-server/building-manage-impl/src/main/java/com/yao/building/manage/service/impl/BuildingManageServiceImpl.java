@@ -7,6 +7,8 @@ import com.yao.building.manage.dal.BuildingManagerDal;
 import com.yao.building.manage.dal.RoomInfoDal;
 import com.yao.building.manage.dao.*;
 import com.yao.building.manage.domain.*;
+import com.yao.building.manage.exception.BuildingErrorCode;
+import com.yao.building.manage.exception.BuildingException;
 import com.yao.building.manage.request.*;
 import com.yao.building.manage.response.BaseResponse;
 import com.yao.building.manage.response.BuildingBaseInfoResponse;
@@ -178,7 +180,7 @@ public class BuildingManageServiceImpl implements BuildingManageService {
     @Override
     public void addOrEditRoomBaseInfo(AddOrEditRoomInfoRequest request) {
         if(request == null){
-            throw new RuntimeException("参数错误");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
 
         if(request.getRoomId() == null && request.getBuildingId() != null){
@@ -255,7 +257,7 @@ public class BuildingManageServiceImpl implements BuildingManageService {
         criteria.andStatusEqualTo(1);
         List<EmployeeBuildingInfo> employeeBuildingInfos = employeeBuildingInfoDao.selectByExample(example);
         if(employeeBuildingInfos == null || employeeBuildingInfos.size() < 1){
-            throw  new RuntimeException("系统错误，请稍后再试");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         EmployeeBuildingInfo employeeBuildingInfo = employeeBuildingInfos.get(0);
 

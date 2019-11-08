@@ -11,6 +11,8 @@ import com.yao.building.manage.domain.Employee;
 import com.yao.building.manage.service.EmployeeService;
 import com.yao.building.manage.web.annotation.PassToken;
 import com.yao.building.manage.web.annotation.UserLoginToken;
+import com.yao.building.manage.exception.BuildingErrorCode;
+import com.yao.building.manage.exception.BuildingException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
@@ -53,7 +55,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             if (userLoginToken.required()) {
                 // 执行认证
                 if (token == null) {
-                    throw new RuntimeException("token无效，请重新登录");
+                    throw new BuildingException(BuildingErrorCode.INVALID_TOKEN);
                 }
                 // 获取 token 中的 employee id
                 Employee employee;
@@ -63,15 +65,15 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     employee = JSONObject.parseObject(employeeString, Employee.class);
                     isValid = redisUtils.hasKey(employee.getEmployeeMobile()+"_"+employee.getId());
                 } catch (JWTDecodeException j) {
-                    throw new RuntimeException("401");
+                    throw new BuildingException(BuildingErrorCode.INVALID_TOKEN);
                 }
                 // redis里面无对应token，判为无效token
                 if(!isValid){
-                    throw new RuntimeException("token无效，请重新登录");
+                    throw new BuildingException(BuildingErrorCode.INVALID_TOKEN);
                 }else{
                     String redisToken = redisUtils.get(employee.getEmployeeMobile()+"_"+employee.getId()).toString();
                     if(!StringUtils.equals(redisToken, token)){
-                        throw new RuntimeException("token无效，请重新登录");
+                        throw new BuildingException(BuildingErrorCode.INVALID_TOKEN);
                     }
                 }
 
@@ -84,7 +86,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 try {
                     jwtVerifier.verify(token);
                 } catch (JWTVerificationException e) {
-                    throw new RuntimeException("401");
+                    throw new BuildingException(BuildingErrorCode.INVALID_TOKEN);
                 }
                 return true;
             }

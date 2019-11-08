@@ -5,6 +5,8 @@ import com.yao.building.manage.dao.BuildingInfoDao;
 import com.yao.building.manage.dao.BuildingRoomInfoDao;
 import com.yao.building.manage.dao.RoomInfoDao;
 import com.yao.building.manage.domain.*;
+import com.yao.building.manage.exception.BuildingErrorCode;
+import com.yao.building.manage.exception.BuildingException;
 import com.yao.building.manage.request.PageRequest.BaseRequest;
 import com.yao.building.manage.response.BaseResponse;
 import com.yao.building.manage.vo.PageBean;
@@ -30,7 +32,7 @@ public class CommonService {
         List<T1> responseList = new ArrayList<T1>();
         if(request == null){
             log.info("request can not be null! please check again");
-            throw new RuntimeException("参数错误");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         if(request.getRoomId() != null && request.getRoomId() != 0){
             BuildingInfo buildingInfo = getBuildingInfoByRoomId(request.getRoomId());

@@ -8,6 +8,8 @@ import com.yao.building.manage.dal.RoomInfoDal;
 import com.yao.building.manage.dal.RoomUserInfoDal;
 import com.yao.building.manage.dao.*;
 import com.yao.building.manage.domain.*;
+import com.yao.building.manage.exception.BuildingErrorCode;
+import com.yao.building.manage.exception.BuildingException;
 import com.yao.building.manage.request.*;
 import com.yao.building.manage.request.PageRequest.UserBaseInfo;
 import com.yao.building.manage.response.*;
@@ -126,7 +128,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     public List<RoomRentBaseInfoResponse> getRoomRentBaseInfoOfMonth(GetRoomRentBaseInfoRequest request) {
         if(request == null || request.getRoomId() == null || request.getRoomId() == 0){
             log.info("GetRoomRentBaseInfoRequest invalid !");
-            throw new RuntimeException("无效的请求参数");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         //通过roomId获取buildingInfo信息
         BuildingInfo buildingInfo= commonService.getBuildingInfoByRoomId(request.getRoomId());
@@ -172,7 +174,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     @Override
     public int addRoomRentBaseInfo(AddRoomRentBaseInfoRequest request) {
         if(request == null || request.getRoomId() == null){
-            throw new RuntimeException("无效的请求参数");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         int result = addRoomRentDataInfo(request, 2);
         return result;
@@ -181,7 +183,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     @Override
     public void cancelRoomRent(CancelRoomRentRequest request) {
         if(request == null || request.getRoomId() == null){
-            throw new RuntimeException("无效的请求参数");
+            throw new BuildingException(BuildingErrorCode.INVALID_PARAMS);
         }
         AddRoomRentBaseInfoRequest addRoomRentBaseInfoRequest = new AddRoomRentBaseInfoRequest();
         addRoomRentBaseInfoRequest.setReadTime(request.getRentEndTime());
@@ -679,7 +681,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         roomData.setEnergyUseCount(energyUseCount);
         roomData.setWaterUseCount(waterUseCount);
         try {
-            roomData.setReadTime(DateUtil.parse(request.getReadTime(), DateUtil.yyyy_MM_dd_HH_mm_ss));
+            roomData.setReadTime(DateUtil.parse(request.getReadTime(), DateUtil.yyyy_MM_dd));
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -246,6 +246,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                     AbleCancelRoomResponse response = new AbleCancelRoomResponse();
                     response.setRoomId(roomInfo.getId());
                     response.setRoomNo(roomInfo.getRoomNo());
+                    response.setRoomType(roomInfo.getRoomType());
+                    response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
                     response.setRentStatus("在租");
                     return response;
                 })
@@ -285,25 +287,34 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     }
 
     @Override
-    public List<AbleToRentRoomResponse> getAllAbleToRentRoomInfo(GetAllAbleToRentRoomRequest request) {
+    public PageBean<AbleToRentRoomResponse> getAllAbleToRentRoomInfo(GetAllAbleToRentRoomRequest request) {
+        PageBean<AbleToRentRoomResponse> pageResponse = new PageBean<>();
         // 楼栋信息查询
         BuildingInfo buildingInfo = buildingInfoDao.selectByPrimaryKey(request.getBuildingId());
         // 根据楼栋ID查询所有房间信息
-        List<RoomInfo> roomInfoList = getRoomInfosByBuildingId(request.getBuildingId(), 0);
+        PageBean<RoomInfo> pageBean = getRoomInfosByBuildingId(request.getBuildingId(), 0, request.getPage(), request.getLimit());
+        List<RoomInfo> roomInfoList = pageBean.getList();
 
         List<AbleToRentRoomResponse> responseList = roomInfoList.stream()
                 .map(roomInfo -> {
                     AbleToRentRoomResponse response = new AbleToRentRoomResponse();
                     response.setVillageName(buildingInfo.getVillageName());
                     response.setBuildingName(buildingInfo.getBuildingDesc());
+                    response.setManageFee(buildingInfo.getManageFee());
+                    response.setCleanFee(buildingInfo.getCleanFee());
+                    response.setInternetFee(buildingInfo.getInternetFee());
                     response.setRoomNo(roomInfo.getRoomNo());
                     response.setRoomId(roomInfo.getId());
+                    response.setRoomType(roomInfo.getRoomType());
+                    response.setRoomTypeDesc(roomInfo.getRoomTypeDesc());
                     response.setRentStatus("未租");
                     return response;
                 })
                 .collect(Collectors.toList());
 
-        return responseList;
+        BeanUtils.copyProperties(pageBean, pageResponse);
+        pageResponse.setList(responseList);
+        return pageResponse;
     }
 
     @Override
@@ -609,7 +620,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     }
 
     // 获取单个楼栋ID的所有房间信息
-    private List<RoomInfo> getRoomInfosByBuildingId(Integer buildingId, Integer status){
+    private PageBean<RoomInfo> getRoomInfosByBuildingId(Integer buildingId, Integer status, Integer page, Integer limit){
         // 楼栋和房间关联信息查询
         BuildingRoomInfoExample example = new BuildingRoomInfoExample();
         BuildingRoomInfoExample.Criteria criteria = example.createCriteria();
@@ -623,8 +634,8 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 .map(buildingRoomInfo -> buildingRoomInfo.getRoomId())
                 .collect(Collectors.toList());
 
-        List<RoomInfo> roomInfoList = commonService.getRoomInfosByIds(roomIds, status);
-        return roomInfoList;
+        PageBean<RoomInfo> pageBean = commonService.getRoomPageInfosByIds(roomIds, status, page, limit);
+        return pageBean;
     }
 
 
@@ -648,11 +659,11 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         }
         //如果是档口
         if(roomInfo.getRoomType() == 2){
-            if(request.getWaterUnit() != null && request.getWaterUnit() != 0){
-                roomInfo.setWaterUnit(BigDecimal.valueOf(request.getWaterUnit()));
+            if(request.getWaterUnit() != null){
+                roomInfo.setWaterUnit(request.getWaterUnit());
             }
-            if(request.getEnergyUnit() != null && request.getEnergyUnit() != 0){
-                roomInfo.setEnergyUnit(BigDecimal.valueOf(request.getEnergyUnit()));
+            if(request.getEnergyUnit() != null){
+                roomInfo.setEnergyUnit(request.getEnergyUnit());
             }
         }
         roomInfo.setModifyTime(new Date());

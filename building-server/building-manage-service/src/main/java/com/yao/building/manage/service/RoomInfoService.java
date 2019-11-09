@@ -60,7 +60,7 @@ public interface RoomInfoService {
     /**
      * 获取可出租的房间信息
      */
-    List<AbleToRentRoomResponse> getAllAbleToRentRoomInfo(GetAllAbleToRentRoomRequest request);
+    PageBean<AbleToRentRoomResponse> getAllAbleToRentRoomInfo(GetAllAbleToRentRoomRequest request);
 
     /**
      * 房间出租

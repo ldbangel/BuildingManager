@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -24,13 +25,13 @@ public class BindRoomWithUserRequest {
      * 水单价
      * 注意：只有房间是档口时需要传
      */
-    private Integer waterUnit;
+    private BigDecimal waterUnit;
 
     /**
      * 电单价
      * 注意：只有房间是档口时需要传
      */
-    private Integer energyUnit;
+    private BigDecimal energyUnit;
     private String  rentBeginTime;
     private List<UserBaseInfo> userBaseInfos;
 }

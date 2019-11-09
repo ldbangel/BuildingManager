@@ -9,4 +9,9 @@ public class AbleToRentRoomResponse {
     private String buildingName;
     private Integer roomNo;
     private String rentStatus;
+    private Integer roomType;
+    private String roomTypeDesc;
+    private Integer manageFee;
+    private Integer cleanFee;
+    private Integer internetFee;
 }

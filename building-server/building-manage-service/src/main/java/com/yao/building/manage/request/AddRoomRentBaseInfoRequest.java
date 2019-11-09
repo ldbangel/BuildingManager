@@ -2,6 +2,8 @@ package com.yao.building.manage.request;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class AddRoomRentBaseInfoRequest {
     private Integer roomId;
@@ -16,13 +18,13 @@ public class AddRoomRentBaseInfoRequest {
      * 水单价
      * 注意：只有房间是档口时需要传
      */
-    private Integer waterUnit;
+    private BigDecimal waterUnit;
 
     /**
      * 电单价
      * 注意：只有房间是档口时需要传
      */
-    private Integer energyUnit;
+    private BigDecimal energyUnit;
     private String readTime;
     private String operator;
 }

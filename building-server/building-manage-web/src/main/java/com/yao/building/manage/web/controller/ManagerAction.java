@@ -102,9 +102,9 @@ public class ManagerAction {
      */
     @UserLoginToken
     @RequestMapping("getAbleRentRoomInfos")
-    public List<AbleToRentRoomResponse> getAllAbleRentRoomInfos(@RequestBody GetAllAbleToRentRoomRequest request){
-        List<AbleToRentRoomResponse> responseList = roomInfoService.getAllAbleToRentRoomInfo(request);
-        return responseList;
+    public PageBean<AbleToRentRoomResponse> getAllAbleRentRoomInfos(@RequestBody GetAllAbleToRentRoomRequest request){
+        PageBean<AbleToRentRoomResponse> response = roomInfoService.getAllAbleToRentRoomInfo(request);
+        return response;
     }
 
     /**

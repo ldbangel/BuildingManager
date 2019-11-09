@@ -399,6 +399,10 @@ public class RoomInfoServiceImpl implements RoomInfoService {
             List<RoomData> roomDataList =  roomDataDao.selectByExample(roomDataExample);
             PageBean<RoomData> pageBean = new PageBean<>(roomDataList);
 
+            if(roomDataList == null || roomDataList.size() < 1){
+                return pageResponse;
+            }
+
             List<Integer> roomIds = roomDataList.stream()
                     .map(roomData -> roomData.getRoomId())
                     .distinct()

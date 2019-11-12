@@ -733,9 +733,11 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 roomFee.setEnergyFee(BigDecimal.valueOf(energyUseCount * UnitPriceConstant.ENERGY_UNIT_PRICE));
                 roomFee.setWaterFee(BigDecimal.valueOf(waterUseCount * UnitPriceConstant.WATER_UNIT_PRICE));
             }
-            roomFee.setAllFee(roomFee.getEnergyFee()
-                    .add(roomFee.getEnergyFee())
-                    .add(BigDecimal.valueOf(roomFee.getRentFee()))
+            roomFee.setAllFee(roomFee.getWaterFee() //水费
+                    .add(roomFee.getEnergyFee())   //电费
+                    .add(roomFee.getInternetFee() == null ? new BigDecimal(0) : BigDecimal.valueOf(roomFee.getInternetFee()))   //网费
+                    .add(roomFee.getCleanFee() == null ? new BigDecimal(0) : BigDecimal.valueOf(roomFee.getCleanFee()))    //卫生费
+                    .add(BigDecimal.valueOf(roomFee.getRentFee()))   //房间租金
                     .add(BigDecimal.valueOf(roomFee.getManageFee())));
 
             roomFee.setStartFeeTime(beforeRoomDatas.getReadTime());
